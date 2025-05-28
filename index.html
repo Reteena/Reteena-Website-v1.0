@@ -17,7 +17,129 @@
     <!-- Import AOS (Animate On Scroll) Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        /* (existing CSS unchanged except .banner-text and .redirect-link styles remain) */
+        /* Apply EB Garamond to all elements */
+        * {
+            font-family: 'EB Garamond', serif;
+        }
+        
+        html {
+            scroll-behavior: smooth; /* Enable native smooth scrolling */
+        }
+        
+        body {
+            font-family: 'EB Garamond', serif;
+        }
+        
+        /* Force EB Garamond on all specific elements */
+        h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select, option, label {
+            font-family: 'EB Garamond', serif !important;
+        }
+        
+        /* Specifically target the header */
+        .header h1 {
+            font-family: 'EB Garamond', serif !important;
+        }
+        
+        /* Add justified text for paragraphs */
+        p {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+        
+        /* Animation styles */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Section spacing for animations */
+        section {
+            padding: 20px 0;
+        }
+        
+        .team-members {
+            margin-top: 10px; /* Reduced from 30px to reduce vertical gap */
+            width: 100%;
+        }
+        .member {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0; /* Remove bottom margin */
+            width: 100%;
+            padding: 8px 0; /* Add padding instead of margin */
+            border-bottom: 1px solid #eee; /* Add thin divider line between names */
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .member:hover {
+            transform: translateX(5px);
+        }
+        .member:first-child {
+            padding-top: 0; /* Remove top padding from first member to reduce gap */
+        }
+        .member span:first-child {
+            text-align: left;
+            font-weight: 500;
+            flex: 0 0 auto; /* Don't grow, don't shrink, auto-size */
+            margin-right: 20px; /* Add space after name */
+        }
+        .member span:last-child {
+            text-align: right;
+            color: #555;
+            flex: 1; /* Take up remaining space */
+        }
+        .team-description {
+            margin-top: 10px;
+            margin-bottom: 10px; /* Reduced from 20px to reduce vertical gap */
+            line-height: 1.5;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+        
+        /* Form elements */
+        input, button {
+            font-family: 'EB Garamond', serif !important;
+        }
+        
+        #email-input::placeholder {
+            font-family: 'EB Garamond', serif !important;
+        }
+        
+        /* Ensure form messages aren't justified */
+        .email-message {
+            text-align: left;
+            font-family: 'EB Garamond', serif !important;
+        }
+        
+        /* Footer text */
+        .footer_sub p {
+            font-family: 'EB Garamond', serif !important;
+        }
+        
+        /* Animation for email form */
+        .email-signup {
+            transition: transform 0.3s ease;
+        }
+        
+        .email-signup:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Smooth button animation */
+        #email-submit {
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        #email-submit:hover {
+            transform: scale(1.05);
+        }
+
+        /* Banner Styles */
         @font-face {
             font-family: 'ABCOracle';
             src: url('https://fonts.cdnfonts.com/s/66345/ABCOracle-Medium.woff') format('woff');
@@ -81,7 +203,85 @@
     </div>
     
 <main>
-    <!-- rest of file continues unchanged -->
+    <div class="header" data-aos="fade-down" data-aos-duration="800">
+        <h1>
+            Reteena
+        </h1>
+        <a href="https://www.linkedin.com/company/reteena/" target="_blank">
+            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z"
+                        fill="currentColor"/>
+            </svg>
+        </a>
+    </div>
+
+    <section class="introduction">
+        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+            We are building Low-Field MRI Resolution Image Enhancement Framework for Better Alzheimer's Diagnosis and
+            the
+            <a href="https://www.linkedin.com/posts/alexyang77_introducing-remembrance-by-reteena-the-activity-7332915036396433409-bNQ6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE3UIjQBZFtlI1COnn2N_ig4-DZEnujWtM" target="_blank" class="external-link">
+                <span style="text-decoration: underline;">LLM-based Memory Repository for Reminiscence Therapy</span>
+                <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14" style="vertical-align: middle; margin-left: 4px;">
+                        <path d="M18 13v6a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </p>
+
+        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+            Reteena shares the same pronunciation as retina, a vital part of the eye used for vision. Like the retina, Reteena aims to provide a new perspective on Alzheimer's, illuminating pathways toward effective treatment.
+        </p>
+
+        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">We have achieved multiple milestones: submission to <a class="strong__links"
+                                                   href="https://solve.mit.edu/solutions/86724"
+                                                   target="_blank">MIT
+                SOLVE</a>, presentation at <a class="strong__links"
+                                   href="https://ieeexplore.ieee.org/document/10826144" target="_blank">IEEE
+                BigData
+                2024</a>, sponsorship
+                from <a class="strong__links"
+                        href="https://foundershub.startups.microsoft.com/" target="_blank">Microsoft Founders Hub</a>, and
+                additional
+                accomplishments behind our innovative work. </p>
+        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+            Our team will soon launch our memory repository platform in partnership with OpenNLP labs. We continuously experiment with innovative concepts and new ideas! Leave your email below for more information.
+        </p>
+
+        <!-- Email input system added here -->
+        <div class="email-signup" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="500">
+            <form id="email-form" action="https://formsubmit.co/alex@reteena.org" method="POST" novalidate>
+                <input type="hidden" name="_subject" value="New subscriber from Reteena website">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://www.reteena.org?subscribed=true">
+                <input type="email" id="email-input" name="email" placeholder="Enter your email" required>
+                <button type="submit" id="email-submit">Send</button>
+            </form>
+            <p id="email-message" class="email-message">Please enter your email address</p>
+        </div>
+        
+        <h3 data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">Our Team</h3>
+        <p class="team-description" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">We're a close-knit team of standout undergraduates and high schoolers, combining deep expertise in healthcare and AI to push boundaries and create meaningful impact with purpose, vision, and resilience.</p>
+        <div class="team-members" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="0"><span>Alex Yang</span><span>North London Collegiate School Jeju</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="100"><span>Jainish Patel</span><span>Lake Minneola High School</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="200"><span>Aarav Minocha</span><span>University of California, Berkeley</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="300"><span>Jessica Wu</span><span>Rochester University</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="400"><span>Bhavya Mamnani</span><span>University of California, Berkeley</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="500"><span>Sunkalp Chandra</span><span>High Technology High School</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="600"><span>Sanghoo Ahn</span><span>North London Collegiate School Jeju</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="700"><span>Nathan He</span><span>Ocean Lakes High School</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="800"><span>Ivan Ma</span><span>University of California, Berkeley</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="900"><span>Olivia Jeon</span><span>White Oaks Secondary School</span></div>
+        </div>
+    </section>
+
+    <footer data-aos="fade-up" data-aos-duration="800">
+        <div class="footer_sub">
+            <p>business & general: hello@reteena.org</p>
+            <p>Copyright © 2025 Reteena. All rights reserved.</p>
+        </div>
+    </footer>
 </main>
 
 <!-- Add the missing JavaScript functions -->
@@ -113,6 +313,70 @@
     
     // Run when page loads
     window.onload = checkCookie;
+</script>
+
+<!-- AOS (Animate On Scroll) Script -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+    // Initialize AOS
+    AOS.init({
+        once: true, // Only animate elements once
+        disable: 'mobile', // Disable animations on mobile devices
+        offset: 120, // Offset (in px) from the original trigger point
+    });
+    
+    // Hide message initially
+    document.getElementById('email-message').style.display = 'none';
+    
+    // Check if user just completed a subscription (from redirect)
+    if (window.location.search.includes('subscribed=true')) {
+        const emailMessage = document.getElementById('email-message');
+        emailMessage.textContent = 'Thank you for subscribing!';
+        emailMessage.style.color = '#4CAF50';
+        emailMessage.style.display = 'block';
+    }
+    
+    document.getElementById('email-form').addEventListener('submit', function(e) {
+        const emailInput = document.getElementById('email-input');
+        const email = emailInput.value;
+        const emailMessage = document.getElementById('email-message');
+        
+        if (!email) {
+            // Show error message if empty
+            e.preventDefault(); // Prevent form submission
+            emailInput.style.borderColor = '#ff3b30';
+            emailMessage.textContent = 'Please enter your email address';
+            emailMessage.style.color = '#ff3b30';
+            emailMessage.style.display = 'block';
+            return false;
+        }
+        
+        // Form will submit naturally to formsubmit.co
+        // Redirect and thank you message will be handled by the _next parameter
+    });
+    
+    // Add additional fade-in animation for elements as you scroll
+    document.addEventListener('DOMContentLoaded', function() {
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = function() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('is-visible');
+                }
+            });
+        };
+        
+        // Run on initial load
+        fadeInOnScroll();
+        
+        // Run on scroll
+        window.addEventListener('scroll', fadeInOnScroll);
+    });
 </script>
 </body>
 </html>
