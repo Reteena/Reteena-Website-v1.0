@@ -56,8 +56,8 @@
             team. </p>
     </section>
 
-    <div id="animation-container" class="animation-container">
-        <canvas id="animation-canvas"></canvas>
+    <div id="eye-animation-container" class="eye-animation-container">
+        <canvas id="eye-animation-canvas"></canvas>
     </div>
 
     <section class="achievements">
@@ -122,10 +122,10 @@
         }
     });
 
-    // Modern Canvas Animation with Walking Person
+    // Detailed Eye Animation
     document.addEventListener('DOMContentLoaded', function() {
-        const canvas = document.getElementById('animation-canvas');
-        const container = document.getElementById('animation-container');
+        const canvas = document.getElementById('eye-animation-canvas');
+        const container = document.getElementById('eye-animation-container');
         const ctx = canvas.getContext('2d');
         
         // Set canvas to container size
@@ -138,26 +138,24 @@
         window.addEventListener('resize', resizeCanvas);
         
         // Animation variables
-        const particleCount = 800; // Reduced count for better performance
+        const particleCount = 1000; // Optimized particle count
         let particles = [];
         let mouseX = 0;
         let mouseY = 0;
-        let mouseRadius = 80;
+        let mouseRadius = 100;
         let frame = 0;
+        let pupilSize = 0.2; // Size of pupil (normalized)
+        let blinking = false;
+        let blinkProgress = 0;
+        let lastBlinkTime = 0;
         
-        // Color scheme
-        const colors = {
-            background: '#121212',
-            particles: ['#3498db', '#2980b9', '#1abc9c', '#16a085', '#ffffff']
-        };
-        
-        // Create particles
-        function createParticles() {
+        // Create particles for the eye shape
+        function createEyeParticles() {
             particles = [];
-            const silhouettePoints = createPersonSilhouette();
+            const eyePoints = createEyeShape();
             
-            for (let i = 0; i < silhouettePoints.length; i++) {
-                const point = silhouettePoints[i];
+            for (let i = 0; i < eyePoints.length; i++) {
+                const point = eyePoints[i];
                 const x = point.x * canvas.width;
                 const y = point.y * canvas.height;
                 
@@ -166,111 +164,121 @@
                     y: y,
                     originalX: x,
                     originalY: y,
-                    size: Math.random() * 2 + 1,
-                    color: colors.particles[Math.floor(Math.random() * colors.particles.length)],
+                    size: Math.random() * 1.5 + 1,
+                    color: '#ffffff', // Only white particles
                     vx: 0,
                     vy: 0,
-                    speed: Math.random() * 0.5 + 0.2,
-                    angle: Math.random() * Math.PI * 2,
-                    distance: Math.random() * 3 + 1
+                    zone: point.zone, // Which part of the eye (iris, pupil, sclera)
+                    inPupil: point.inPupil || false
                 });
             }
         }
         
-        // Create person silhouette points
-        function createPersonSilhouette() {
+        // Create eye shape points
+        function createEyeShape() {
             const points = [];
-            
-            // Generate points that form a walking person silhouette
-            // This uses normalized coordinates (0-1) for responsive scaling
-            
-            // Body outline
-            const bodyWidth = 0.06;
-            const bodyHeight = 0.5;
             const centerX = 0.5;
             const centerY = 0.5;
+            const eyeWidth = 0.35;
+            const eyeHeight = 0.2;
+            const irisRadius = 0.15;
+            const pupilRadius = 0.05;
             
-            // Head
-            for (let i = 0; i < 40; i++) {
+            // Create eye outline (almond shape)
+            const outlinePoints = 200;
+            for (let i = 0; i < outlinePoints; i++) {
+                const angle = (i / outlinePoints) * Math.PI * 2;
+                const x = centerX + Math.cos(angle) * eyeWidth * Math.sin(angle * 2) * 0.9;
+                const y = centerY + Math.sin(angle) * eyeHeight;
+                
+                points.push({
+                    x: x,
+                    y: y,
+                    zone: 'outline'
+                });
+            }
+            
+            // Create sclera (white part of eye)
+            const scleraPoints = 300;
+            for (let i = 0; i < scleraPoints; i++) {
                 const angle = Math.random() * Math.PI * 2;
-                const radius = 0.07 * Math.random();
+                const radiusMultiplier = Math.pow(Math.random(), 0.5); // Distribution to fill the shape
+                const radius = (eyeWidth * 0.9 * Math.sin(angle * 2) * 0.85) * radiusMultiplier;
+                const x = centerX + Math.cos(angle) * radius;
+                const y = centerY + Math.sin(angle) * (eyeHeight * 0.85) * radiusMultiplier;
+                
+                // Check if the point is within the eye shape
+                const distance = Math.sqrt(
+                    Math.pow((x - centerX) / (eyeWidth * Math.sin(angle * 2) * 0.9), 2) +
+                    Math.pow((y - centerY) / eyeHeight, 2)
+                );
+                
+                if (distance <= 0.85) {
+                    points.push({
+                        x: x,
+                        y: y,
+                        zone: 'sclera'
+                    });
+                }
+            }
+            
+            // Create iris (colored part around pupil)
+            const irisPoints = 250;
+            for (let i = 0; i < irisPoints; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const radius = irisRadius * Math.sqrt(Math.random());
+                const x = centerX + Math.cos(angle) * radius;
+                const y = centerY + Math.sin(angle) * radius;
+                
                 points.push({
-                    x: centerX + Math.cos(angle) * radius,
-                    y: centerY - 0.22 + Math.sin(angle) * radius
+                    x: x,
+                    y: y,
+                    zone: 'iris'
                 });
             }
             
-            // Torso
-            for (let i = 0; i < 100; i++) {
+            // Create pupil (center black part)
+            const pupilPoints = 150;
+            for (let i = 0; i < pupilPoints; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const radius = pupilRadius * Math.sqrt(Math.random());
+                const x = centerX + Math.cos(angle) * radius;
+                const y = centerY + Math.sin(angle) * radius;
+                
                 points.push({
-                    x: centerX + (Math.random() - 0.5) * bodyWidth,
-                    y: centerY - 0.16 + Math.random() * 0.3
+                    x: x,
+                    y: y,
+                    zone: 'pupil',
+                    inPupil: true
                 });
             }
             
-            // Left arm (extended forward)
-            const leftArmStartX = centerX - bodyWidth/2;
-            const leftArmStartY = centerY - 0.1;
-            const leftArmEndX = centerX - 0.13;
-            const leftArmEndY = centerY - 0.05;
+            // Add details like eyelashes and wrinkles
+            const detailPoints = 100;
             
-            for (let i = 0; i < 40; i++) {
-                const t = Math.random();
+            // Upper eyelid wrinkle
+            for (let i = 0; i < detailPoints/2; i++) {
+                const t = (i / (detailPoints/2)) * Math.PI;
+                const x = centerX + Math.cos(t) * eyeWidth * 0.8;
+                const y = centerY - eyeHeight * 1.2 + Math.sin(t * 3) * 0.01;
+                
                 points.push({
-                    x: leftArmStartX + (leftArmEndX - leftArmStartX) * t + (Math.random() - 0.5) * 0.02,
-                    y: leftArmStartY + (leftArmEndY - leftArmStartY) * t + (Math.random() - 0.5) * 0.02
+                    x: x, 
+                    y: y,
+                    zone: 'detail'
                 });
             }
             
-            // Right arm (extended backward)
-            const rightArmStartX = centerX + bodyWidth/2;
-            const rightArmStartY = centerY - 0.1;
-            const rightArmEndX = centerX + 0.15;
-            const rightArmEndY = centerY;
-            
-            for (let i = 0; i < 40; i++) {
-                const t = Math.random();
+            // Lower eyelid wrinkle
+            for (let i = 0; i < detailPoints/2; i++) {
+                const t = (i / (detailPoints/2)) * Math.PI;
+                const x = centerX + Math.cos(t) * eyeWidth * 0.7;
+                const y = centerY + eyeHeight * 1.1 + Math.sin(t * 2) * 0.01;
+                
                 points.push({
-                    x: rightArmStartX + (rightArmEndX - rightArmStartX) * t + (Math.random() - 0.5) * 0.02,
-                    y: rightArmStartY + (rightArmEndY - rightArmStartY) * t + (Math.random() - 0.5) * 0.02
-                });
-            }
-            
-            // Left leg (forward)
-            const leftLegStartX = centerX - bodyWidth/4;
-            const leftLegStartY = centerY + 0.14;
-            const leftLegEndX = centerX - 0.1;
-            const leftLegEndY = centerY + 0.25;
-            
-            for (let i = 0; i < 60; i++) {
-                const t = Math.random();
-                points.push({
-                    x: leftLegStartX + (leftLegEndX - leftLegStartX) * t + (Math.random() - 0.5) * 0.03,
-                    y: leftLegStartY + (leftLegEndY - leftLegStartY) * t + (Math.random() - 0.5) * 0.03
-                });
-            }
-            
-            // Right leg (backward)
-            const rightLegStartX = centerX + bodyWidth/4;
-            const rightLegStartY = centerY + 0.14;
-            const rightLegEndX = centerX + 0.08;
-            const rightLegEndY = centerY + 0.25;
-            
-            for (let i = 0; i < 60; i++) {
-                const t = Math.random();
-                points.push({
-                    x: rightLegStartX + (rightLegEndX - rightLegStartX) * t + (Math.random() - 0.5) * 0.03,
-                    y: rightLegStartY + (rightLegEndY - rightLegStartY) * t + (Math.random() - 0.5) * 0.03
-                });
-            }
-            
-            // Add more random points in the silhouette for density
-            const totalExtraPoints = 500;
-            for (let i = 0; i < totalExtraPoints; i++) {
-                const point = points[Math.floor(Math.random() * points.length)];
-                points.push({
-                    x: point.x + (Math.random() - 0.5) * 0.02,
-                    y: point.y + (Math.random() - 0.5) * 0.02
+                    x: x, 
+                    y: y,
+                    zone: 'detail'
                 });
             }
             
@@ -285,17 +293,49 @@
             ctx.fill();
         }
         
+        // Blink effect
+        function triggerBlink() {
+            if (!blinking && Date.now() - lastBlinkTime > 4000 + Math.random() * 3000) {
+                blinking = true;
+                blinkProgress = 0;
+                lastBlinkTime = Date.now();
+            }
+        }
+        
         // Animation loop
         function animate() {
-            // Clear canvas with semi-transparent background for trail effect
-            ctx.fillStyle = 'rgba(18, 18, 18, 0.15)';
+            // Clear canvas with semi-transparent background
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             frame++;
             
-            // Walking animation
-            const walkSpeed = 0.01;
-            const walkAmplitude = 0.005;
+            // Handle blinking animation
+            if (blinking) {
+                blinkProgress += 0.1;
+                if (blinkProgress >= Math.PI) {
+                    blinking = false;
+                    blinkProgress = 0;
+                }
+            }
+            
+            // Random chance to trigger a blink
+            if (Math.random() < 0.005) {
+                triggerBlink();
+            }
+            
+            // Calculate pupil movement following mouse
+            let pupilOffsetX = 0;
+            let pupilOffsetY = 0;
+            
+            if (mouseX > 0 && mouseY > 0) {
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                const maxOffset = canvas.width * 0.05;
+                
+                pupilOffsetX = ((mouseX - centerX) / centerX) * maxOffset;
+                pupilOffsetY = ((mouseY - centerY) / centerY) * maxOffset;
+            }
             
             // Update and draw particles
             particles.forEach(particle => {
@@ -308,25 +348,29 @@
                     // Push particles away from mouse
                     const force = (mouseRadius - distance) / mouseRadius;
                     const angle = Math.atan2(dy, dx);
-                    particle.vx -= Math.cos(angle) * force * 2;
-                    particle.vy -= Math.sin(angle) * force * 2;
-                    
-                    // Add color change on interaction
-                    particle.color = '#ffffff';
-                } else {
-                    // Return to original color over time
-                    if (particle.color === '#ffffff' && Math.random() > 0.95) {
-                        particle.color = colors.particles[Math.floor(Math.random() * colors.particles.length)];
+                    particle.vx -= Math.cos(angle) * force * 1.5;
+                    particle.vy -= Math.sin(angle) * force * 1.5;
+                }
+                
+                // Apply pupil movement if this is a pupil particle
+                if (particle.inPupil) {
+                    particle.originalX = particle.originalX + pupilOffsetX;
+                    particle.originalY = particle.originalY + pupilOffsetY;
+                }
+                
+                // Apply blinking effect
+                if (blinking) {
+                    const blinkY = Math.sin(blinkProgress) * canvas.height * 0.15;
+                    if (particle.originalY < canvas.height / 2) {
+                        particle.vy -= blinkY * 0.1; // Move upper particles down
+                    } else {
+                        particle.vy += blinkY * 0.1; // Move lower particles up
                     }
                 }
                 
-                // Apply walking motion
-                particle.originalX += Math.sin(frame * walkSpeed) * walkAmplitude;
-                particle.originalY += Math.cos(frame * walkSpeed * 2) * walkAmplitude * 0.5;
-                
                 // Return to original position
-                particle.vx += (particle.originalX - particle.x) * 0.05;
-                particle.vy += (particle.originalY - particle.y) * 0.05;
+                particle.vx += (particle.originalX - particle.x) * 0.1;
+                particle.vy += (particle.originalY - particle.y) * 0.1;
                 
                 // Apply physics
                 particle.vx *= 0.9;
@@ -334,8 +378,8 @@
                 particle.x += particle.vx;
                 particle.y += particle.vy;
                 
-                // Add slight natural movement
-                particle.x += Math.sin(frame * 0.01 + particle.distance) * 0.3;
+                // Add slight natural movement to make it more alive
+                particle.x += Math.sin(frame * 0.01 + particle.y * 0.01) * 0.1;
                 
                 // Draw the particle
                 drawParticle(particle);
@@ -360,32 +404,26 @@
             mouseY = e.touches[0].clientY - rect.top;
         });
         
-        // Reset mouse position when leaving
-        container.addEventListener('mouseleave', function() {
-            mouseX = -100;
-            mouseY = -100;
-        });
-        
         // Initialize and start animation
-        createParticles();
+        createEyeParticles();
         animate();
     });
 </script>
 
 <style>
-    .animation-container {
+    .eye-animation-container {
         position: relative;
         margin: 2em auto;
-        background-color: #121212;
+        background-color: #000000;
         border-radius: 12px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         overflow: hidden;
         height: 300px;
         width: 60ch;
         cursor: pointer;
     }
     
-    #animation-canvas {
+    #eye-animation-canvas {
         position: absolute;
         top: 0;
         left: 0;
@@ -395,7 +433,7 @@
     
     /* Add responsive design for smaller screens */
     @media (max-width: 768px) {
-        .animation-container {
+        .eye-animation-container {
             height: 250px;
             width: 90%;
         }
