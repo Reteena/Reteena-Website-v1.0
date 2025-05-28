@@ -7,6 +7,7 @@
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <title>Reteena - Building AI for Alzheimers Therapy and Diagnosis</title>
     <link href="./style.css" rel="stylesheet">
+    <link href="./heatmap.css" rel="stylesheet">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="favicon.svg">
     <!-- Load the heatmap.js file for the fluid visualization -->
@@ -124,38 +125,6 @@
         }
     });
 </script>
-
-<style>
-    .heatmap-container {
-        position: relative;
-        margin: 2em auto;
-        border-radius: 12px;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-        overflow: hidden;
-        height: 300px;
-        width: 60ch;
-        cursor: pointer;
-        background-color: #240040; /* Deep purple background */
-        transform: translateZ(0); /* Force hardware acceleration */
-    }
-    
-    #heatmap-canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        transition: transform 0.1s ease-out;
-    }
-    
-    /* Add responsive design for smaller screens */
-    @media (max-width: 768px) {
-        .heatmap-container {
-            height: 250px;
-            width: 90%;
-        }
-    }
-</style>
 
 </body>
 </html>
