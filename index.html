@@ -65,7 +65,9 @@
     </section>
 
 
-    <img src="Frame.png">
+    <div id="pixel-art-container" class="pixel-art-container">
+        <!-- Pixel art will be generated here by JavaScript -->
+    </div>
 
     <section class="achievements">
         <p>We have achieved multiple milestones: submission to <a class="strong__links"
@@ -128,7 +130,213 @@
             // Here you would typically send this to a server
         }
     });
+
+    // Pixel Art Animation Generator
+    document.addEventListener('DOMContentLoaded', function() {
+        const container = document.getElementById('pixel-art-container');
+        const gridSize = 20; // Number of cells in each row/column
+        const cellSize = 18; // Size of each cell in pixels
+        
+        // Set container dimensions
+        const containerWidth = gridSize * cellSize;
+        container.style.width = containerWidth + 'px';
+        container.style.height = (containerWidth / 2) + 'px';
+        
+        // Brain pattern design (simplified brain shape)
+        const createBrainPattern = () => {
+            const pattern = [];
+            for (let y = 0; y < gridSize / 2; y++) {
+                const row = [];
+                for (let x = 0; x < gridSize; x++) {
+                    // Create a simplified brain-like pattern
+                    if (
+                        // Left hemisphere
+                        ((x >= 3 && x <= 8) && (y >= 2 && y <= 8)) ||
+                        // Right hemisphere
+                        ((x >= 11 && x <= 16) && (y >= 2 && y <= 8)) ||
+                        // Corpus callosum connection
+                        ((x >= 8 && x <= 11) && (y >= 4 && y <= 6))
+                    ) {
+                        row.push(1);
+                    } else {
+                        row.push(0);
+                    }
+                }
+                pattern.push(row);
+            }
+            return pattern;
+        };
+        
+        // Create grid cells
+        const createGrid = (pattern) => {
+            container.innerHTML = '';
+            
+            for (let y = 0; y < pattern.length; y++) {
+                for (let x = 0; x < pattern[y].length; x++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'pixel';
+                    
+                    // Set position
+                    cell.style.width = cellSize + 'px';
+                    cell.style.height = cellSize + 'px';
+                    cell.style.left = (x * cellSize) + 'px';
+                    cell.style.top = (y * cellSize) + 'px';
+                    
+                    // Set initial state
+                    if (pattern[y][x] === 1) {
+                        cell.classList.add('active');
+                    }
+                    
+                    // Add hover effect
+                    cell.addEventListener('mouseover', function() {
+                        // Only change non-active cells on hover
+                        const nearby = getNearbyPixels(x, y);
+                        nearby.forEach(pixel => {
+                            if (pixel) {
+                                pixel.classList.add('pulse');
+                                setTimeout(() => pixel.classList.remove('pulse'), 800);
+                            }
+                        });
+                    });
+                    
+                    container.appendChild(cell);
+                }
+            }
+        };
+        
+        // Get nearby pixels for ripple effect
+        const getNearbyPixels = (x, y) => {
+            const pixels = [];
+            const range = 3; // How far the ripple goes
+            
+            for (let i = 0; i < range; i++) {
+                // Get cells in expanding squares around center
+                for (let dx = -i; dx <= i; dx++) {
+                    for (let dy = -i; dy <= i; dy++) {
+                        // Only get cells on the current "ring"
+                        if (Math.abs(dx) === i || Math.abs(dy) === i) {
+                            const nx = x + dx;
+                            const ny = y + dy;
+                            if (nx >= 0 && nx < gridSize && ny >= 0 && ny < gridSize / 2) {
+                                const idx = ny * gridSize + nx;
+                                const pixel = container.children[idx];
+                                if (pixel) pixels.push(pixel);
+                            }
+                        }
+                    }
+                }
+            }
+            
+            return pixels;
+        };
+        
+        // Neural network synapse simulation - random connection animations
+        const simulateSynapses = () => {
+            const pixels = container.querySelectorAll('.pixel.active');
+            const randomPixel = pixels[Math.floor(Math.random() * pixels.length)];
+            
+            if (randomPixel) {
+                randomPixel.classList.add('synapse');
+                setTimeout(() => randomPixel.classList.remove('synapse'), 600);
+                
+                // Create connection to another random pixel
+                const targetPixel = pixels[Math.floor(Math.random() * pixels.length)];
+                if (targetPixel && targetPixel !== randomPixel) {
+                    targetPixel.classList.add('synapse-target');
+                    setTimeout(() => targetPixel.classList.remove('synapse-target'), 600);
+                }
+            }
+        };
+        
+        // Initialize
+        const brainPattern = createBrainPattern();
+        createGrid(brainPattern);
+        
+        // Run synapse animation at intervals
+        setInterval(simulateSynapses, 800);
+    });
 </script>
+
+<style>
+    .pixel-art-container {
+        position: relative;
+        margin: 2em auto;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        height: 300px;
+        width: 60ch;
+    }
+    
+    .pixel {
+        position: absolute;
+        background-color: #f9f9f9;
+        border-radius: 2px;
+        transition: background-color 0.2s ease, transform 0.4s ease;
+    }
+    
+    .pixel.active {
+        background-color: #1a1a1a;
+    }
+    
+    .pixel:hover {
+        transform: scale(1.15);
+        z-index: 2;
+        background-color: #333;
+    }
+    
+    .pixel.pulse {
+        animation: pulseAnimation 0.8s ease-out;
+    }
+    
+    .pixel.synapse {
+        animation: synapseFlash 0.6s ease-out;
+    }
+    
+    .pixel.synapse-target {
+        animation: synapseTarget 0.6s ease-out 0.2s;
+    }
+    
+    @keyframes pulseAnimation {
+        0% {
+            transform: scale(1);
+            background-color: #1a1a1a;
+        }
+        50% {
+            transform: scale(1.2);
+            background-color: #444;
+        }
+        100% {
+            transform: scale(1);
+            background-color: #1a1a1a;
+        }
+    }
+    
+    @keyframes synapseFlash {
+        0% {
+            background-color: #1a1a1a;
+        }
+        50% {
+            background-color: #fff;
+        }
+        100% {
+            background-color: #1a1a1a;
+        }
+    }
+    
+    @keyframes synapseTarget {
+        0% {
+            background-color: #1a1a1a;
+        }
+        50% {
+            background-color: #fff;
+        }
+        100% {
+            background-color: #1a1a1a;
+        }
+    }
+</style>
 
 </body>
 </html>
