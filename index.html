@@ -29,7 +29,7 @@
 
     <section class="introduction">
         <p>
-            We are building Low-Field MRI Resolution Image Enhancement Framework for Better Alzheimer’s Diagnosis and
+            We are building Low-Field MRI Resolution Image Enhancement Framework for Better Alzheimer's Diagnosis and
             the
             <a href="https://www.linkedin.com/posts/alexyang77_introducing-remembrance-by-reteena-the-activity-7332915036396433409-bNQ6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE3UIjQBZFtlI1COnxn2N_ig4-DZEnujWtM" target="_blank">
     LLM-based Memory Repository for Reminiscence Therapy
@@ -45,12 +45,12 @@
         <p>
             Reteena shares the same pronunciation as 'retina,' a vital part of the eye used for vision. Like the retina,
             Reteena
-            aims to provide a new perspective on Alzheimer’s.
+            aims to provide a new perspective on Alzheimer's.
         </p>
 
 
         <p>Founded by <a href="https://www.linkedin.com/in/alexyang77/" target="_blank">Alex</a>, <a
-                href="https://www.linkedin.com/in/aarav-minocha-08288a286/" target="_blank">Aarav</a>, <a
+                href="https://www.linkedin.com/in/aarav-minocha-0828a286/" target="_blank">Aarav</a>, <a
                 href="https://www.linkedin.com/in/jainish-patel-h/" target="_blank">Jainish</a>, <a
                 href="https://www.linkedin.com/in/jessica-wu-817ba523b/" target="_blank">Jessica</a>, and <a
                 href="https://www.linkedin.com/in/bhavya-mamnani-212a79233/" target="_blank">Bhavya</a>, with <a
@@ -67,34 +67,43 @@
 
     <section class="achievements">
         <p>We have achieved multiple milestones: submission to <a class="strong__links"
-                                                                  href="https://solve.mit.edu/solutions/86724"
-                                                                  target="_blank">MIT
+                                                  href="https://solve.mit.edu/solutions/86724"
+                                                  target="_blank">MIT
             SOLVE</a>,presentation at <a class="strong__links"
-                                         href="https://ieeexplore.ieee.org/document/10826144" target="_blank">IEEE
+                          href="https://ieeexplore.ieee.org/document/10826144" target="_blank">IEEE
             BigData
             2024</a>,sponsorship
             from <a class="strong__links"
-                    href="https://foundershub.startups.microsoft.com/" target="_blank">Microsoft Founders Hub</a>, and
+               href="https://foundershub.startups.microsoft.com/" target="_blank">Microsoft Founders Hub</a>, and
             additional
             accomplishments. </p>
         <p>
             Our team will soon launch our memory repository platform in partnership with OpenNLP labs. We continuously
             experiment with innovative concepts and new ideas!
         </p>
+
+        <!-- Email input system added here -->
+        <div class="email-signup">
+            <form id="email-form">
+                <input type="email" id="email-input" placeholder="Enter your email" required>
+                <button type="submit" id="email-submit">Send</button>
+            </form>
+            <p id="email-message" class="email-message">Please enter your email address</p>
+        </div>
     </section>
 
     <footer>
-        <h4>business & general 
-    <a href="mailto:contact@reteena.org" target="_blank">
-        contact@reteena.org
-        <svg xmlns="file:///Users/yangseung-yong/Downloads/copy%20(1).svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-             style="vertical-align: middle; margin-left: 4px;">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-            <polyline points="15 3 21 3 21 9" />
-            <line x1="10" y1="14" x2="21" y2="3" />
-        </svg>
-    </a>
+        <h4>Stay in touch 
+        <a href="mailto:contact@reteena.org" target="_blank">
+            contact@reteena.org
+            <svg xmlns="file:///Users/yangseung-yong/Downloads/copy%20(1).svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 style="vertical-align: middle; margin-left: 4px;">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+        </a>
 </h4>
 
         <div class="footer_sub">
@@ -103,6 +112,19 @@
         </div>
     </footer>
 </main>
+
+<script>
+    document.getElementById('email-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email-input').value;
+        if (email) {
+            document.getElementById('email-message').textContent = 'Thank you for subscribing!';
+            document.getElementById('email-message').style.color = '#4CAF50';
+            document.getElementById('email-input').value = '';
+            // Here you would typically send this to a server
+        }
+    });
+</script>
 
 </body>
 </html>
