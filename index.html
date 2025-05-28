@@ -84,8 +84,8 @@
 
         <!-- Email input system added here -->
         <div class="email-signup">
-            <form id="email-form">
-                <input type="email" id="email-input" placeholder="Enter your email" required>
+            <form id="email-form" novalidate>
+                <input type="email" id="email-input" placeholder="Enter your email">
                 <button type="submit" id="email-submit">Send</button>
             </form>
             <p id="email-message" class="email-message">Please enter your email address</p>
@@ -116,11 +116,21 @@
 <script>
     document.getElementById('email-form').addEventListener('submit', function(e) {
         e.preventDefault();
-        const email = document.getElementById('email-input').value;
-        if (email) {
-            document.getElementById('email-message').textContent = 'Thank you for subscribing!';
-            document.getElementById('email-message').style.color = '#4CAF50';
-            document.getElementById('email-input').value = '';
+        const emailInput = document.getElementById('email-input');
+        const email = emailInput.value;
+        const emailMessage = document.getElementById('email-message');
+        
+        if (!email) {
+            // Show error message if empty
+            emailInput.style.borderColor = '#ff0000';
+            emailMessage.textContent = 'Please enter your email address';
+            emailMessage.style.color = '#ff0000';
+        } else {
+            // Success message
+            emailMessage.textContent = 'Thank you for subscribing!';
+            emailMessage.style.color = '#4CAF50';
+            emailInput.style.borderColor = '#ff6b6b';
+            emailInput.value = '';
             // Here you would typically send this to a server
         }
     });
