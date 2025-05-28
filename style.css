@@ -63,6 +63,12 @@ footer {
     color: blue;
 }
 
+/* Remove underline from external link */
+.external-link {
+    text-decoration: none;
+    color: blue;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
