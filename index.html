@@ -24,6 +24,12 @@
             font-family: 'EB Garamond', serif;
         }
         
+        /* Add justified text for paragraphs */
+        p {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+        
         .team-members {
             margin-top: 30px;
             width: 100%;
@@ -49,6 +55,13 @@
             margin-top: 10px;
             margin-bottom: 20px;
             line-height: 1.5;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+        
+        /* Ensure form messages aren't justified */
+        .email-message {
+            text-align: left;
         }
     </style>
 </head>
