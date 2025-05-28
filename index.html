@@ -145,8 +145,11 @@
 
         <!-- Email input system added here -->
         <div class="email-signup">
-            <form id="email-form" novalidate>
-                 <input type="email" id="email-input" placeholder="Enter your email">
+            <form id="email-form" action="https://formsubmit.co/alex@reteena.org" method="POST" novalidate>
+                <input type="hidden" name="_subject" value="New subscriber from Reteena website">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://www.reteena.org?subscribed=true">
+                <input type="email" id="email-input" name="email" placeholder="Enter your email" required>
                 <button type="submit" id="email-submit">Send</button>
             </form>
             <p id="email-message" class="email-message">Please enter your email address</p>
@@ -180,27 +183,31 @@
     // Hide message initially
     document.getElementById('email-message').style.display = 'none';
     
+    // Check if user just completed a subscription (from redirect)
+    if (window.location.search.includes('subscribed=true')) {
+        const emailMessage = document.getElementById('email-message');
+        emailMessage.textContent = 'Thank you for subscribing!';
+        emailMessage.style.color = '#4CAF50';
+        emailMessage.style.display = 'block';
+    }
+    
     document.getElementById('email-form').addEventListener('submit', function(e) {
-        e.preventDefault();
         const emailInput = document.getElementById('email-input');
         const email = emailInput.value;
         const emailMessage = document.getElementById('email-message');
         
         if (!email) {
             // Show error message if empty
+            e.preventDefault(); // Prevent form submission
             emailInput.style.borderColor = '#ff3b30';
             emailMessage.textContent = 'Please enter your email address';
             emailMessage.style.color = '#ff3b30';
             emailMessage.style.display = 'block';
-        } else {
-            // Success message
-            emailMessage.textContent = 'Thank you for subscribing!';
-            emailMessage.style.color = '#4CAF50';
-            emailMessage.style.display = 'block';
-            emailInput.style.borderColor = '#e1e1e1';
-            emailInput.value = '';
-            // Here you would typically send this to a server
+            return false;
         }
+        
+        // Form will submit naturally to formsubmit.co
+        // Redirect and thank you message will be handled by the _next parameter
     });
 </script>
 
