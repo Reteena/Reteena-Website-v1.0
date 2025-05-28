@@ -13,14 +13,11 @@
 <body>
     
 <main>
-
-
     <div class="header">
         <h1>
             Reteena
         </h1>
         <a href="https://www.linkedin.com/company/reteena/" target="_blank">
-
             <svg height="24" viewBox="0 0 24 24" width="24" xmlns="file:///Users/yangseung-yong/Downloads/external-link.svg">
                 <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z"
                       fill="currentColor"/>
@@ -28,28 +25,24 @@
         </a>
     </div>
 
-
     <section class="introduction">
         <p>
             We are building Low-Field MRI Resolution Image Enhancement Framework for Better Alzheimer's Diagnosis and
             the
             <a href="https://www.linkedin.com/posts/alexyang77_introducing-remembrance-by-reteena-the-activity-7332915036396433409-bNQ6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE3UIjQBZFtlI1COnxn2N_ig4-DZEnujWtM" target="_blank" class="external-link">
-    <span style="text-decoration: underline;">LLM-based Memory Repository for Reminiscence Therapy</span>
-    <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14" style="vertical-align: middle; margin-left: 4px;">
-        <path d="M18 13v6a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-</a>
-
+                <span style="text-decoration: underline;">LLM-based Memory Repository for Reminiscence Therapy</span>
+                <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14" style="vertical-align: middle; margin-left: 4px;">
+                    <path d="M18 13v6a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
         </p>
 
         <p>
             Reteena shares the same pronunciation as retina, a vital part of the eye used for vision. Like the retina,
-            Reteena
-            aims to provide a new perspective on Alzheimer's.
+            Reteena aims to provide a new perspective on Alzheimer's.
         </p>
-
 
         <p>Founded by <a href="https://www.linkedin.com/in/alexyang77/" target="_blank">Alex</a>, <a
                 href="https://www.linkedin.com/in/aarav-minocha-0828a286/" target="_blank">Aarav</a>, <a
@@ -61,22 +54,20 @@
                 href="https://www.linkedin.com/in/olivia-jeon-6a43a52a7/" target="_blank">Olivia</a>, and <a
                 href="https://www.linkedin.com/in/nathan-he-603a30255/" target="_blank">Nathan</a> later joining the
             team. </p>
-
     </section>
 
-
-    <div id="pixel-art-container" class="pixel-art-container">
-        <!-- Pixel art will be generated here by JavaScript -->
+    <div id="walking-person-container" class="walking-person-container">
+        <!-- Walking person animation will be generated here by JavaScript -->
     </div>
 
     <section class="achievements">
         <p>We have achieved multiple milestones: submission to <a class="strong__links"
                                                   href="https://solve.mit.edu/solutions/86724"
                                                   target="_blank">MIT
-            SOLVE</a>,presentation at <a class="strong__links"
+            SOLVE</a>, presentation at <a class="strong__links"
                           href="https://ieeexplore.ieee.org/document/10826144" target="_blank">IEEE
             BigData
-            2024</a>,sponsorship
+            2024</a>, sponsorship
             from <a class="strong__links"
                href="https://foundershub.startups.microsoft.com/" target="_blank">Microsoft Founders Hub</a>, and
             additional
@@ -131,209 +122,281 @@
         }
     });
 
-    // Pixel Art Animation Generator
+    // Walking Person Animation Generator
     document.addEventListener('DOMContentLoaded', function() {
-        const container = document.getElementById('pixel-art-container');
-        const gridSize = 20; // Number of cells in each row/column
-        const cellSize = 18; // Size of each cell in pixels
+        const container = document.getElementById('walking-person-container');
+        const containerWidth = container.offsetWidth;
+        const containerHeight = container.offsetHeight;
         
-        // Set container dimensions
-        const containerWidth = gridSize * cellSize;
-        container.style.width = containerWidth + 'px';
-        container.style.height = (containerWidth / 2) + 'px';
+        // Canvas dimensions and settings
+        const particleCount = 12000;
+        const particleSizeMin = 1;
+        const particleSizeMax = 3;
         
-        // Brain pattern design (simplified brain shape)
-        const createBrainPattern = () => {
-            const pattern = [];
-            for (let y = 0; y < gridSize / 2; y++) {
-                const row = [];
-                for (let x = 0; x < gridSize; x++) {
-                    // Create a simplified brain-like pattern
-                    if (
-                        // Left hemisphere
-                        ((x >= 3 && x <= 8) && (y >= 2 && y <= 8)) ||
-                        // Right hemisphere
-                        ((x >= 11 && x <= 16) && (y >= 2 && y <= 8)) ||
-                        // Corpus callosum connection
-                        ((x >= 8 && x <= 11) && (y >= 4 && y <= 6))
-                    ) {
-                        row.push(1);
-                    } else {
-                        row.push(0);
-                    }
+        // Define the walking person silhouette
+        const createPersonSilhouette = () => {
+            // Create particles for walking person
+            const particles = [];
+            
+            // Generate a random offset for particle drift effect
+            const driftFactor = 0.5;
+            
+            // Create particles in the shape of a walking person
+            for (let i = 0; i < particleCount; i++) {
+                // Position particles using a modified algorithm to create a walking person shape
+                // This creates a more sparse distribution in the center and denser on the edges
+                const x = Math.random() * containerWidth;
+                const y = Math.random() * containerHeight;
+                
+                // Size variation for depth effect
+                const size = Math.random() * (particleSizeMax - particleSizeMin) + particleSizeMin;
+                
+                // Calculate particle density based on position
+                // This algorithm creates a walking person shape through density variations
+                const distanceFromCenter = Math.sqrt(
+                    Math.pow((x - containerWidth/2) / (containerWidth/3), 2) + 
+                    Math.pow((y - containerHeight/2) / (containerHeight/2), 2)
+                );
+                
+                // Only add particles that form our walking person silhouette
+                // This complex condition creates the distinctive walking person shape
+                // by controlling where particles appear based on their position
+                if (
+                    // Person body - center column with varying width
+                    (x > containerWidth * 0.45 && x < containerWidth * 0.55 && 
+                     y > containerHeight * 0.25 && y < containerHeight * 0.75) ||
+                    
+                    // Head - circular shape at the top
+                    (Math.pow(x - containerWidth * 0.5, 2) + 
+                     Math.pow(y - containerHeight * 0.23, 2) < 
+                     Math.pow(containerWidth * 0.07, 2)) ||
+                    
+                    // Left arm - extends from upper body
+                    (x > containerWidth * 0.4 && x < containerWidth * 0.48 && 
+                     y > containerHeight * 0.28 && y < containerHeight * 0.5 &&
+                     x + y < containerWidth * 0.75) ||
+                    
+                    // Right arm - extends from upper body at an angle
+                    (x > containerWidth * 0.52 && x < containerWidth * 0.65 && 
+                     y > containerHeight * 0.3 && y < containerHeight * 0.45) ||
+                    
+                    // Left leg - extends from lower body
+                    (x > containerWidth * 0.38 && x < containerWidth * 0.48 && 
+                     y > containerHeight * 0.55 && y < containerHeight * 0.85) ||
+                    
+                    // Right leg - extends from lower body
+                    (x > containerWidth * 0.52 && x < containerWidth * 0.62 && 
+                     y > containerHeight * 0.55 && y < containerHeight * 0.8)
+                ) {
+                    // Add some noise to position to make it look more natural
+                    const particle = {
+                        x: x + (Math.random() - 0.5) * driftFactor,
+                        y: y + (Math.random() - 0.5) * driftFactor,
+                        size: size,
+                        color: '#1a1a1a',
+                        originalX: x,
+                        originalY: y,
+                        vx: 0,
+                        vy: 0,
+                        active: Math.random() > 0.2 // Some particles start inactive
+                    };
+                    
+                    particles.push(particle);
                 }
-                pattern.push(row);
             }
-            return pattern;
+            
+            return particles;
         };
         
-        // Create grid cells
-        const createGrid = (pattern) => {
+        // Create HTML for particles
+        const renderParticles = (particles) => {
             container.innerHTML = '';
             
-            for (let y = 0; y < pattern.length; y++) {
-                for (let x = 0; x < pattern[y].length; x++) {
-                    const cell = document.createElement('div');
-                    cell.className = 'pixel';
-                    
-                    // Set position
-                    cell.style.width = cellSize + 'px';
-                    cell.style.height = cellSize + 'px';
-                    cell.style.left = (x * cellSize) + 'px';
-                    cell.style.top = (y * cellSize) + 'px';
-                    
-                    // Set initial state
-                    if (pattern[y][x] === 1) {
-                        cell.classList.add('active');
-                    }
-                    
-                    // Add hover effect
-                    cell.addEventListener('mouseover', function() {
-                        // Only change non-active cells on hover
-                        const nearby = getNearbyPixels(x, y);
-                        nearby.forEach(pixel => {
-                            if (pixel) {
-                                pixel.classList.add('pulse');
-                                setTimeout(() => pixel.classList.remove('pulse'), 800);
-                            }
-                        });
-                    });
-                    
-                    container.appendChild(cell);
-                }
-            }
-        };
-        
-        // Get nearby pixels for ripple effect
-        const getNearbyPixels = (x, y) => {
-            const pixels = [];
-            const range = 3; // How far the ripple goes
-            
-            for (let i = 0; i < range; i++) {
-                // Get cells in expanding squares around center
-                for (let dx = -i; dx <= i; dx++) {
-                    for (let dy = -i; dy <= i; dy++) {
-                        // Only get cells on the current "ring"
-                        if (Math.abs(dx) === i || Math.abs(dy) === i) {
-                            const nx = x + dx;
-                            const ny = y + dy;
-                            if (nx >= 0 && nx < gridSize && ny >= 0 && ny < gridSize / 2) {
-                                const idx = ny * gridSize + nx;
-                                const pixel = container.children[idx];
-                                if (pixel) pixels.push(pixel);
-                            }
-                        }
-                    }
-                }
-            }
-            
-            return pixels;
-        };
-        
-        // Neural network synapse simulation - random connection animations
-        const simulateSynapses = () => {
-            const pixels = container.querySelectorAll('.pixel.active');
-            const randomPixel = pixels[Math.floor(Math.random() * pixels.length)];
-            
-            if (randomPixel) {
-                randomPixel.classList.add('synapse');
-                setTimeout(() => randomPixel.classList.remove('synapse'), 600);
+            particles.forEach((particle, index) => {
+                const element = document.createElement('div');
+                element.className = 'particle';
                 
-                // Create connection to another random pixel
-                const targetPixel = pixels[Math.floor(Math.random() * pixels.length)];
-                if (targetPixel && targetPixel !== randomPixel) {
-                    targetPixel.classList.add('synapse-target');
-                    setTimeout(() => targetPixel.classList.remove('synapse-target'), 600);
+                if (particle.active) {
+                    element.classList.add('active');
                 }
-            }
+                
+                element.style.width = particle.size + 'px';
+                element.style.height = particle.size + 'px';
+                element.style.left = particle.x + 'px';
+                element.style.top = particle.y + 'px';
+                element.style.backgroundColor = particle.color;
+                
+                // Add hover interaction
+                element.addEventListener('mouseover', () => {
+                    // Explode particles on hover
+                    const explosionRadius = 50;
+                    const explosionStrength = 10;
+                    
+                    particles.forEach(p => {
+                        const dx = p.x - particle.x;
+                        const dy = p.y - particle.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < explosionRadius) {
+                            // Calculate explosion force (stronger closer to center)
+                            const force = (1 - distance / explosionRadius) * explosionStrength;
+                            
+                            // Apply force in direction away from explosion center
+                            const angle = Math.atan2(dy, dx);
+                            p.vx += Math.cos(angle) * force;
+                            p.vy += Math.sin(angle) * force;
+                            
+                            // Activate particle
+                            p.active = true;
+                            p.element.classList.add('active');
+                        }
+                    });
+                });
+                
+                // Store element reference
+                particle.element = element;
+                container.appendChild(element);
+            });
         };
         
-        // Initialize
-        const brainPattern = createBrainPattern();
-        createGrid(brainPattern);
+        // Animate particles
+        const animateParticles = (particles) => {
+            // Animation parameters
+            const returnSpeed = 0.05; // Speed at which particles return to original position
+            const friction = 0.95; // Slows particles down
+            const activationChance = 0.002; // Chance for inactive particles to become active
+            
+            // Run animation loop
+            const animate = () => {
+                particles.forEach(particle => {
+                    // Apply physics
+                    particle.vx *= friction;
+                    particle.vy *= friction;
+                    
+                    // Return to original position
+                    const dx = particle.originalX - particle.x;
+                    const dy = particle.originalY - particle.y;
+                    particle.vx += dx * returnSpeed;
+                    particle.vy += dy * returnSpeed;
+                    
+                    // Update position
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    
+                    // Update element position
+                    particle.element.style.left = particle.x + 'px';
+                    particle.element.style.top = particle.y + 'px';
+                    
+                    // Randomly activate inactive particles
+                    if (!particle.active && Math.random() < activationChance) {
+                        particle.active = true;
+                        particle.element.classList.add('active');
+                    }
+                });
+                
+                requestAnimationFrame(animate);
+            };
+            
+            animate();
+        };
         
-        // Run synapse animation at intervals
-        setInterval(simulateSynapses, 800);
+        // Wave animation - create a wave-like effect through the particles
+        const createWaveEffect = (particles) => {
+            let waveOffset = 0;
+            
+            setInterval(() => {
+                waveOffset += 0.2;
+                
+                particles.forEach((particle, index) => {
+                    const distanceFromCenter = Math.abs(particle.y - containerHeight/2);
+                    
+                    // Apply wave effect only to particles within the body
+                    if (particle.active && distanceFromCenter < containerHeight * 0.3) {
+                        const waveX = Math.sin(particle.y * 0.05 + waveOffset) * 1.5;
+                        particle.vx += waveX * 0.05;
+                    }
+                });
+            }, 50);
+        };
+        
+        // Initialize the animation
+        const particles = createPersonSilhouette();
+        renderParticles(particles);
+        animateParticles(particles);
+        createWaveEffect(particles);
+        
+        // Add mouse tracking for interactive effect
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        container.addEventListener('mousemove', (event) => {
+            const rect = container.getBoundingClientRect();
+            mouseX = event.clientX - rect.left;
+            mouseY = event.clientY - rect.top;
+            
+            // Add subtle attraction to cursor
+            particles.forEach(particle => {
+                const dx = mouseX - particle.x;
+                const dy = mouseY - particle.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 60) {
+                    // Attract particles slightly to cursor
+                    const angle = Math.atan2(dy, dx);
+                    const force = 0.2 * (1 - distance / 60);
+                    
+                    particle.vx += Math.cos(angle) * force;
+                    particle.vy += Math.sin(angle) * force;
+                    
+                    // Activate particles near cursor
+                    if (!particle.active) {
+                        particle.active = true;
+                        particle.element.classList.add('active');
+                    }
+                }
+            });
+        });
     });
 </script>
 
 <style>
-    .pixel-art-container {
+    .walking-person-container {
         position: relative;
         margin: 2em auto;
-        background-color: #f9f9f9;
+        background-color: #0a0a0a;
         border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
         overflow: hidden;
         height: 300px;
         width: 60ch;
     }
     
-    .pixel {
+    .particle {
         position: absolute;
-        background-color: #f9f9f9;
-        border-radius: 2px;
-        transition: background-color 0.2s ease, transform 0.4s ease;
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+        pointer-events: none;
+        filter: blur(0.5px);
     }
     
-    .pixel.active {
-        background-color: #1a1a1a;
+    .particle.active {
+        opacity: 1;
+        pointer-events: auto;
     }
     
-    .pixel:hover {
-        transform: scale(1.15);
-        z-index: 2;
-        background-color: #333;
+    .particle:hover {
+        transform: scale(2);
+        z-index: 10;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     
-    .pixel.pulse {
-        animation: pulseAnimation 0.8s ease-out;
-    }
-    
-    .pixel.synapse {
-        animation: synapseFlash 0.6s ease-out;
-    }
-    
-    .pixel.synapse-target {
-        animation: synapseTarget 0.6s ease-out 0.2s;
-    }
-    
-    @keyframes pulseAnimation {
-        0% {
-            transform: scale(1);
-            background-color: #1a1a1a;
-        }
-        50% {
-            transform: scale(1.2);
-            background-color: #444;
-        }
-        100% {
-            transform: scale(1);
-            background-color: #1a1a1a;
-        }
-    }
-    
-    @keyframes synapseFlash {
-        0% {
-            background-color: #1a1a1a;
-        }
-        50% {
-            background-color: #fff;
-        }
-        100% {
-            background-color: #1a1a1a;
-        }
-    }
-    
-    @keyframes synapseTarget {
-        0% {
-            background-color: #1a1a1a;
-        }
-        50% {
-            background-color: #fff;
-        }
-        100% {
-            background-color: #1a1a1a;
+    /* Add responsive design for smaller screens */
+    @media (max-width: 768px) {
+        .walking-person-container {
+            height: 250px;
+            width: 90%;
         }
     }
 </style>
