@@ -138,9 +138,60 @@
         #email-submit:hover {
             transform: scale(1.05);
         }
+
+        /* Banner styles */
+        @font-face {
+            font-family: 'ABCOracle';
+            src: url('https://fonts.cdnfonts.com/s/66345/ABCOracle-Medium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        .notification-banner {
+            width: 100%;
+            background-color: #4CD964;
+            color: #000000;
+            text-align: center;
+            padding: 12px 20px;
+            position: relative;
+            font-family: 'ABCOracle', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
+        
+        .banner-text {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: 'ABCOracle', sans-serif !important;
+        }
+        
+        .redirect-link {
+            margin-left: 8px;
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'ABCOracle', sans-serif !important;
+        }
+        
+        .close-button {
+            position: absolute;
+            right: 20px;
+            cursor: pointer;
+            font-size: 20px;
+            line-height: 1;
+        }
     </style>
 </head>
 <body>
+    <!-- Banner added at the top of body -->
+    <div id="notification-banner" class="notification-banner">
+        <p class="banner-text">CHECK OUR DEMO VIDEO <span class="redirect-link" onclick="redirectToDemo()">REDIRECT TO DEMO</span></p>
+        <span class="close-button" onclick="closeBanner()">✕</span>
+    </div>
     
 <main>
     <div class="header" data-aos="fade-down" data-aos-duration="800">
@@ -174,14 +225,14 @@
         </p>
 
         <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">We have achieved multiple milestones: submission to <a class="strong__links"
-                                                                href="https://solve.mit.edu/solutions/86724"
-                                                                target="_blank">MIT
+                                                                 href="https://solve.mit.edu/solutions/86724"
+                                                                 target="_blank">MIT
             SOLVE</a>, presentation at <a class="strong__links"
-                                        href="https://ieeexplore.ieee.org/document/10826144" target="_blank">IEEE
+                                       href="https://ieeexplore.ieee.org/document/10826144" target="_blank">IEEE
             BigData
             2024</a>, sponsorship
             from <a class="strong__links"
-                    href="https://foundershub.startups.microsoft.com/" target="_blank">Microsoft Founders Hub</a>, and
+                   href="https://foundershub.startups.microsoft.com/" target="_blank">Microsoft Founders Hub</a>, and
             additional
             accomplishments behind our innovative work. </p>
         <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
@@ -286,6 +337,34 @@
         // Run on scroll
         window.addEventListener('scroll', fadeInOnScroll);
     });
+    
+    // Banner functions
+    function closeBanner() {
+        document.getElementById('notification-banner').style.display = 'none';
+        // Set a cookie to remember that the banner was closed
+        document.cookie = "bannerClosed=true; max-age=86400"; // 24 hours
+    }
+    
+    function redirectToDemo() {
+        // Replace with your actual demo URL
+        window.location.href = "/demo";
+    }
+    
+    // Check if banner was previously closed
+    function checkBannerCookie() {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
+            if (cookie.startsWith("bannerClosed=")) {
+                if (cookie.substring("bannerClosed=".length) === "true") {
+                    document.getElementById('notification-banner').style.display = 'none';
+                }
+            }
+        }
+    }
+    
+    // Check banner cookie when page loads
+    window.addEventListener('load', checkBannerCookie);
 </script>
 
 </body>
