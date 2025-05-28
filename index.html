@@ -82,3 +82,37 @@
     
 <main>
     <!-- rest of file continues unchanged -->
+</main>
+
+<!-- Add the missing JavaScript functions -->
+<script>
+    function closeBanner() {
+        document.getElementById('notification-banner').style.display = 'none';
+        
+        // Optional: set a cookie to remember that the banner was closed
+        document.cookie = "bannerClosed=true; max-age=86400"; // 24 hours
+    }
+    
+    function redirectToDemo() {
+        // Replace with your actual demo URL
+        window.location.href = "https://www.reteena.org/demo";
+    }
+    
+    // Check if banner was previously closed
+    function checkCookie() {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
+            if (cookie.startsWith("bannerClosed=")) {
+                if (cookie.substring("bannerClosed=".length) === "true") {
+                    document.getElementById('notification-banner').style.display = 'none';
+                }
+            }
+        }
+    }
+    
+    // Run when page loads
+    window.onload = checkCookie;
+</script>
+</body>
+</html>
