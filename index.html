@@ -14,7 +14,6 @@
         .team-members {
             margin-top: 30px;
             width: 100%;
-            max-width: 600px; /* Limit width to prevent excessive spacing */
         }
         .member {
             display: flex;
@@ -25,19 +24,18 @@
         .member span:first-child {
             text-align: left;
             font-weight: 500;
-            width: 40%; /* Fixed width for names */
+            flex: 0 0 auto; /* Don't grow, don't shrink, auto-size */
+            margin-right: 20px; /* Add space after name */
         }
         .member span:last-child {
             text-align: right;
             color: #555;
-            width: 58%; /* Fixed width for schools */
+            flex: 1; /* Take up remaining space */
         }
         .team-description {
             margin-top: 10px;
             margin-bottom: 20px;
             line-height: 1.5;
-            display: block; /* Ensure proper display */
-            max-width: 600px;
         }
     </style>
 </head>
