@@ -41,14 +41,19 @@
         }
         
         .team-members {
-            margin-top: 30px;
+            margin-top: 10px; /* Reduced from 30px to reduce vertical gap */
             width: 100%;
         }
         .member {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px; /* This adds vertical spacing between names */
+            margin-bottom: 0; /* Remove bottom margin */
             width: 100%;
+            padding: 8px 0; /* Add padding instead of margin */
+            border-bottom: 1px solid #eee; /* Add thin divider line between names */
+        }
+        .member:first-child {
+            padding-top: 0; /* Remove top padding from first member to reduce gap */
         }
         .member span:first-child {
             text-align: left;
@@ -63,7 +68,7 @@
         }
         .team-description {
             margin-top: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 10px; /* Reduced from 20px to reduce vertical gap */
             line-height: 1.5;
             text-align: justify;
             text-justify: inter-word;
