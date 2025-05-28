@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reteena Website Banner</title>
+    <style>
+        @font-face {
+            font-family: 'ABCOracle';
+            src: url('path-to-abcoracle-font.woff2') format('woff2');
+            /* Add additional font formats if needed */
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        .notification-banner {
+            width: 100%;
+            background-color: #4CD964; /* Bright green, can be adjusted to match brand colors */
+            color: #000000;
+            text-align: center;
+            padding: 12px 20px;
+            position: relative;
+            font-family: 'ABCOracle', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        
+        .banner-text {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .redirect-link {
+            margin-left: 8px;
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .close-button {
+            position: absolute;
+            right: 20px;
+            cursor: pointer;
+            font-size: 20px;
+            line-height: 1;
+        }
+        
+        /* Fallback font in case ABCOracle is not available */
+        .fallback {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="notification-banner" class="notification-banner">
+        <p class="banner-text">CHECK OUR DEMO VIDEO <span class="redirect-link" onclick="redirectToDemo()">REDIRECT TO DEMO</span></p>
+        <span class="close-button" onclick="closeBanner()">✕</span>
+    </div>
+
+    <script>
+        function closeBanner() {
+            document.getElementById('notification-banner').style.display = 'none';
+            
+            // Optional: set a cookie to remember that the banner was closed
+            document.cookie = "bannerClosed=true; max-age=86400"; // 24 hours
+        }
+        
+        function redirectToDemo() {
+            // Replace with your actual demo URL
+            window.location.href = "/demo";
+        }
+        
+        // Check if banner was previously closed
+        function checkCookie() {
+            const cookies = document.cookie.split(';');
+            for (let cookie of cookies) {
+                cookie = cookie.trim();
+                if (cookie.startsWith("bannerClosed=")) {
+                    if (cookie.substring("bannerClosed=".length) === "true") {
+                        document.getElementById('notification-banner').style.display = 'none';
+                    }
+                }
+            }
+        }
+        
+        // Run when page loads
+        window.onload = checkCookie;
+    </script>
+    
+    <!-- How to include the banner on other pages -->
+    <script>
+        // Uncomment and use this code to dynamically include the banner on other pages
+        /*
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/banner.html')
+                .then(response => response.text())
+                .then(data => {
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = data;
+                    const banner = tempDiv.querySelector('#notification-banner');
+                    const styles = tempDiv.querySelector('style');
+                    const script = tempDiv.querySelector('script');
+                    
+                    document.head.appendChild(styles);
+                    document.body.prepend(banner);
+                    document.body.appendChild(script);
+                });
+        });
+        */
+    </script>
+</body>
+</html>
