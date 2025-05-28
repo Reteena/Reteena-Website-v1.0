@@ -114,6 +114,9 @@
 </main>
 
 <script>
+    // Hide message initially
+    document.getElementById('email-message').style.display = 'none';
+    
     document.getElementById('email-form').addEventListener('submit', function(e) {
         e.preventDefault();
         const emailInput = document.getElementById('email-input');
@@ -122,14 +125,16 @@
         
         if (!email) {
             // Show error message if empty
-            emailInput.style.borderColor = '#ff0000';
+            emailInput.style.borderColor = '#ff3b30';
             emailMessage.textContent = 'Please enter your email address';
-            emailMessage.style.color = '#ff0000';
+            emailMessage.style.color = '#ff3b30';
+            emailMessage.style.display = 'block';
         } else {
             // Success message
             emailMessage.textContent = 'Thank you for subscribing!';
             emailMessage.style.color = '#4CAF50';
-            emailInput.style.borderColor = '#ff6b6b';
+            emailMessage.style.display = 'block';
+            emailInput.style.borderColor = '#e1e1e1';
             emailInput.value = '';
             // Here you would typically send this to a server
         }
