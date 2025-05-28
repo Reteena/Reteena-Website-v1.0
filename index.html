@@ -16,10 +16,13 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <!-- Import AOS (Animate On Scroll) Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Preload banner font to prevent FOUT (Flash of Unstyled Text) -->
+    <link rel="preload" href="https://fonts.cdnfonts.com/s/66345/ABCOracle-Medium.woff" as="font" type="font/woff" crossorigin>
     <style>
         /* Apply EB Garamond to all elements */
         * {
             font-family: 'EB Garamond', serif;
+            box-sizing: border-box;
         }
         
         html {
@@ -28,6 +31,8 @@
         
         body {
             font-family: 'EB Garamond', serif;
+            margin: 0;
+            padding: 0;
         }
         
         /* Force EB Garamond on all specific elements */
@@ -139,59 +144,88 @@
             transform: scale(1.05);
         }
 
-        /* Banner Styles */
+        /* Banner Styles - Fixed and more robust */
         @font-face {
             font-family: 'ABCOracle';
             src: url('https://fonts.cdnfonts.com/s/66345/ABCOracle-Medium.woff') format('woff');
             font-weight: normal;
             font-style: normal;
+            font-display: swap; /* Prevent FOUT */
         }
+        
         .notification-banner {
             width: 100%;
             background-color: #000000;
             color: #ffffff;
             text-align: center;
-            padding: 6px 20px;
+            padding: 8px 20px;
             position: relative;
-            font-family: 'ABCOracle', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             box-sizing: border-box;
             z-index: 1000;
+            /* Prevent inheritance issues */
+            font-size: 10px;
+            line-height: 1.2;
+            letter-spacing: 0.5px;
         }
+        
         .banner-text {
             margin: 0;
-            font-size: 10px; /* Changed from 14px to 10px */
+            padding: 0;
+            font-size: 10px;
             font-weight: 400;
-            font-family: 'ABCOracle', sans-serif !important;
+            /* Font fallback chain */
+            font-family: 'ABCOracle', Arial, sans-serif !important;
             display: flex;
             align-items: center;
+            justify-content: center;
         }
+        
         .redirect-link {
             margin-left: 8px;
             text-decoration: underline;
             cursor: pointer;
             font-weight: 400;
-            font-family: 'ABCOracle', sans-serif !important;
+            font-size: 10px;
+            /* Font fallback chain */
+            font-family: 'ABCOracle', Arial, sans-serif !important;
             display: inline-flex;
             align-items: center;
-            font-size: 10px; /* Added smaller font size to match banner text */
+            color: #ffffff;
         }
+        
         .redirect-link svg {
             margin-left: 4px;
-            width: 12px; /* Reduced from 14px */
-            height: 12px; /* Reduced from 14px */
-            fill: #fff;
+            width: 12px;
+            height: 12px;
+            fill: none; /* Important - ensure SVG doesn't get filled incorrectly */
             vertical-align: middle;
         }
+        
         .close-button {
             position: absolute;
             right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
             cursor: pointer;
-            font-size: 16px; /* Reduced from 18px */
+            font-size: 16px;
             line-height: 1;
             color: #ffffff;
+            background: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            height: 16px;
+            width: 16px;
+        }
+        
+        /* Make sure the main content has proper spacing after the banner */
+        main {
+            padding-top: 10px;
         }
     </style>
 </head>
@@ -286,33 +320,37 @@
 
 <!-- Add the missing JavaScript functions -->
 <script>
-    function closeBanner() {
-        document.getElementById('notification-banner').style.display = 'none';
+    // Execute banner initialization as soon as possible
+    document.addEventListener('DOMContentLoaded', function() {
+        // Banner functions
+        window.closeBanner = function() {
+            document.getElementById('notification-banner').style.display = 'none';
+            
+            // Set a cookie to remember that the banner was closed
+            document.cookie = "bannerClosed=true; max-age=86400; path=/"; // 24 hours
+        };
         
-        // Optional: set a cookie to remember that the banner was closed
-        document.cookie = "bannerClosed=true; max-age=86400"; // 24 hours
-    }
-    
-    function redirectToDemo() {
-        // Replace with your actual demo URL
-        window.location.href = "https://www.reteena.org/demo";
-    }
-    
-    // Check if banner was previously closed
-    function checkCookie() {
-        const cookies = document.cookie.split(';');
-        for (let cookie of cookies) {
-            cookie = cookie.trim();
-            if (cookie.startsWith("bannerClosed=")) {
-                if (cookie.substring("bannerClosed=".length) === "true") {
-                    document.getElementById('notification-banner').style.display = 'none';
+        window.redirectToDemo = function() {
+            // Navigate to the demo page
+            window.location.href = "https://www.reteena.org/demo";
+        };
+        
+        // Check if banner was previously closed
+        function checkCookie() {
+            const cookies = document.cookie.split(';');
+            for (let cookie of cookies) {
+                cookie = cookie.trim();
+                if (cookie.startsWith("bannerClosed=")) {
+                    if (cookie.substring("bannerClosed=".length) === "true") {
+                        document.getElementById('notification-banner').style.display = 'none';
+                    }
                 }
             }
         }
-    }
-    
-    // Run when page loads
-    window.onload = checkCookie;
+        
+        // Run cookie check immediately
+        checkCookie();
+    });
 </script>
 
 <!-- AOS (Animate On Scroll) Script -->
@@ -320,44 +358,44 @@
 
 <script>
     // Initialize AOS
-    AOS.init({
-        once: true, // Only animate elements once
-        disable: 'mobile', // Disable animations on mobile devices
-        offset: 120, // Offset (in px) from the original trigger point
-    });
-    
-    // Hide message initially
-    document.getElementById('email-message').style.display = 'none';
-    
-    // Check if user just completed a subscription (from redirect)
-    if (window.location.search.includes('subscribed=true')) {
-        const emailMessage = document.getElementById('email-message');
-        emailMessage.textContent = 'Thank you for subscribing!';
-        emailMessage.style.color = '#4CAF50';
-        emailMessage.style.display = 'block';
-    }
-    
-    document.getElementById('email-form').addEventListener('submit', function(e) {
-        const emailInput = document.getElementById('email-input');
-        const email = emailInput.value;
-        const emailMessage = document.getElementById('email-message');
+    document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+            once: true, // Only animate elements once
+            disable: 'mobile', // Disable animations on mobile devices
+            offset: 120, // Offset (in px) from the original trigger point
+        });
         
-        if (!email) {
-            // Show error message if empty
-            e.preventDefault(); // Prevent form submission
-            emailInput.style.borderColor = '#ff3b30';
-            emailMessage.textContent = 'Please enter your email address';
-            emailMessage.style.color = '#ff3b30';
+        // Hide message initially
+        document.getElementById('email-message').style.display = 'none';
+        
+        // Check if user just completed a subscription (from redirect)
+        if (window.location.search.includes('subscribed=true')) {
+            const emailMessage = document.getElementById('email-message');
+            emailMessage.textContent = 'Thank you for subscribing!';
+            emailMessage.style.color = '#4CAF50';
             emailMessage.style.display = 'block';
-            return false;
         }
         
-        // Form will submit naturally to formsubmit.co
-        // Redirect and thank you message will be handled by the _next parameter
-    });
-    
-    // Add additional fade-in animation for elements as you scroll
-    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('email-form').addEventListener('submit', function(e) {
+            const emailInput = document.getElementById('email-input');
+            const email = emailInput.value;
+            const emailMessage = document.getElementById('email-message');
+            
+            if (!email) {
+                // Show error message if empty
+                e.preventDefault(); // Prevent form submission
+                emailInput.style.borderColor = '#ff3b30';
+                emailMessage.textContent = 'Please enter your email address';
+                emailMessage.style.color = '#ff3b30';
+                emailMessage.style.display = 'block';
+                return false;
+            }
+            
+            // Form will submit naturally to formsubmit.co
+            // Redirect and thank you message will be handled by the _next parameter
+        });
+        
+        // Add additional fade-in animation for elements as you scroll
         const fadeElements = document.querySelectorAll('.fade-in');
         
         const fadeInOnScroll = function() {
