@@ -86,27 +86,27 @@ footer {
 /* Email signup styles */
 .email-signup {
     margin: 2em 0;
-    max-width: 100%; /* Allow full width of container */
+    max-width: 60ch;
     width: 100%;
 }
 
 #email-form {
     display: flex;
+    flex-direction: column;
     width: 100%;
     margin-bottom: 0.5em;
+    gap: 10px;
 }
 
 #email-input {
-    flex: 1;
+    width: 100%;
     padding: 12px 15px;
     border: 1px solid #ff6b6b;
-    border-radius: 4px 0 0 4px;
+    border-radius: 4px;
     font-family: "Roboto Mono", monospace;
     font-size: 14px;
     outline: none;
     transition: border-color 0.3s;
-    min-width: 300px; /* Ensure minimum width */
-    width: 85%; /* Take more of the available space */
 }
 
 #email-input:focus {
@@ -114,16 +114,16 @@ footer {
 }
 
 #email-submit {
+    width: 100px;
     background-color: #ff6b6b;
     color: white;
     border: none;
-    border-radius: 0 4px 4px 0;
-    padding: 0 20px;
+    border-radius: 4px;
+    padding: 12px 15px;
     cursor: pointer;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
-    transition: background-color 0.3s;
-    width: 15%; /* Fixed proportion */
+    align-self: flex-start;
 }
 
 #email-submit:hover {
@@ -134,19 +134,4 @@ footer {
     font-size: 12px;
     color: #9f9f9f;
     margin-top: 5px;
-}
-
-/* Make email system fill width on smaller screens */
-@media (max-width: 768px) {
-    .email-signup {
-        width: 100%;
-    }
-    
-    #email-input {
-        width: 75%;
-    }
-    
-    #email-submit {
-        width: 25%;
-    }
 }
