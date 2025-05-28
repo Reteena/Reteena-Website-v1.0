@@ -24,6 +24,16 @@
             font-family: 'EB Garamond', serif;
         }
         
+        /* Force EB Garamond on all specific elements */
+        h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select, option, label {
+            font-family: 'EB Garamond', serif !important;
+        }
+        
+        /* Specifically target the header */
+        .header h1 {
+            font-family: 'EB Garamond', serif !important;
+        }
+        
         /* Add justified text for paragraphs */
         p {
             text-align: justify;
@@ -59,9 +69,24 @@
             text-justify: inter-word;
         }
         
+        /* Form elements */
+        input, button {
+            font-family: 'EB Garamond', serif !important;
+        }
+        
+        #email-input::placeholder {
+            font-family: 'EB Garamond', serif !important;
+        }
+        
         /* Ensure form messages aren't justified */
         .email-message {
             text-align: left;
+            font-family: 'EB Garamond', serif !important;
+        }
+        
+        /* Footer text */
+        .footer_sub p {
+            font-family: 'EB Garamond', serif !important;
         }
     </style>
 </head>
@@ -110,8 +135,7 @@
             additional
             accomplishments behind our innovative work. </p>
         <p>
-            Our team will soon launch our memory repository platform in partnership with OpenNLP labs. We continuously
-            experiment with innovative concepts and new ideas! Sign up below.
+            Our team will soon launch our memory repository platform in partnership with OpenNLP labs. We continuously experiment with innovative concepts and new ideas! Leave your email below for more information.
         </p>
 
         <!-- Email input system added here -->
