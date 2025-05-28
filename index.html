@@ -21,9 +21,13 @@
             margin-bottom: 10px; /* This adds vertical spacing between names */
             width: 100%;
         }
+        .member span {
+            display: inline-block; /* Ensures proper spacing control */
+        }
         .member span:first-child {
             text-align: left;
             font-weight: 500;
+            margin-right: 10px; /* Reduces the gap between name and school */
         }
         .member span:last-child {
             text-align: right;
@@ -96,7 +100,7 @@
         </div>
         
         <h3>Our Team</h3>
-        <p class="team-description">We're a close-knit team of standout undergraduates and high schoolers, combining deep expertise in healthcare and AI to push boundaries and create meaningful impact.</p>
+        <span>We're a close-knit team of standout undergraduates and high schoolers, combining deep expertise in healthcare and AI to push boundaries and create meaningful impact.</span>
         <div class="team-members">
             <div class="member"><span>Alex Yang</span><span>North London Collegiate School Jeju</span></div>
             <div class="member"><span>Jainish Patel</span><span>Lake Minneola High School</span></div>
