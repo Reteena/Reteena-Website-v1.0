@@ -10,6 +10,26 @@
     <link href="./heatmap.css" rel="stylesheet">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="favicon.svg">
+    <style>
+        .team-members {
+            margin-top: 30px;
+            width: 100%;
+        }
+        .member {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px; /* This adds vertical spacing between names */
+            width: 100%;
+        }
+        .member span:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+        .member span:last-child {
+            text-align: right;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
     
@@ -70,6 +90,7 @@
             <p id="email-message" class="email-message">Please enter your email address</p>
         </div>
         
+        <h3>Our Team</h3>
         <div class="team-members">
             <div class="member"><span>Alex Yang</span><span>North London Collegiate School Jeju</span></div>
             <div class="member"><span>Jainish Patel</span><span>Lake Minneola High School</span></div>
