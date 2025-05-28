@@ -46,7 +46,7 @@ img {
 }
 
 footer {
-    margin-top: 3em;
+    margin-top: 1.5em; /* Reduced from 3em to 1.5em */
 
     a {
         text-decoration: underline;
@@ -55,7 +55,7 @@ footer {
 
     .footer_sub {
         color: #9f9f9f;
-        margin-top: 3em;
+        margin-top: 1em; /* Reduced from 3em to 1em */
     }
 }
 
@@ -84,7 +84,7 @@ footer {
 
 /* Email signup styles */
 .email-signup {
-    margin: 2em 0;
+    margin: 1em 0; /* Reduced from 2em to 1em */
     max-width: 60ch;
     width: 100%;
 }
@@ -95,12 +95,12 @@ footer {
     align-items: center;
     gap: 16px;
     width: 100%;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.3em; /* Reduced from 0.5em to 0.3em */
 }
 
 #email-input {
     flex: 1;
-    padding: 12px; /* Reduced from 16px to 12px */
+    padding: 8px; /* Further reduced from 12px to 8px */
     border: 1px solid #e1e1e1;
     border-radius: 8px;
     font-family: "Roboto Mono", monospace;
@@ -119,7 +119,7 @@ footer {
     color: #333;
     border: 1px solid #e1e1e1;
     border-radius: 8px;
-    padding: 12px 20px; /* Reduced from 16px 24px to 12px 20px */
+    padding: 8px 16px; /* Further reduced from 12px 20px to 8px 16px */
     cursor: pointer;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
@@ -133,6 +133,6 @@ footer {
 .email-message {
     font-size: 13px;
     color: #ff3b30;
-    margin-top: 8px;
+    margin-top: 4px; /* Reduced from 8px to 4px */
     font-family: "Roboto Mono", monospace;
 }
