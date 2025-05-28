@@ -56,8 +56,8 @@
             team. </p>
     </section>
 
-    <div id="color-pattern-container" class="color-pattern-container">
-        <div class="pattern-grid"></div>
+    <div id="heatmap-container" class="heatmap-container">
+        <canvas id="heatmap-canvas"></canvas>
     </div>
 
     <section class="achievements">
@@ -122,147 +122,289 @@
         }
     });
 
-    // Interactive color pattern animation
+    // Interactive heatmap visualization
     document.addEventListener('DOMContentLoaded', function() {
-        const container = document.querySelector('.pattern-grid');
-        const ROWS = 15;
-        const COLS = 30;
+        const canvas = document.getElementById('heatmap-canvas');
+        const container = document.getElementById('heatmap-container');
+        const ctx = canvas.getContext('2d');
         
-        // Colors from the inspiration image
-        const colors = [
-            '#ff5e5e', '#ff8b3d', '#4a8eff', '#4c4cff', '#25d366', 
-            '#e83e8c', '#b388ff', '#00bcd4', '#f06292', '#7986cb',
-            '#ff5252', '#ff7043', '#4fc3f7', '#9575cd', '#4db6ac',
-            '#ff8a65', '#64b5f6', '#ba68c8', '#4dd0e1', '#ffb74d'
+        // Set canvas to container size
+        function resizeCanvas() {
+            canvas.width = container.offsetWidth;
+            canvas.height = container.offsetHeight;
+            drawHeatmap(); // Redraw when resizing
+        }
+        
+        // Initialize canvas size
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Mouse interaction variables
+        let mouseX = 0;
+        let mouseY = 0;
+        let isMouseActive = false;
+        let mousePoints = [];
+        const maxMousePoints = 30; // Store the last few mouse positions for trail effect
+        
+        // Heatmap generation parameters
+        const heatPoints = [];
+        const numHeatPoints = 8; // Number of "hotspots"
+        
+        // Colors inspired by the heatmap image
+        const colorStops = [
+            { pos: 0.0, color: '#000033' }, // Deep dark blue
+            { pos: 0.3, color: '#0066AA' }, // Medium blue
+            { pos: 0.5, color: '#00AACC' }, // Cyan
+            { pos: 0.65, color: '#00CC88' }, // Teal
+            { pos: 0.8, color: '#77CC33' }, // Green
+            { pos: 0.9, color: '#DDCC00' }, // Yellow
+            { pos: 1.0, color: '#FF6600' }  // Orange/red
         ];
         
-        // Create the grid of color elements
-        function createGrid() {
-            for (let i = 0; i < ROWS; i++) {
-                for (let j = 0; j < COLS; j++) {
-                    const cell = document.createElement('div');
-                    cell.classList.add('pattern-cell');
-                    
-                    // Assign colors in a pattern similar to the inspiration image
-                    const colorIndex = (i + j) % colors.length;
-                    cell.style.backgroundColor = colors[colorIndex];
-                    
-                    // Add data attributes for wave effect
-                    cell.dataset.row = i;
-                    cell.dataset.col = j;
-                    
-                    // Add hover effects
-                    cell.addEventListener('mouseover', handleMouseOver);
-                    
-                    container.appendChild(cell);
+        // Generate initial heat points
+        function generateHeatPoints() {
+            heatPoints.length = 0;
+            
+            // Add main thermal "blob" structures
+            for (let i = 0; i < numHeatPoints; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const radius = (30 + Math.random() * 100) * (canvas.width / 600); // Scale by canvas size
+                const intensity = 0.5 + Math.random() * 0.5;
+                const speedX = (Math.random() - 0.5) * 0.5;
+                const speedY = (Math.random() - 0.5) * 0.5;
+                
+                heatPoints.push({ x, y, radius, intensity, speedX, speedY });
+            }
+        }
+        
+        // Interpolate between color stops
+        function getColorAtValue(value) {
+            // Find the color stops that our value falls between
+            for (let i = 0; i < colorStops.length - 1; i++) {
+                if (value >= colorStops[i].pos && value <= colorStops[i+1].pos) {
+                    const t = (value - colorStops[i].pos) / (colorStops[i+1].pos - colorStops[i].pos);
+                    return interpolateColor(colorStops[i].color, colorStops[i+1].color, t);
+                }
+            }
+            
+            // Fallback
+            return value >= 0.5 ? colorStops[colorStops.length-1].color : colorStops[0].color;
+        }
+        
+        // Interpolate between two colors
+        function interpolateColor(color1, color2, t) {
+            // Parse hex colors
+            const r1 = parseInt(color1.slice(1, 3), 16);
+            const g1 = parseInt(color1.slice(3, 5), 16);
+            const b1 = parseInt(color1.slice(5, 7), 16);
+            
+            const r2 = parseInt(color2.slice(1, 3), 16);
+            const g2 = parseInt(color2.slice(3, 5), 16);
+            const b2 = parseInt(color2.slice(5, 7), 16);
+            
+            // Linear interpolation
+            const r = Math.round(r1 + (r2 - r1) * t);
+            const g = Math.round(g1 + (g2 - g1) * t);
+            const b = Math.round(b1 + (b2 - b1) * t);
+            
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+        
+        // Calculate heat value at a specific pixel
+        function getHeatValue(x, y) {
+            let heatValue = 0;
+            
+            // Calculate contributions from all heat points
+            for (const point of heatPoints) {
+                const dx = x - point.x;
+                const dy = y - point.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // Add heat from this point based on distance and intensity
+                if (distance < point.radius * 2) {
+                    // Use an exponential falloff for more natural heat appearance
+                    const influence = Math.exp(-distance / point.radius) * point.intensity;
+                    heatValue += influence;
+                }
+            }
+            
+            // Add heat from mouse points (user interaction)
+            for (const point of mousePoints) {
+                const dx = x - point.x;
+                const dy = y - point.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    // Influence decreases with age of the mouse point and distance
+                    const ageInfluence = 1 - (point.age / maxMousePoints);
+                    const influence = Math.exp(-distance / 50) * ageInfluence * 0.8;
+                    heatValue += influence;
+                }
+            }
+            
+            // Normalize heat value between 0 and 1
+            return Math.min(1, Math.max(0, heatValue));
+        }
+        
+        // Update the animation
+        function updateHeatmap() {
+            // Update heat point positions for movement
+            for (const point of heatPoints) {
+                point.x += point.speedX;
+                point.y += point.speedY;
+                
+                // Bounce off edges
+                if (point.x < 0 || point.x > canvas.width) {
+                    point.speedX *= -1;
+                }
+                if (point.y < 0 || point.y > canvas.height) {
+                    point.speedY *= -1;
+                }
+                
+                // Add slight random movement
+                point.speedX += (Math.random() - 0.5) * 0.05;
+                point.speedY += (Math.random() - 0.5) * 0.05;
+                
+                // Dampen speeds to prevent excessive movement
+                point.speedX *= 0.995;
+                point.speedY *= 0.995;
+            }
+            
+            // Update mouse points age
+            for (let i = mousePoints.length - 1; i >= 0; i--) {
+                mousePoints[i].age++;
+                // Remove old points
+                if (mousePoints[i].age > maxMousePoints) {
+                    mousePoints.splice(i, 1);
                 }
             }
         }
         
-        // Handle hover effects with a wave-like pattern
-        function handleMouseOver(e) {
-            const targetCell = e.target;
-            const row = parseInt(targetCell.dataset.row);
-            const col = parseInt(targetCell.dataset.col);
+        // Draw the heatmap
+        function drawHeatmap() {
+            // Clear canvas first with background color
+            ctx.fillStyle = '#000033'; // Deep blue background
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            // Create a ripple effect from the hovered cell
-            const cells = document.querySelectorAll('.pattern-cell');
-            cells.forEach(cell => {
-                const cellRow = parseInt(cell.dataset.row);
-                const cellCol = parseInt(cell.dataset.col);
-                
-                // Calculate distance from hovered cell
-                const distance = Math.sqrt(
-                    Math.pow(cellRow - row, 2) + 
-                    Math.pow(cellCol - col, 2)
-                );
-                
-                // Create a curved wave effect
-                const delay = distance * 50; // ms delay based on distance
-                const duration = 500 + distance * 100; // animation duration
-                
-                // Apply animation with delay
-                setTimeout(() => {
-                    cell.style.transform = 'scale(1.1)';
-                    cell.style.zIndex = '2';
+            // Create image data for pixel manipulation
+            const imageData = ctx.createImageData(canvas.width, canvas.height);
+            const data = imageData.data;
+            
+            // For performance, we'll sample the heatmap at a lower resolution
+            const sampleSize = Math.max(1, Math.floor(canvas.width / 300)); // Adjust based on screen size
+            
+            // Draw the heatmap
+            for (let y = 0; y < canvas.height; y += sampleSize) {
+                for (let x = 0; x < canvas.width; x += sampleSize) {
+                    // Get heat value at this position
+                    const heatValue = getHeatValue(x, y);
                     
-                    // Slightly change color
-                    const currentColor = cell.style.backgroundColor;
-                    cell.style.backgroundColor = getLighterColor(currentColor);
+                    // Get color for this heat value
+                    const color = getColorAtValue(heatValue);
                     
-                    // Reset after animation
-                    setTimeout(() => {
-                        cell.style.transform = 'scale(1)';
-                        cell.style.zIndex = '1';
-                        
-                        // Reset color with subtle transition
-                        setTimeout(() => {
-                            // Get base color from pattern
-                            const colorIndex = (cellRow + cellCol) % colors.length;
-                            cell.style.backgroundColor = colors[colorIndex];
-                        }, duration / 2);
-                    }, duration);
-                }, delay);
-            });
-        }
-        
-        // Helper function to lighten a color
-        function getLighterColor(color) {
-            // Parse RGB components
-            const rgbMatch = color.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
-            if (rgbMatch) {
-                const r = parseInt(rgbMatch[1]);
-                const g = parseInt(rgbMatch[2]);
-                const b = parseInt(rgbMatch[3]);
-                
-                // Lighten by 15%
-                const lightenFactor = 0.15;
-                const newR = Math.min(255, r + (255 - r) * lightenFactor);
-                const newG = Math.min(255, g + (255 - g) * lightenFactor);
-                const newB = Math.min(255, b + (255 - b) * lightenFactor);
-                
-                return `rgb(${Math.round(newR)}, ${Math.round(newG)}, ${Math.round(newB)})`;
+                    // Parse the color
+                    const matches = color.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+                    const r = parseInt(matches[1]);
+                    const g = parseInt(matches[2]);
+                    const b = parseInt(matches[3]);
+                    
+                    // Fill the pixel block
+                    for (let blockY = 0; blockY < sampleSize && y + blockY < canvas.height; blockY++) {
+                        for (let blockX = 0; blockX < sampleSize && x + blockX < canvas.width; blockX++) {
+                            const pixelIndex = 4 * ((y + blockY) * canvas.width + (x + blockX));
+                            data[pixelIndex] = r;     // R
+                            data[pixelIndex + 1] = g; // G
+                            data[pixelIndex + 2] = b; // B
+                            data[pixelIndex + 3] = 255; // Alpha (fully opaque)
+                        }
+                    }
+                }
             }
             
-            // If not RGB format (like hex), return the original color
-            return color;
+            // Put the image data back on the canvas
+            ctx.putImageData(imageData, 0, 0);
+            
+            // Apply a slight blur for a smoother appearance
+            ctx.filter = 'blur(3px)';
+            ctx.drawImage(canvas, 0, 0);
+            ctx.filter = 'none';
+            
+            // Add some grain for a more scientific/thermal camera look
+            addNoise(0.03);
         }
         
-        // Initialize the pattern
-        createGrid();
-        
-        // Add automatic subtle movement to make it feel alive
-        function animatePattern() {
-            const cells = document.querySelectorAll('.pattern-cell');
+        // Add noise to the canvas for a more realistic thermal look
+        function addNoise(intensity) {
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
             
-            cells.forEach(cell => {
-                const row = parseInt(cell.dataset.row);
-                const col = parseInt(cell.dataset.col);
-                
-                // Create subtle random movements
-                const randomDelay = Math.random() * 10000; // Random delay up to 10 seconds
-                
-                setTimeout(() => {
-                    cell.style.transform = 'scale(1.05)';
-                    
-                    // Reset after a short duration
-                    setTimeout(() => {
-                        cell.style.transform = 'scale(1)';
-                    }, 500);
-                }, randomDelay);
-            });
+            for (let i = 0; i < data.length; i += 4) {
+                // Only add noise to non-black pixels
+                if (data[i] > 10 || data[i+1] > 10 || data[i+2] > 10) {
+                    const noise = (Math.random() - 0.5) * intensity * 255;
+                    data[i] = Math.min(255, Math.max(0, data[i] + noise));
+                    data[i+1] = Math.min(255, Math.max(0, data[i+1] + noise));
+                    data[i+2] = Math.min(255, Math.max(0, data[i+2] + noise));
+                }
+            }
             
-            // Repeat the animation
-            setTimeout(animatePattern, 5000);
+            ctx.putImageData(imageData, 0, 0);
         }
         
-        // Start the ambient animation
-        animatePattern();
+        // Mouse interaction
+        container.addEventListener('mousemove', function(e) {
+            const rect = canvas.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+            isMouseActive = true;
+            
+            // Add to mouse points for trail effect
+            mousePoints.unshift({ x: mouseX, y: mouseY, age: 0 });
+            
+            // Limit the number of mouse points
+            if (mousePoints.length > maxMousePoints) {
+                mousePoints.pop();
+            }
+        });
+        
+        container.addEventListener('mouseleave', function() {
+            isMouseActive = false;
+        });
+        
+        // Touch interaction for mobile devices
+        container.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            mouseX = e.touches[0].clientX - rect.left;
+            mouseY = e.touches[0].clientY - rect.top;
+            isMouseActive = true;
+            
+            mousePoints.unshift({ x: mouseX, y: mouseY, age: 0 });
+            if (mousePoints.length > maxMousePoints) {
+                mousePoints.pop();
+            }
+        });
+        
+        container.addEventListener('touchend', function() {
+            isMouseActive = false;
+        });
+        
+        // Animation loop
+        function animate() {
+            updateHeatmap();
+            drawHeatmap();
+            requestAnimationFrame(animate);
+        }
+        
+        // Initialize and start animation
+        generateHeatPoints();
+        animate();
     });
 </script>
 
 <style>
-    .color-pattern-container {
+    .heatmap-container {
         position: relative;
         margin: 2em auto;
         border-radius: 12px;
@@ -271,25 +413,20 @@
         height: 300px;
         width: 60ch;
         cursor: pointer;
+        background-color: #000033;
     }
     
-    .pattern-grid {
-        display: grid;
-        grid-template-columns: repeat(30, 1fr);
-        grid-template-rows: repeat(15, 1fr);
+    #heatmap-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-    }
-    
-    .pattern-cell {
-        width: 100%;
-        height: 100%;
-        transition: all 0.3s ease-out;
     }
     
     /* Add responsive design for smaller screens */
     @media (max-width: 768px) {
-        .color-pattern-container {
+        .heatmap-container {
             height: 250px;
             width: 90%;
         }
