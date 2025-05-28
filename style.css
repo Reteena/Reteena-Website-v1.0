@@ -46,7 +46,6 @@ img {
 }
 
 footer {
-
     margin-top: 3em;
 
     a {
@@ -101,7 +100,7 @@ footer {
 
 #email-input {
     flex: 1;
-    padding: 16px;
+    padding: 12px; /* Reduced from 16px to 12px */
     border: 1px solid #e1e1e1;
     border-radius: 8px;
     font-family: "Roboto Mono", monospace;
@@ -120,7 +119,7 @@ footer {
     color: #333;
     border: 1px solid #e1e1e1;
     border-radius: 8px;
-    padding: 16px 24px;
+    padding: 12px 20px; /* Reduced from 16px 24px to 12px 20px */
     cursor: pointer;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
