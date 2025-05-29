@@ -16,6 +16,55 @@ document.addEventListener('DOMContentLoaded', () => {
     const secondsEl = document.getElementById('seconds');
     const dayCountEl = document.getElementById('day-count');
     
+    // Add terminal boot sequence effect
+    const bootSequence = async () => {
+        // Prepare elements for boot sequence
+        const allElements = [
+            daysEl.querySelector('.top'), 
+            daysEl.querySelector('.bottom'),
+            hoursEl.querySelector('.top'),
+            hoursEl.querySelector('.bottom'),
+            minutesEl.querySelector('.top'),
+            minutesEl.querySelector('.bottom'),
+            secondsEl.querySelector('.top'),
+            secondsEl.querySelector('.bottom')
+        ];
+        
+        // Hide all elements initially
+        allElements.forEach(el => {
+            el.style.opacity = '0';
+        });
+        
+        // Function to simulate terminal typing
+        const typewriter = (element, text, delay = 100) => {
+            return new Promise(resolve => {
+                let i = 0;
+                const timer = setInterval(() => {
+                    if (i < text.length) {
+                        element.textContent = text.substring(0, i+1);
+                        i++;
+                    } else {
+                        clearInterval(timer);
+                        resolve();
+                    }
+                }, delay);
+            });
+        };
+        
+        // Simulate boot sequence
+        dayCountEl.textContent = '';
+        await typewriter(dayCountEl, '40', 200);
+        
+        // Show flip cards one by one with a typing effect
+        for (let i = 0; i < allElements.length; i++) {
+            allElements[i].style.opacity = '1';
+            await new Promise(r => setTimeout(r, 150));
+        }
+    };
+    
+    // Execute boot sequence
+    bootSequence();
+    
     // Countdown function
     const updateCountdown = () => {
         const now = new Date();
@@ -44,16 +93,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Add flip class to trigger animation
                 element.classList.add('flip');
                 
-                // Update the values
+                // Add some "digital noise" by randomly showing 
+                // different numbers briefly during flip
+                const randomDigits = () => {
+                    return Math.floor(Math.random() * 10).toString().padStart(2, '0');
+                };
+                
+                // Update with random noise first
                 setTimeout(() => {
-                    element.querySelector('.top').textContent = displayValue;
-                    element.querySelector('.bottom').textContent = displayValue;
+                    element.querySelector('.top').textContent = randomDigits();
+                    element.querySelector('.bottom').textContent = randomDigits();
                     
-                    // Remove flip class after animation completes
+                    // Then update with correct value
                     setTimeout(() => {
-                        element.classList.remove('flip');
-                    }, 500);
-                }, 250);
+                        element.querySelector('.top').textContent = displayValue;
+                        element.querySelector('.bottom').textContent = displayValue;
+                        
+                        // Remove flip class after animation completes
+                        setTimeout(() => {
+                            element.classList.remove('flip');
+                        }, 200);
+                    }, 100);
+                }, 100);
             }
         };
         
@@ -64,11 +125,14 @@ document.addEventListener('DOMContentLoaded', () => {
         updateFlipCard(secondsEl, seconds);
     };
     
-    // Initialize countdown
-    updateCountdown();
-    
-    // Update countdown every second
-    setInterval(updateCountdown, 1000);
+    // Start countdown after boot sequence (with delay)
+    setTimeout(() => {
+        // Initialize countdown
+        updateCountdown();
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+    }, 3000);
     
     // Special feature: Every day at midnight, update the launch date so it always shows the correct "D-X" count
     const checkForDayChange = () => {
@@ -82,15 +146,4 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Check every minute if we need to update the launch date
     setInterval(checkForDayChange, 60000);
-    
-    // Form submission handler
-    const form = document.getElementById('signup-form');
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = e.target.querySelector('input[type="email"]').value;
-            alert(`Thank you! We'll notify ${email} when we launch.`);
-            e.target.reset();
-        });
-    }
 });
