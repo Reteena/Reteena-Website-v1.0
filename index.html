@@ -201,100 +201,84 @@
         .theme-toggle:hover {
             text-decoration: underline;
         }
-        
-        /* Center content */
-        .page-container {
-            position: relative;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        main {
-            max-width: 800px;
-            width: 100%;
-        }
     </style>
 </head>
 <body>
-<div class="page-container">
-    <div class="theme-toggle" id="theme-toggle">
-        Dark Mode
+<div class="theme-toggle" id="theme-toggle">
+    Dark Mode
+</div>
+
+<main>
+    <div class="header" data-aos="fade-down" data-aos-duration="800">
+        <h1>Reteena</h1>
+        <a href="https://www.linkedin.com/company/reteena/" target="_blank" style="display: inline-block;">
+            <svg class="linkedin-icon" style="width: 14px; height: 14px;" viewBox="0 0 382 382" xml:space="preserve">
+                <path style="fill:#0077B7;" d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889
+                C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056
+                H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806
+                c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1
+                s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73
+                c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079
+                c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426
+                c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472
+                L341.91,330.654L341.91,330.654z"/>
+            </svg>
+        </a>
     </div>
-    
-    <main>
-        <div class="header" data-aos="fade-down" data-aos-duration="800">
-            <h1>Reteena</h1>
-            <a href="https://www.linkedin.com/company/reteena/" target="_blank" style="display: inline-block;">
-                <svg class="linkedin-icon" style="width: 14px; height: 14px;" viewBox="0 0 382 382" xml:space="preserve">
-                    <path style="fill:#0077B7;" d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889
-                    C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056
-                    H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806
-                    c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1
-                    s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73
-                    c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079
-                    c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426
-                    c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472
-                    L341.91,330.654L341.91,330.654z"/>
-                </svg>
-            </a>
+
+    <section class="introduction">
+        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+            We are building Low-Field MRI Resolution Image Enhancement Framework for Better Alzheimer's Diagnosis and
+            the
+            <a href="https://youtu.be/nsLzwJkTMxE">
+                <span style="text-decoration: underline;">LLM-based Memory Repository for Reminiscence Therapy</span>
+            </a><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14"><path d="M18 13v6a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </p>
+
+        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+            Reteena shares the same pronunciation as retina, a vital part of the eye used for vision. Like the retina, Reteena aims to provide a new perspective on Alzheimer's, illuminating pathways toward effective treatment.
+        </p>
+
+        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">We have achieved multiple milestones: submission to <a class="strong__links" href="https://solve.mit.edu/solutions/86724" target="_blank">MIT SOLVE</a><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14"><path d="M18 13v6a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>, presentation at <a class="strong__links" href="https://ieeexplore.ieee.org/document/10826144" target="_blank">IEEE BigData 2024</a><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14"><path d="M18 13v6a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>, sponsorship from <a class="strong__links" href="https://foundershub.startups.microsoft.com/" target="_blank">Microsoft Founders Hub</a><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14"><path d="M18 13v6a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>, and accomplishments behind our innovative work. </p>
+        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+            Our team will soon launch our memory repository platform in partnership with OpenNLP labs. We continuously experiment with innovative concepts and new ideas! Leave your email below for more information.
+        </p>
+        <!-- Email input system added here -->
+        <div class="email-signup" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="500">
+            <form id="email-form" action="https://formsubmit.co/alex@reteena.org" method="POST" novalidate>
+                <input type="hidden" name="_subject" value="New subscriber from Reteena website">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://www.reteena.org?subscribed=true">
+                <input type="email" id="email-input" name="email" placeholder="Enter your email" required>
+                <button type="submit" id="email-submit">Send</button>
+            </form>
+            <p id="email-message" class="email-message">Please enter your email address</p>
         </div>
 
-        <section class="introduction">
-            <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
-                We are building Low-Field MRI Resolution Image Enhancement Framework for Better Alzheimer's Diagnosis and
-                the
-                <a href="https://youtu.be/nsLzwJkTMxE">
-                    <span style="text-decoration: underline;">LLM-based Memory Repository for Reminiscence Therapy</span>
-                </a><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14"><path d="M18 13v6a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </p>
+        <h3 data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">Our Team</h3>
+        <p class="team-description" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">We're a close-knit team of standout undergraduates and high schoolers, combining deep expertise in healthcare and AI to push boundaries and create meaningful impact with purpose, vision, and resilience.</p>
+        <div class="team-members" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="0"><span>Alex Yang</span><span>North London Collegiate School Jeju</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="100"><span>Jainish Patel</span><span>Lake Minneola High School</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="200"><span>Aarav Minocha</span><span>University of California, Berkeley</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="300"><span>Jessica Wu</span><span>University of Rochester</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="400"><span>Bhavya Mannani</span><span>University of California, Berkeley</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="500"><span>Sunkalp Chandra</span><span>High Technology High School</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="600"><span>Sanghoo Ahn</span><span>North London Collegiate School Jeju</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="700"><span>Nathan He</span><span>Ocean Lakes High School</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="800"><span>Ivan Ma</span><span>University of California, Berkeley</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="900"><span>Olivia Jeon</span><span>White Oaks Secondary School</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="1000"><span>Devesh Khilnani</span><span>Thomas Edison EnergySmart Charter School</span></div>
+        </div>
+    </section>
 
-            <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-                Reteena shares the same pronunciation as retina, a vital part of the eye used for vision. Like the retina, Reteena aims to provide a new perspective on Alzheimer's, illuminating pathways toward effective treatment.
-            </p>
-
-            <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">We have achieved multiple milestones: submission to <a class="strong__links" href="https://solve.mit.edu/solutions/86724" target="_blank">MIT SOLVE</a><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14"><path d="M18 13v6a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>, presentation at <a class="strong__links" href="https://ieeexplore.ieee.org/document/10826144" target="_blank">IEEE BigData 2024</a><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14"><path d="M18 13v6a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>, sponsorship from <a class="strong__links" href="https://foundershub.startups.microsoft.com/" target="_blank">Microsoft Founders Hub</a><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14"><path d="M18 13v6a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>, and accomplishments behind our innovative work. </p>
-            <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
-                Our team will soon launch our memory repository platform in partnership with OpenNLP labs. We continuously experiment with innovative concepts and new ideas! Leave your email below for more information.
-            </p>
-            <!-- Email input system added here -->
-            <div class="email-signup" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="500">
-                <form id="email-form" action="https://formsubmit.co/alex@reteena.org" method="POST" novalidate>
-                    <input type="hidden" name="_subject" value="New subscriber from Reteena website">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://www.reteena.org?subscribed=true">
-                    <input type="email" id="email-input" name="email" placeholder="Enter your email" required>
-                    <button type="submit" id="email-submit">Send</button>
-                </form>
-                <p id="email-message" class="email-message">Please enter your email address</p>
-            </div>
-
-            <h3 data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">Our Team</h3>
-            <p class="team-description" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">We're a close-knit team of standout undergraduates and high schoolers, combining deep expertise in healthcare and AI to push boundaries and create meaningful impact with purpose, vision, and resilience.</p>
-            <div class="team-members" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
-                <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="0"><span>Alex Yang</span><span>North London Collegiate School Jeju</span></div>
-                <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="100"><span>Jainish Patel</span><span>Lake Minneola High School</span></div>
-                <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="200"><span>Aarav Minocha</span><span>University of California, Berkeley</span></div>
-                <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="300"><span>Jessica Wu</span><span>University of Rochester</span></div>
-                <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="400"><span>Bhavya Mannani</span><span>University of California, Berkeley</span></div>
-                <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="500"><span>Sunkalp Chandra</span><span>High Technology High School</span></div>
-                <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="600"><span>Sanghoo Ahn</span><span>North London Collegiate School Jeju</span></div>
-                <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="700"><span>Nathan He</span><span>Ocean Lakes High School</span></div>
-                <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="800"><span>Ivan Ma</span><span>University of California, Berkeley</span></div>
-                <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="900"><span>Olivia Jeon</span><span>White Oaks Secondary School</span></div>
-                <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="1000"><span>Devesh Khilnani</span><span>Thomas Edison EnergySmart Charter School</span></div>
-            </div>
-        </section>
-
-        <footer data-aos="fade-up" data-aos-duration="800">
-            <div class="footer_sub">
-                <p>business & general: <a href="mailto:hello@reteena.org">hello@reteena.org</a></p>
-                <p>Copyright © 2025 Reteena. All rights reserved.</p>
-            </div>
-        </footer>
-    </main>
-</div>
+    <footer data-aos="fade-up" data-aos-duration="800">
+        <div class="footer_sub">
+            <p>business & general: <a href="mailto:hello@reteena.org">hello@reteena.org</a></p>
+            <p>Copyright © 2025 Reteena. All rights reserved.</p>
+        </div>
+    </footer>
+</main>
 <!-- AOS (Animate On Scroll) Script -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
