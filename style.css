@@ -147,13 +147,14 @@ footer {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 10px 0;
+    padding: 6px 0; /* Reduced from 10px to 6px to make the hover effect less tall */
     border-radius: 6px;
     transition: background 0.12s;
 }
 .member:hover {
-    background: #f5f5f5;
+    background: #f8f8f8; /* Made slightly lighter for a more subtle effect */
     cursor: pointer;
+    box-shadow: none; /* Removed any box shadow if present */
 }
 .member span {
     flex-basis: 48%;
