@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-
 * {
     margin: 0;
     padding: 0;
@@ -13,14 +12,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-/*     overflow: hidden; */
+    /*    overflow: hidden; */
 }
 
 p {
     max-width: 60ch;
     line-height: 1.6;
 }
-
 
 main {
     padding: 3em;
@@ -141,4 +139,27 @@ footer {
     color: #ff3b30;
     margin-top: 4px; /* Reduced from 8px to 4px */
     font-family: "Roboto Mono", monospace;
+}
+
+/* --- Row Hover Effect for Member List --- */
+.member {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 6px;
+    transition: background 0.12s;
+}
+.member:hover {
+    background: #ededed;
+    box-shadow: 0 0 0 1px #d0d0d0;
+    cursor: pointer;
+}
+.member span {
+    flex-basis: 48%;
+    text-align: left;
+}
+.member span:last-child {
+    text-align: right;
 }
