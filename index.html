@@ -1,424 +1,132 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
           name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
-    <title>Reteena - Building AI for Alzheimers Therapy and Diagnosis</title>
-    <meta name="description" content="Reteena develops AI-powered solutions for Alzheimer's diagnosis and therapy, including Low-Field MRI enhancement and LLM-based memory repositories for reminiscence therapy.">
-    <meta name="keywords" content="Alzheimer's, AI healthcare, MRI enhancement, reminiscence therapy, memory repository, Alzheimer's diagnosis, cognitive decline, LLM">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.reteena.org/">
-    <meta property="og:title" content="Reteena - Building AI for Alzheimers Therapy and Diagnosis">
-    <meta property="og:description" content="Reteena develops AI-powered solutions for Alzheimer's diagnosis and therapy, including Low-Field MRI enhancement and LLM-based memory repositories for reminiscence therapy.">
-    <meta property="og:image" content="https://www.reteena.org/banner.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.reteena.org/">
-    <meta property="twitter:title" content="Reteena - Building AI for Alzheimers Therapy and Diagnosis">
-    <meta property="twitter:description" content="Reteena develops AI-powered solutions for Alzheimer's diagnosis and therapy, including Low-Field MRI enhancement and LLM-based memory repositories for reminiscence therapy.">
-    <meta property="twitter:image" content="https://www.reteena.org/banner.png">
-
-    <!-- Stylesheets -->
+    <title>Document</title>
     <link href="./style.css" rel="stylesheet">
-    <link href="./heatmap.css" rel="stylesheet">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="favicon.svg">
-
-    <!-- Import EB Garamond font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <!-- Import AOS (Animate On Scroll) Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Structured data for Organization -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Reteena",
-        "url": "https://www.reteena.org",
-        "logo": "https://www.reteena.org/favicon.svg",
-        "sameAs": [
-            "https://www.linkedin.com/company/reteena/"
-        ],
-        "description": "Reteena develops AI-powered solutions for Alzheimer's diagnosis and therapy, including Low-Field MRI enhancement and LLM-based memory repositories for reminiscence therapy."
-    }
-    </script>
-    <style>
-        * {
-            font-family: 'EB Garamond', serif;
-            box-sizing: border-box;
-            color: #000000 !important;
-        }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'EB Garamond', serif;
-            margin: 0;
-            padding: 0;
-            color: #000000;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select, option, label {
-            font-family: 'EB Garamond', serif !important;
-            color: #000000 !important;
-            transition: color 0.3s ease;
-        }
-        p {
-            text-align: justify;
-            text-justify: inter-word;
-            color: #000000 !important;
-        }
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        section {
-            padding: 20px 0;
-        }
-        .team-members {
-            margin-top: 10px;
-            width: 100%;
-        }
-        .member {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0;
-            width: 100%;
-            padding: 8px 0;
-            /* Removed border-bottom: 1px solid #eee; */
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-        .member:hover { transform: translateX(5px); }
-        .member:first-child { padding-top: 0; }
-        .member span:first-child {
-            text-align: left;
-            font-weight: 500;
-            flex: 1 1 auto;
-            margin-right: 20px;
-            color: #000000 !important;
-        }
-        .member span:last-child {
-            text-align: right;
-            color: #000000 !important;
-            flex: 1;
-        }
-        .team-description {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            line-height: 1.5;
-            text-align: justify;
-            text-justify: inter-word;
-            color: #000000 !important;
-        }
-        input, button {
-            font-family: 'EB Garamond', serif !important;
-            color: #000000 !important;
-        }
-        #email-input:placeholder {
-            font-family: 'EB Garamond', serif !important;
-            color: #000000 !important;
-        }
-        .email-message {
-            text-align: left;
-            font-family: 'EB Garamond', serif !important;
-            color: #ff3b30 !important; /* Restored red color for error messages */
-        }
-        .footer_sub p {
-            font-family: 'EB Garamond', serif !important;
-            color: #000000 !important;
-        }
-        .email-signup {
-            transition: transform 0.3s ease;
-        }
-        .email-signup:hover { transform: translateY(-5px); }
-        #email-submit {
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            color: #000000 !important;
-        }
-        #email-submit:hover { transform: scale(1.05); }
-        svg {
-            fill: currentColor;
-            stroke: currentColor;
-            color: #000000 !important;
-        }
-        svg path, svg polyline, svg line {
-            stroke: currentColor;
-            color: #000000 !important;
-        }
-        .external-link-icon {
-            vertical-align: middle;
-            margin-left: 4px;
-            width: 14px;
-            height: 14px;
-            display: inline;
-        }
-        .linkedin-icon {
-            max-width: 14px !important;
-            max-height: 14px !important;
-            width: 14px !important;
-            height: 14px !important;
-            display: inline-block;
-        }
-        
-        /* Dark mode styles */
-        body.dark-mode {
-            background-color: #121212;
-        }
-        body.dark-mode h1,
-        body.dark-mode h2,
-        body.dark-mode h3,
-        body.dark-mode h4,
-        body.dark-mode h5,
-        body.dark-mode h6,
-        body.dark-mode p,
-        body.dark-mode span,
-        body.dark-mode a,
-        body.dark-mode .member span,
-        body.dark-mode .team-description,
-        body.dark-mode .footer_sub p,
-        body.dark-mode .header h1 {
-            color: #e0e0e0 !important;
-        }
-        body.dark-mode svg {
-            color: #e0e0e0 !important;
-        }
-        body.dark-mode svg path,
-        body.dark-mode svg polyline,
-        body.dark-mode svg line {
-            color: #e0e0e0 !important;
-        }
-        body.dark-mode #email-input {
-            background-color: #1e1e1e;
-            color: #e0e0e0 !important;
-            border-color: #333;
-        }
-        body.dark-mode #email-input::placeholder {
-            color: #999 !important;
-        }
-        body.dark-mode #email-submit {
-            background-color: #333;
-            color: #e0e0e0 !important;
-            border-color: #444;
-        }
-        body.dark-mode .theme-toggle {
-            color: #e0e0e0 !important;
-        }
-        
-        
-        /* Theme toggle button */
-        .theme-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-        
-        .theme-toggle:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
-<div class="theme-toggle" id="theme-toggle">
-    Dark Mode
-</div>
-
+    
 <main>
-    <header class="header" data-aos="fade-down" data-aos-duration="800">
-        <h1>Reteena</h1>
-        <a href="https://www.linkedin.com/company/reteena/" target="_blank" style="display: inline-block;">
-            <span style="text-decoration: underline;">LinkedIn</span>
-            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+
+    <div class="header">
+        <h1>
+            Reteena
+        </h1>
+        <a href="https://www.linkedin.com/company/reteena/" target="_blank">
+
+            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="file:///Users/yangseung-yong/Downloads/external-link.svg">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z"
+                      fill="currentColor"/>
             </svg>
         </a>
-    </header>
+    </div>
+
 
     <section class="introduction">
-        <h2 data-aos="fade-up" data-aos-duration="800">AI for Alzheimer's Diagnosis & Therapy</h2>
-        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
-            We are building Low-Field MRI Resolution Image Enhancement Framework for Better Alzheimer's Diagnosis and the
-            <a href="https://youtu.be/nsLz7wjkTMxE" target="_blank">LLM-based Memory Repository for Reminiscence Therapy</a>
-            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>, submission at <a class="strong__links" href="https://solve.mit.edu/solutions/86724" target="_blank">MIT SOLVE</a>
-            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>, sponsorship from <a href="https://ieeexplore.ieee.org/document/10826144" target="_blank">IEEE BigData 2024</a>
-            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>, and accomplishments behind our innovative work.
+        <p>
+            We are building Low-Field MRI Resolution Image Enhancement Framework for Better Alzheimer's Diagnosis and
+            the
+            <a href="https://www.linkedin.com/posts/alexyang77_introducing-remembrance-by-reteena-the-activity-7332915036396433409-bNQ6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE3UIjQBZFtlI1COnxn2N_ig4-DZEnujWtM" target="_blank">
+    LLM-based Memory Repository for Reminiscence Therapy
+    <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14" style="vertical-align: middle; margin-left: 4px;">
+        <path d="M18 13v6a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</a>
+
         </p>
 
-        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-            Reteena shares the same pronunciation as retina, a vital part of the eye used for vision. Like the retina, Reteena aims to provide a new perspective on Alzheimer's, illuminating paths toward effective treatment and memory management.</p>
-
-    </section>
-
-    <section class="research">
-        <h2 data-aos="fade-up" data-aos-duration="800">Research</h2>
-        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
-            Our research focuses on two key areas:
+        <p>
+            Reteena shares the same pronunciation as retina, a vital part of the eye used for vision. Like the retina,
+            Reteena
+            aims to provide a new perspective on Alzheimer's.
         </p>
 
-        <div class="research-area" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-            <h3>Low-Field MRI Resolution Enhancement</h3>
-            <p>We are developing advanced deep learning models to enhance the resolution and quality of low-field MRI scans. This technology makes early Alzheimer's diagnosis more accessible by improving the diagnostic value of more affordable MRI equipment.</p>
-            <ul>
-                <li>Super-resolution techniques for medical imaging</li>
-                <li>Artifact reduction in low-field MRI</li>
-                <li>CNN and transformer-based image enhancement</li>
-                <li>Quantitative validation with clinical data</li>
-            </ul>
-        </div>
 
-        <div class="research-area" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
-            <h3>LLM-Based Memory Repository</h3>
-            <p>Our memory repository platform uses large language models to organize, enhance, and recall personal memories for Alzheimer's patients. This innovative approach supports reminiscence therapy by providing structured access to important life events and memories.</p>
-            <ul>
-                <li>Personalized memory structuring</li>
-                <li>Multi-modal data integration (text, images, audio)</li>
-                <li>Contextual memory retrieval</li>
-                <li>Compassionate AI-guided reminiscence</li>
-            </ul>
-        </div>
+        <p>Founded by <a href="https://www.linkedin.com/in/alexyang77/" target="_blank">Alex</a>, <a
+                href="https://www.linkedin.com/in/aarav-minocha-0828a286/" target="_blank">Aarav</a>, <a
+                href="https://www.linkedin.com/in/jainish-patel-h/" target="_blank">Jainish</a>, <a
+                href="https://www.linkedin.com/in/jessica-wu-817ba523b/" target="_blank">Jessica</a>, and <a
+                href="https://www.linkedin.com/in/bhavya-mamnani-212a79233/" target="_blank">Bhavya</a>, with <a
+                href="https://www.linkedin.com/in/sanghoo-ahn/" target="_blank">Sanghoo</a>, <a
+                href="https://www.linkedin.com/in/ivanmadmv/" target="_blank">Ivan</a>, <a
+                href="https://www.linkedin.com/in/olivia-jeon-6a43a52a7/" target="_blank">Olivia</a>, and <a
+                href="https://www.linkedin.com/in/nathan-he-603a30255/" target="_blank">Nathan</a> later joining the
+            team. </p>
+
     </section>
 
-    <section class="team">
-        <h2 data-aos="fade-up" data-aos-duration="800">Team</h2>
-        <p class="team-description" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
-            Our team brings together expertise in AI, neuroscience, and healthcare with a shared mission to improve the lives of Alzheimer's patients and their families. We combine technical innovation with compassionate, patient-centered design.</p>
 
-        <div class="team-members" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-            <div class="member">
-                <span>Alex Yang</span>
-                <span>AI Research, Co-founder</span>
-            </div>
-            <div class="member">
-                <span>Alex Qi</span>
-                <span>MRI Research, Co-founder</span>
-            </div>
-            <div class="member">
-                <span>Sarah Gao</span>
-                <span>Medical Advisor</span>
-            </div>
-            <div class="member">
-                <span>Sanghoo Ahn</span>
-                <span>LLM Research, Co-founder</span>
-            </div>
-            <div class="member">
-                <span>Jerry Liu</span>
-                <span>Neuroimaging Advisor</span>
-            </div>
-        </div>
-    </section>
+    <img src="Frame.png">
 
-    <section class="contact">
-        <h2 data-aos="fade-up" data-aos-duration="800">Contact</h2>
-        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">For partnerships, research collaborations, or more information, please reach out to us at <a href="mailto:alex@reteena.org">alex@reteena.org</a>.</p>
+    <section class="achievements">
+        <p>We have achieved multiple milestones: submission to <a class="strong__links"
+                                                  href="https://solve.mit.edu/solutions/86724"
+                                                  target="_blank">MIT
+            SOLVE</a>,presentation at <a class="strong__links"
+                          href="https://ieeexplore.ieee.org/document/10826144" target="_blank">IEEE
+            BigData
+            2024</a>,sponsorship
+            from <a class="strong__links"
+               href="https://foundershub.startups.microsoft.com/" target="_blank">Microsoft Founders Hub</a>, and
+            additional
+            accomplishments. </p>
+        <p>
+            Our team will soon launch our memory repository platform in partnership with OpenNLP labs. We continuously
+            experiment with innovative concepts and new ideas!
+        </p>
 
-        <div class="email-signup" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-            <form id="email-form" action="https://formsubmit.co/alex@reteena.org" method="POST">
-                <input type="hidden" name="_subject" value="New subscriber from Reteena website">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://www.reteena.org?subscribed=true">
-                <input type="email" id="email-input" name="email" placeholder="Enter your email" required aria-label="Email">
-                <p id="email-message" class="email-message">Please enter your email address</p>
+        <!-- Email input system added here -->
+        <div class="email-signup">
+            <form id="email-form" novalidate>
+                <input type="email" id="email-input" placeholder="Enter your email">
                 <button type="submit" id="email-submit">Send</button>
             </form>
+            <p id="email-message" class="email-message">Please enter your email address</p>
         </div>
     </section>
 
-    <footer class="footer_sub">
-        <p data-aos="fade-up" data-aos-duration="800">&copy; 2024 Reteena. All rights reserved.</p>
+    <footer>
+        <div class="footer_sub">
+            <p>Design Inspired from linkd.inc</p>
+            <p>Copyright © 2025 Reteena. All rights reserved.</p>
+        </div>
     </footer>
 </main>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize AOS animation library
-        AOS.init({
-            duration: 800,
-            once: true,
-            mirror: false
-        });
-
-        // Email validation and form handling
+    // Hide message initially
+    document.getElementById('email-message').style.display = 'none';
+    
+    document.getElementById('email-form').addEventListener('submit', function(e) {
+        e.preventDefault();
         const emailInput = document.getElementById('email-input');
+        const email = emailInput.value;
         const emailMessage = document.getElementById('email-message');
-        const emailForm = document.getElementById('email-form');
-
-        // Hide the message initially
-        emailMessage.style.display = 'none';
-
-        // Handle form submission
-        emailForm.addEventListener('submit', function(e) {
-            if (!isValidEmail(emailInput.value)) {
-                e.preventDefault();
-                emailMessage.textContent = 'Please enter a valid email address';
-                emailMessage.style.display = 'block';
-                return false;
-            }
-
-            emailMessage.style.display = 'none';
-            return true;
-        });
-
-        // Email validation function
-        function isValidEmail(email) {
-            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return regex.test(email);
-        }
-
-        // Handle the dark mode toggle
-        const themeToggle = document.getElementById('theme-toggle');
         
-        // Check if user has previously set a preference
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            document.body.classList.add('dark-mode');
-            themeToggle.textContent = 'Light Mode';
-        }
-        
-        themeToggle.addEventListener('click', function() {
-            document.body.classList.toggle('dark-mode');
-            
-            if (document.body.classList.contains('dark-mode')) {
-                themeToggle.textContent = 'Light Mode';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                themeToggle.textContent = 'Dark Mode';
-                localStorage.setItem('theme', 'light');
-            }
-        });
-        
-        // Check for subscription query parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('subscribed') === 'true') {
-            alert('Thank you for subscribing to our newsletter!');
-            // Remove the query parameter from the URL without reloading the page
-            window.history.replaceState({}, document.title, window.location.pathname);
+        if (!email) {
+            // Show error message if empty
+            emailInput.style.borderColor = '#ff3b30';
+            emailMessage.textContent = 'Please enter your email address';
+            emailMessage.style.color = '#ff3b30';
+            emailMessage.style.display = 'block';
+        } else {
+            // Success message
+            emailMessage.textContent = 'Thank you for subscribing!';
+            emailMessage.style.color = '#4CAF50';
+            emailMessage.style.display = 'block';
+            emailInput.style.borderColor = '#e1e1e1';
+            emailInput.value = '';
+            // Here you would typically send this to a server
         }
     });
 </script>
+
 </body>
 </html>
