@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Allow all bots to access the entire site
+# For more granular control, you can disallow specific paths like:
+# Disallow: /private/
+
+# Sitemap location
+Sitemap: https://www.reteena.org/sitemap.xml

@@ -5,7 +5,26 @@
     <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
           name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <!-- Primary Meta Tags -->
     <title>Reteena - Building AI for Alzheimers Therapy and Diagnosis</title>
+    <meta name="description" content="Reteena develops AI-powered solutions for Alzheimer's diagnosis and therapy, including Low-Field MRI enhancement and LLM-based memory repositories for reminiscence therapy.">
+    <meta name="keywords" content="Alzheimer's, AI healthcare, MRI enhancement, reminiscence therapy, memory repository, Alzheimer's diagnosis, cognitive decline, LLM">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.reteena.org/">
+    <meta property="og:title" content="Reteena - Building AI for Alzheimers Therapy and Diagnosis">
+    <meta property="og:description" content="Reteena develops AI-powered solutions for Alzheimer's diagnosis and therapy, including Low-Field MRI enhancement and LLM-based memory repositories.">
+    <meta property="og:image" content="https://www.reteena.org/banner.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.reteena.org/">
+    <meta property="twitter:title" content="Reteena - Building AI for Alzheimers Therapy and Diagnosis">
+    <meta property="twitter:description" content="Reteena develops AI-powered solutions for Alzheimer's diagnosis and therapy, including Low-Field MRI enhancement and LLM-based memory repositories.">
+    <meta property="twitter:image" content="https://www.reteena.org/banner.png">
+    
+    <!-- Stylesheets -->
     <link href="./style.css" rel="stylesheet">
     <link href="./heatmap.css" rel="stylesheet">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -16,6 +35,20 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <!-- Import AOS (Animate On Scroll) Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Structured data for Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Reteena",
+      "url": "https://www.reteena.org",
+      "logo": "https://www.reteena.org/favicon.svg",
+      "sameAs": [
+        "https://www.linkedin.com/company/reteena/"
+      ],
+      "description": "Reteena develops AI-powered solutions for Alzheimer's diagnosis and therapy, including Low-Field MRI enhancement and LLM-based memory repositories for reminiscence therapy."
+    }
+    </script>
     <style>
         * {
             font-family: 'EB Garamond', serif;
@@ -209,9 +242,9 @@
 </div>
 
 <main>
-    <div class="header" data-aos="fade-down" data-aos-duration="800">
+    <header class="header" data-aos="fade-down" data-aos-duration="800">
         <h1>Reteena</h1>
-        <a href="https://www.linkedin.com/company/reteena/" target="_blank" style="display: inline-block;">
+        <a href="https://www.linkedin.com/company/reteena/" target="_blank" style="display: inline-block;" aria-label="LinkedIn">
             <svg class="linkedin-icon" style="width: 14px; height: 14px;" viewBox="0 0 382 382" xml:space="preserve">
                 <path style="fill:#0077B7;" d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889
                 C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056
@@ -224,9 +257,10 @@
                 L341.91,330.654L341.91,330.654z"/>
             </svg>
         </a>
-    </div>
+    </header>
 
     <section class="introduction">
+        <h2 data-aos="fade-up" data-aos-duration="800">AI for Alzheimer's Diagnosis & Therapy</h2>
         <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
             We are building Low-Field MRI Resolution Image Enhancement Framework for Better Alzheimer's Diagnosis and
             the
@@ -249,11 +283,22 @@
                 <input type="hidden" name="_subject" value="New subscriber from Reteena website">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_next" value="https://www.reteena.org?subscribed=true">
-                <input type="email" id="email-input" name="email" placeholder="Enter your email" required>
+                <input type="email" id="email-input" name="email" placeholder="Enter your email" required aria-label="Email">
                 <button type="submit" id="email-submit">Send</button>
             </form>
             <p id="email-message" class="email-message">Please enter your email address</p>
         </div>
+
+        <section class="research" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+            <h2>Our Research</h2>
+            <p>Our cutting-edge research focuses on two complementary approaches to Alzheimer's care:</p>
+            
+            <h3>1. MRI Image Enhancement</h3>
+            <p>We're developing advanced AI algorithms to enhance low-field MRI scans, making early diagnosis more accessible and affordable without requiring expensive equipment. This technology can help detect subtle brain changes indicative of Alzheimer's disease in its earliest stages.</p>
+            
+            <h3>2. Memory Repository Platform</h3>
+            <p>Our LLM-based memory repository creates personalized digital memory banks for patients with Alzheimer's. This innovative technology supports reminiscence therapy by providing access to memories, stories, and personalized content that helps maintain cognitive connections.</p>
+        </section>
 
         <h3 data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">Our Team</h3>
         <p class="team-description" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">We're a close-knit team of standout undergraduates and high schoolers, combining deep expertise in healthcare and AI to push boundaries and create meaningful impact with purpose, vision, and resilience.</p>
@@ -268,7 +313,7 @@
             <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="700"><span>Nathan He</span><span>Ocean Lakes High School</span></div>
             <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="800"><span>Ivan Ma</span><span>University of California, Berkeley</span></div>
             <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="900"><span>Olivia Jeon</span><span>White Oaks Secondary School</span></div>
-            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="1000"><span>Devesh Khilnani</span><span>Thomas Edison EnergySmart Charter School</span></div>
+            <div class="member" data-aos="fade-left" data-aos-duration="400" data-aos-delay="1000"><span>Devesh Khilnani</span><span>Thomas Edison EnergySmartCharter School</span></div>
         </div>
     </section>
 
@@ -344,18 +389,18 @@
         
         // Toggle theme when button is clicked
         themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            
-            // Update button text based on current mode
-            if (document.body.classList.contains('dark-mode')) {
+           document.body.classList.toggle('dark-mode');
+           
+           // Update button text based on current mode
+           if (document.body.classList.contains('dark-mode')) {
                 themeToggle.textContent = 'Light Mode';
-            } else {
+           } else {
                 themeToggle.textContent = 'Dark Mode';
-            }
-            
-            // Save theme preference
-            const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-            localStorage.setItem('theme', currentTheme);
+           }
+           
+           // Save theme preference
+           const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+           localStorage.setItem('theme', currentTheme);
         });
     });
 </script>
