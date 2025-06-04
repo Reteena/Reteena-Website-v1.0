@@ -1,1 +1,424 @@
-PCFkb2N0eXBlIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CiAgICA8bWV0YSBjaGFyc2V0PSJVVEYtOCI+CiAgICA8bWV0YSBjb250ZW50PSJ3aWR0aD1kZXZpY2Utd2lkdGgsIHVzZXItc2NhbGFibGU9bm8sIGluaXRpYWwtc2NhbGU9MS4wLCBtYXhpbXVtLXNjYWxlPTEuMCwgbWluaW11bS1zY2FsZT0xLjAiCiAgICAgICAgICBuYW1lPSJ2aWV3cG9ydCI+CiAgICA8bWV0YSBjb250ZW50PSJpZT1lZGdlIiBodHRwLWVxdWl2PSJYLVVBLUNvbXBhdGlibGUiPgogICAgPCEtLSBQcmltYXJ5IE1ldGEgVGFncyAtLT4KICAgIDx0aXRsZT5SZXRlZW5hIC0gQnVpbGRpbmcgQUkgZm9yIEFsemhlaW1lcnMgVGhlcmFweSBhbmQgRGlhZ25vc2lzPC90aXRsZT4KICAgIDxtZXRhIG5hbWU9ImRlc2NyaXB0aW9uIiBjb250ZW50PSJSZXRlZW5hIGRldmVsb3BzIEFJLXBvd2VyZWQgc29sdXRpb25zIGZvciBBbHpoZWltZXIncyBkaWFnbm9zaXMgYW5kIHRoZXJhcHksIGluY2x1ZGluZyBMb3ctRmllbGQgTVJJIGVuaGFuY2VtZW50IGFuZCBMTE0tYmFzZWQgbWVtb3J5IHJlcG9zaXRvcmllcyBmb3IgcmVtaW5pc2NlbmNlIHRoZXJhcHkuIj4KICAgIDxtZXRhIG5hbWU9ImtleXdvcmRzIiBjb250ZW50PSJBbHpoZWltZXIncywgQUkgaGVhbHRoY2FyZSwgTVJJIGVuaGFuY2VtZW50LCByZW1pbmlzY2VuY2UgdGhlcmFweSwgbWVtb3J5IHJlcG9zaXRvcnksIEFsemhlaW1lcidzIGRpYWdub3NpcywgY29nbml0aXZlIGRlY2xpbmUsIExMTSI+CiAgICAKICAgIDwhLS0gT3BlbiBHcmFwaCAvIEZhY2Vib29rIC0tPgogICAgPG1ldGEgcHJvcGVydHk9Im9nOnR5cGUiIGNvbnRlbnQ9IndlYnNpdGUiPgogICAgPG1ldGEgcHJvcGVydHk9Im9nOnVybCIgY29udGVudD0iaHR0cHM6Ly93d3cucmV0ZWVuYS5vcmcvIj4KICAgIDxtZXRhIHByb3BlcnR5PSJvZzp0aXRsZSIgY29udGVudD0iUmV0ZWVuYSAtIEJ1aWxkaW5nIEFJIGZvciBBbHpoZWltZXJzIFRoZXJhcHkgYW5kIERpYWdub3NpcyI+CiAgICA8bWV0YSBwcm9wZXJ0eT0ib2c6ZGVzY3JpcHRpb24iIGNvbnRlbnQ9IlJldGVlbmEgZGV2ZWxvcHMgQUktcG93ZXJlZCBzb2x1dGlvbnMgZm9yIEFsemhlaW1lcidzIGRpYWdub3NpcyBhbmQgdGhlcmFweSwgaW5jbHVkaW5nIExvdy1GaWVsZCBNUkkgZW5oYW5jZW1lbnQgYW5kIExMTS1iYXNlZCBtZW1vcnkgcmVwb3NpdG9yaWVzLiI+CiAgICA8bWV0YSBwcm9wZXJ0eT0ib2c6aW1hZ2UiIGNvbnRlbnQ9Imh0dHBzOi8vd3d3LnJldGVlbmEub3JnL2Jhbm5lci5wbmciPgoKICAgIDwhLS0gVHdpdHRlciAtLT4KICAgIDxtZXRhIHByb3BlcnR5PSJ0d2l0dGVyOmNhcmQiIGNvbnRlbnQ9InN1bW1hcnlfbGFyZ2VfaW1hZ2UiPgogICAgPG1ldGEgcHJvcGVydHk9InR3aXR0ZXI6dXJsIiBjb250ZW50PSJodHRwczovL3d3dy5yZXRlZW5hLm9yZy8iPgogICAgPG1ldGEgcHJvcGVydHk9InR3aXR0ZXI6dGl0bGUiIGNvbnRlbnQ9IlJldGVlbmEgLSBCdWlsZGluZyBBSSBmb3IgQWx6aGVpbWVycyBUaGVyYXB5IGFuZCBEaWFnbm9zaXMiPgogICAgPG1ldGEgcHJvcGVydHk9InR3aXR0ZXI6ZGVzY3JpcHRpb24iIGNvbnRlbnQ9IlJldGVlbmEgZGV2ZWxvcHMgQUktcG93ZXJlZCBzb2x1dGlvbnMgZm9yIEFsemhlaW1lcidzIGRpYWdub3NpcyBhbmQgdGhlcmFweSwgaW5jbHVkaW5nIExvdy1GaWVsZCBNUkkgZW5oYW5jZW1lbnQgYW5kIExMTS1iYXNlZCBtZW1vcnkgcmVwb3NpdG9yaWVzLiI+CiAgICA8bWV0YSBwcm9wZXJ0eT0idHdpdHRlcjppbWFnZSIgY29udGVudD0iaHR0cHM6Ly93d3cucmV0ZWVuYS5vcmcvYmFubmVyLnBuZyI+CiAgICAKICAgIDwhLS0gU3R5bGVzaGVldHMgLS0+CiAgICA8bGluayBocmVmPSIuL3N0eWxlLmNzcyIgcmVsPSJzdHlsZXNoZWV0Ij4KICAgIDxsaW5rIGhyZWY9Ii4vaGVhdG1hcC5jc3MiIHJlbD0ic3R5bGVzaGVldCI+CiAgICA8bGluayByZWw9Imljb24iIGhyZWY9ImZhdmljb24uc3ZnIiB0eXBlPSJpbWFnZS9zdmcreG1sIj4KICAgIDxsaW5rIHJlbD0iYXBwbGUtdG91Y2gtaWNvbiIgaHJlZj0iZmF2aWNvbi5zdmciPgogICAgPCEtLSBJbXBvcnQgRUIgR2FyYW1vbmQgZm9udCBmcm9tIEdvb2dsZSBGb250cyAtLT4KICAgIDxsaW5rIHJlbD0icHJlY29ubmVjdCIgaHJlZj0iaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbSI+CiAgICA8bGluayByZWw9InByZWNvbm5lY3QiIGhyZWY9Imh0dHBzOi8vZm9udHMuZ3N0YXRpYy5jb20iIGNyb3Nzb3JpZ2luPgogICAgPGxpbmsgaHJlZj0iaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1FQitHYXJhbW9uZDppdGFsLHdnaHRAMCw0MDA7MCw1MDA7MCw2MDA7MCw3MDA7MCw4MDA7MSw0MDA7MSw1MDA7MSw2MDA7MSw3MDA7MSw4MDAmZGlzcGxheT1zd2FwIiByZWw9InN0eWxlc2hlZXQiPgogICAgPCEtLSBJbXBvcnQgQU9TIChBbmltYXRlIE9uIFNjcm9sbCkgTGlicmFyeSAtLT4KICAgIDxsaW5rIGhyZWY9Imh0dHBzOi8vdW5wa2cuY29tL2Fvc0AyLjMuMS9kaXN0L2Fvcy5jc3MiIHJlbD0ic3R5bGVzaGVldCI+CiAgICA8IS0tIFN0cnVjdHVyZWQgZGF0YSBmb3IgT3JnYW5pemF0aW9uIC0tPgogICAgPHNjcmlwdCB0eXBlPSJhcHBsaWNhdGlvbi9sZCtqc29uIj4KICAgIHsKICAgICAgIkBjb250ZXh0IjogImh0dHBzOi8vc2NoZW1hLm9yZyIsCiAgICAgICJAdHlwZSI6ICJPcmdhbml6YXRpb24iLAogICAgICAibmFtZSI6ICJSZXRlZW5hIiwKICAgICAgInVybCI6ICJodHRwczovL3d3dy5yZXRlZW5hLm9yZyIsCiAgICAgICJsb2dvIjogImh0dHBzOi8vd3d3LnJldGVlbmEub3JnL2Zhdmljb24uc3ZnIiwKICAgICAgInNhbWVBcyI6IFsKICAgICAgICAiaHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2NvbXBhbnkvcmV0ZWVuYS8iCiAgICAgIF0sCiAgICAgICJkZXNjcmlwdGlvbiI6ICJSZXRlZW5hIGRldmVsb3BzIEFJLXBvd2VyZWQgc29sdXRpb25zIGZvciBBbHpoZWltZXIncyBkaWFnbm9zaXMgYW5kIHRoZXJhcHksIGluY2x1ZGluZyBMb3ctRmllbGQgTVJJIGVuaGFuY2VtZW50IGFuZCBMTE0tYmFzZWQgbWVtb3J5IHJlcG9zaXRvcmllcyBmb3IgcmVtaW5pc2NlbmNlIHRoZXJhcHkuIgogICAgfQogICAgPC9zY3JpcHQ+CiAgICA8c3R5bGU+CiAgICAgICAgKiB7CiAgICAgICAgICAgIGZvbnQtZmFtaWx5OiAnRUIgR2FyYW1vbmQnLCBzZXJpZjsKICAgICAgICAgICAgYm94LXNpemluZzogYm9yZGVyLWJveDsKICAgICAgICAgICAgY29sb3I6ICMwMDAwMDAgIWltcG9ydGFudDsKICAgICAgICB9CiAgICAgICAgaHRtbCB7IHNjcm9sbC1iZWhhdmlvcjogc21vb3RoOyB9CiAgICAgICAgYm9keSB7CiAgICAgICAgICAgIGZvbnQtZmFtaWx5OiAnRUIgR2FyYW1vbmQnLCBzZXJpZjsKICAgICAgICAgICAgbWFyZ2luOiAwOwogICAgICAgICAgICBwYWRkaW5nOiAwOwogICAgICAgICAgICBjb2xvcjogIzAwMDAwMDsKICAgICAgICAgICAgdHJhbnNpdGlvbjogYmFja2dyb3VuZC1jb2xvciAwLjNzIGVhc2UsIGNvbG9yIDAuM3MgZWFzZTsKICAgICAgICB9CiAgICAgICAgaDEsIGgyLCBoMywgaDQsIGg1LCBoNiwgcCwgc3BhbiwgYSwgYnV0dG9uLCBpbnB1dCwgdGV4dGFyZWEsIHNlbGVjdCwgb3B0aW9uLCBsYWJlbCB7CiAgICAgICAgICAgIGZvbnQtZmFtaWx5OiAnRUIgR2FyYW1vbmQnLCBzZXJpZiAhaW1wb3J0YW50OwogICAgICAgICAgICBjb2xvcjogIzAwMDAwMCAhaW1wb3J0YW50OwogICAgICAgICAgICB0cmFuc2l0aW9uOiBjb2xvciAwLjNzIGVhc2U7CiAgICAgICAgfQogICAgICAgIC5oZWFkZXIgaDEgewogICAgICAgICAgICBmb250LWZhbWlseTogJ0VCIEdhcmFtb25kJywgc2VyaWYgIWltcG9ydGFudDsKICAgICAgICAgICAgY29sb3I6ICMwMDAwMDAgIWltcG9ydGFudDsKICAgICAgICB9CiAgICAgICAgcCB7CiAgICAgICAgICAgIHRleHQtYWxpZ246IGp1c3RpZnk7CiAgICAgICAgICAgIHRleHQtanVzdGlmeTogaW50ZXItd29yZDsKICAgICAgICAgICAgY29sb3I6ICMwMDAwMDAgIWltcG9ydGFudDsKICAgICAgICB9CiAgICAgICAgLmZhZGUtaW4gewogICAgICAgICAgICBvcGFjaXR5OiAwOwogICAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMjBweCk7CiAgICAgICAgICAgIHRyYW5zaXRpb246IG9wYWNpdHkgMC42cyBlYXNlLW91dCwgdHJhbnNmb3JtIDAuNnMgZWFzZS1vdXQ7CiAgICAgICAgfQogICAgICAgIC5mYWRlLWluLmlzLXZpc2libGUgewogICAgICAgICAgICBvcGFjaXR5OiAxOwogICAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMCk7CiAgICAgICAgfQogICAgICAgIHNlY3Rpb24gewogICAgICAgICAgICBwYWRkaW5nOiAyMHB4IDA7CiAgICAgICAgfQogICAgICAgIC50ZWFtLW1lbWJlcnMgewogICAgICAgICAgICBtYXJnaW4tdG9wOiAxMHB4OwogICAgICAgICAgICB3aWR0aDogMTAwJTsKICAgICAgICB9CiAgICAgICAgLm1lbWJlciB7CiAgICAgICAgICAgIGRpc3BsYXk6IGZsZXg7CiAgICAgICAgICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjsKICAgICAgICAgICAgbWFyZ2luLWJvdHRvbTogMDsKICAgICAgICAgICAgd2lkdGg6IDEwMCU7CiAgICAgICAgICAgIHBhZGRpbmc6IDhweCAwOwogICAgICAgICAgICAvKiBSZW1vdmVkIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAjZWVlOyAqLwogICAgICAgICAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4zcyBlYXNlLCBvcGFjaXR5IDAuM3MgZWFzZTsKICAgICAgICB9CiAgICAgICAgLm1lbWJlcjpob3ZlciB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWCg1cHgpOyB9CiAgICAgICAgLm1lbWJlcjpmaXJzdC1jaGlsZCB7IHBhZGRpbmctdG9wOiAwOyB9CiAgICAgICAgLm1lbWJlciBzcGFuOmZpcnN0LWNoaWxkIHsKICAgICAgICAgICAgdGV4dC1hbGlnbjogbGVmdDsKICAgICAgICAgICAgZm9udC13ZWlnaHQ6IDUwMDsKICAgICAgICAgICAgZmxleDogMCAwIGF1dG87CiAgICAgICAgICAgIG1hcmdpbi1yaWdodDogMjBweDsKICAgICAgICAgICAgY29sb3I6ICMwMDAwMDAgIWltcG9ydGFudDsKICAgICAgICB9CiAgICAgICAgLm1lbWJlciBzcGFuOmxhc3QtY2hpbGQgewogICAgICAgICAgICB0ZXh0LWFsaWduOiByaWdodDsKICAgICAgICAgICAgY29sb3I6ICMwMDAwMDAgIWltcG9ydGFudDsKICAgICAgICAgICAgZmxleDogMTsKICAgICAgICB9CiAgICAgICAgLnRlYW0tZGVzY3JpcHRpb24gewogICAgICAgICAgICBtYXJnaW4tdG9wOiAxMHB4OwogICAgICAgICAgICBtYXJnaW4tYm90dG9tOiAxMHB4OwogICAgICAgICAgICBsaW5lLWhlaWdodDogMS41OwogICAgICAgICAgICB0ZXh0LWFsaWduOiBqdXN0aWZ5OwogICAgICAgICAgICB0ZXh0LWp1c3RpZnk6IGludGVyLXdvcmQ7CiAgICAgICAgICAgIGNvbG9yOiAjMDAwMDAwICFpbXBvcnRhbnQ7CiAgICAgICAgfQogICAgICAgIGlucHV0LCBidXR0b24gewogICAgICAgICAgICBmb250LWZhbWlseTogJ0VCIEdhcmFtb25kJywgc2VyaWYgIWltcG9ydGFudDsKICAgICAgICAgICAgY29sb3I6ICMwMDAwMDAgIWltcG9ydGFudDsKICAgICAgICB9CiAgICAgICAgI2VtYWlsLWlucHV0OjpwbGFjZWhvbGRlciB7CiAgICAgICAgICAgIGZvbnQtZmFtaWx5OiAnRUIgR2FyYW1vbmQnLCBzZXJpZiAhaW1wb3J0YW50OwogICAgICAgICAgICBjb2xvcjogIzAwMDAwMCAhaW1wb3J0YW50OwogICAgICAgIH0KICAgICAgICAuZW1haWwtbWVzc2FnZSB7CiAgICAgICAgICAgIHRleHQtYWxpZ246IGxlZnQ7CiAgICAgICAgICAgIGZvbnQtZmFtaWx5OiAnRUIgR2FyYW1vbmQnLCBzZXJpZiAhaW1wb3J0YW50OwogICAgICAgICAgICBjb2xvcjogI2ZmM2IzMCAhaW1wb3J0YW50OyAvKiBSZXN0b3JlZCByZWQgY29sb3IgZm9yIGVycm9yIG1lc3NhZ2VzICovCiAgICAgICAgfQogICAgICAgIC5mb290ZXJfc3ViIHAgewogICAgICAgICAgICBmb250LWZhbWlseTogJ0VCIEdhcmFtb25kJywgc2VyaWYgIWltcG9ydGFudDsKICAgICAgICAgICAgY29sb3I6ICMwMDAwMDAgIWltcG9ydGFudDsKICAgICAgICB9CiAgICAgICAgLmVtYWlsLXNpZ251cCB7CiAgICAgICAgICAgIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjNzIGVhc2U7CiAgICAgICAgfQogICAgICAgIC5lbWFpbC1zaWdudXA6aG92ZXIgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoLTVweCk7IH0KICAgICAgICAjZW1haWwtc3VibWl0IHsKICAgICAgICAgICAgdHJhbnNpdGlvbjogYmFja2dyb3VuZC1jb2xvciAwLjNzIGVhc2UsIHRyYW5zZm9ybSAwLjNzIGVhc2U7CiAgICAgICAgICAgIGNvbG9yOiAjMDAwMDAwICFpbXBvcnRhbnQ7CiAgICAgICAgfQogICAgICAgICNlbWFpbC1zdWJtaXQ6aG92ZXIgeyB0cmFuc2Zvcm06IHNjYWxlKDEuMDUpOyB9CiAgICAgICAgc3ZnIHsKICAgICAgICAgICAgZmlsbDogY3VycmVudENvbG9yOwogICAgICAgICAgICBzdHJva2U6IGN1cnJlbnRDb2xvcjsKICAgICAgICAgICAgY29sb3I6ICMwMDAwMDAgIWltcG9ydGFudDsKICAgICAgICB9CiAgICAgICAgc3ZnIHBhdGgsIHN2ZyBwb2x5bGluZSwgc3ZnIGxpbmUgewogICAgICAgICAgICBzdHJva2U6IGN1cnJlbnRDb2xvcjsKICAgICAgICAgICAgY29sb3I6ICMwMDAwMDAgIWltcG9ydGFudDsKICAgICAgICB9CiAgICAgICAgLmV4dGVybmFsLWxpbmstaWNvbiB7CiAgICAgICAgICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7CiAgICAgICAgICAgIG1hcmdpbi1sZWZ0OiA0cHg7CiAgICAgICAgICAgIHdpZHRoOiAxNHB4OwogICAgICAgICAgICBoZWlnaHQ6IDE0cHg7CiAgICAgICAgICAgIGRpc3BsYXk6IGlubGluZTsKICAgICAgICB9CiAgICAgICAgLmxpbmtlZGluLWljb24gewogICAgICAgICAgICBtYXgtd2lkdGg6IDE0cHggIWltcG9ydGFudDsKICAgICAgICAgICAgbWF4LWhlaWdodDogMTRweCAhaW1wb3J0YW50OwogICAgICAgICAgICB3aWR0aDogMTRweCAhaW1wb3J0YW50OwogICAgICAgICAgICBoZWlnaHQ6IDE0cHggIWltcG9ydGFudDsKICAgICAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrOwogICAgICAgIH0KICAgICAgICAKICAgICAgICAvKiBEYXJrIG1vZGUgc3R5bGVzICovCiAgICAgICAgYm9keS5kYXJrLW1vZGUgewogICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMTIxMjEyOwogICAgICAgIH0KICAgICAgICBib2R5LmRhcmstbW9kZSBoMSwgCiAgICAgICAgYm9keS5kYXJrLW1vZGUgaDIsIAogICAgICAgIGJvZHkuZGFyay1tb2RlIGgzLCAKICAgICAgICBib2R5LmRhcmstbW9kZSBoNCwgCiAgICAgICAgYm9keS5kYXJrLW1vZGUgaDUsIAogICAgICAgIGJvZHkuZGFyay1tb2RlIGg2LCAKICAgICAgICBib2R5LmRhcmstbW9kZSBwLCAKICAgICAgICBib2R5LmRhcmstbW9kZSBzcGFuLCAKICAgICAgICBib2R5LmRhcmstbW9kZSBhLCAKICAgICAgICBib2R5LmRhcmstbW9kZSAubWVtYmVyIHNwYW4sIAogICAgICAgIGJvZHkuZGFyay1tb2RlIC50ZWFtLWRlc2NyaXB0aW9uLAogICAgICAgIGJvZHkuZGFyay1tb2RlIC5mb290ZXJfc3ViIHAsCiAgICAgICAgYm9keS5kYXJrLW1vZGUgLmhlYWRlciBoMSB7CiAgICAgICAgICAgIGNvbG9yOiAjZTBlMGUwICFpbXBvcnRhbnQ7CiAgICAgICAgfQogICAgICAgIGJvZHkuZGFyay1tb2RlIHN2ZyB7CiAgICAgICAgICAgIGNvbG9yOiAjZTBlMGUwICFpbXBvcnRhbnQ7CiAgICAgICAgfQogICAgICAgIGJvZHkuZGFyay1tb2RlIHN2ZyBwYXRoLCAKICAgICAgICBib2R5LmRhcmstbW9kZSBzdmcgcG9seWxpbmUsIAogICAgICAgIGJvZHkuZGFyay1tb2RlIHN2ZyBsaW5lIHsKICAgICAgICAgICAgY29sb3I6ICNlMGUwZTAgIWltcG9ydGFudDsKICAgICAgICB9CiAgICAgICAgYm9keS5kYXJrLW1vZGUgI2VtYWlsLWlucHV0IHsKICAgICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogIzFlMWUxZTsKICAgICAgICAgICAgY29sb3I6ICNlMGUwZTAgIWltcG9ydGFudDsKICAgICAgICAgICAgYm9yZGVyLWNvbG9yOiAjMzMzOwogICAgICAgIH0KICAgICAgICBib2R5LmRhcmstbW9kZSAjZW1haWwtaW5wdXQ6OnBsYWNlaG9sZGVyIHsKICAgICAgICAgICAgY29sb3I6ICM5OTkgIWltcG9ydGFudDsKICAgICAgICB9CiAgICAgICAgYm9keS5kYXJrLW1vZGUgI2VtYWlsLXN1Ym1pdCB7CiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6ICMzMzM7CiAgICAgICAgICAgIGNvbG9yOiAjZTBlMGUwICFpbXBvcnRhbnQ7CiAgICAgICAgICAgIGJvcmRlci1jb2xvcjogIzQ0NDsKICAgICAgICB9CiAgICAgICAgYm9keS5kYXJrLW1vZGUgLm1lbWJlcjpob3ZlciB7CiAgICAgICAgICAgIGJhY2tncm91bmQ6ICMxZTFlMWU7CiAgICAgICAgfQogICAgICAgIGJvZHkuZGFyay1tb2RlIC50aGVtZS10b2dnbGUgewogICAgICAgICAgICBjb2xvcjogI2UwZTBlMCAhaW1wb3J0YW50OwogICAgICAgIH0KICAgICAgICAKICAgICAgICAvKiBUaGVtZSB0b2dnbGUgYnV0dG9uICovCiAgICAgICAgLnRoZW1lLXRvZ2dsZSB7CiAgICAgICAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTsKICAgICAgICAgICAgdG9wOiAyMHB4OwogICAgICAgICAgICByaWdodDogMjBweDsKICAgICAgICAgICAgY3Vyc29yOiBwb2ludGVyOwogICAgICAgICAgICBmb250LXNpemU6IDE0cHg7CiAgICAgICAgICAgIHRyYW5zaXRpb246IGFsbCAwLjNzIGVhc2U7CiAgICAgICAgfQogICAgICAgIAogICAgICAgIC50aGVtZS10b2dnbGU6aG92ZXIgewogICAgICAgICAgICB0ZXh0LWRlY29yYXRpb246IHVuZGVybGluZTsKICAgICAgICB9CiAgICA8L3N0eWxlPgo8L2hlYWQ+Cjxib2R5Pgo8ZGl2IGNsYXNzPSJ0aGVtZS10b2dnbGUiIGlkPSJ0aGVtZS10b2dnbGUiPgogICAgRGFyayBNb2RlCjwvZGl2PgoKPG1haW4+CiAgICA8aGVhZGVyIGNsYXNzPSJoZWFkZXIiIGRhdGEtYW9zPSJmYWRlLWRvd24iIGRhdGEtYW9zLWR1cmF0aW9uPSI4MDAiPgogICAgICAgIDxoMT5SZXRlZW5hPC9oMT4KICAgICAgICA8YSBocmVmPSJodHRwczovL3d3dy5saW5rZWRpbi5jb20vY29tcGFueS9yZXRlZW5hLyIgdGFyZ2V0PSJfYmxhbmsiIHN0eWxlPSJkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IiBhcmlhLWxhYmVsPSJMaW5rZWRJbiI+CiAgICAgICAgICAgIDxzdmcgY2xhc3M9ImxpbmtlZGluLWljb24iIHN0eWxlPSJ3aWR0aDogMTRweDsgaGVpZ2h0OiAxNHB4OyIgdmlld0JveD0iMCAwIDM4MiAzODIiIHhtbDpzcGFjZT0icHJlc2VydmUiPgogICAgICAgICAgICAgICAgPHBhdGggc3R5bGU9ImZpbGw6IzAwNzdCNzsiIGQ9Ik0zNDcuNDQ1LDBIMzQuNTU1QzE1LjQ3MSwwLDAsMTUuNDcxLDAsMzQuNTU1djMxMi44ODlDMCwzNjYuNTI5LDE1LjQ3MSwzODIsMzQuNTU1LDM4MmgzMTIuODg5CiAgICAgICAgICAgICAgICBDMzY2LjUyOSwzODIsMzgyLDM2Ni41MjksMzgyLDM0Ny40NDRWMzQuNTU1QzM4MiwxNS40NzEsMzY2LjUyOSwwLDM0Ny40NDUsMHogTTExOC4yMDcsMzI5Ljg0NGMwLDUuNTU0LTQuNTAyLDEwLjA1Ni0xMC4wNTYsMTAuMDU2CiAgICAgICAgICAgICAgICBINjUuMzQ1Yy01LjU1NCwwLTEwLjA1Ni00LjUwMi0xMC4wNTYtMTAuMDU2VjE1MC40MDNjMC01LjU1NCw0LjUwMi0xMC4wNTYsMTAuMDU2LTEwLjA1Nmg0Mi44MDYKICAgICAgICAgICAgICAgIGM1LjU1NCwwLDEwLjA1Niw0LjUwMiwxMC4wNTYsMTAuMDU2VjMyOS44NDR6IE04Ni43NDgsMTIzLjQzMmMtMjIuNDU5LDAtNDAuNjY2LTE4LjIwNy00MC42NjYtNDAuNjY2UzY0LjI4OSw0Mi4xLDg2Ljc0OCw0Mi4xCiAgICAgICAgICAgICAgICBzNDAuNjY2LDE4LjIwNyw0MC42NjYsNDAuNjY2UzEwOS4yMDgsMTIzLjQzMiw4Ni43NDgsMTIzLjQzMnogTTM0MS45MSwzMzAuNjU0YzAsNS4xMDYtNC4xNCw5LjI0Ni05LjI0Niw5LjI0NkgyODYuNzMKICAgICAgICAgICAgICAgIGMtNS4xMDYsMC05LjI0Ni00LjE0LTkuMjQ2LTkuMjQ2di04NC4xNjhjMC0xMi41NTYsMy42ODMtNTUuMDIxLTMyLjgxMy01NS4wMjFjLTI4LjMwOSwwLTM0LjA1MSwyOS4wNjYtMzUuMjA0LDQyLjExdjk3LjA3OQogICAgICAgICAgICAgICAgYzAsNS4xMDYtNC4xMzksOS4yNDYtOS4yNDYsOS4yNDZoLTQ0LjQyNmMtNS4xMDYsMC05LjI0Ni00LjE0LTkuMjQ2LTkuMjQ2VjE0OS41OTNjMC01LjEwNiw0LjE0LTkuMjQ2LDkuMjQ2LTkuMjQ2aDQ0LjQyNgogICAgICAgICAgICAgICAgYzUuMTA2LDAsOS4yNDYsNC4xNCw5LjI0Niw5LjI0NnYxNS42NTVjMTAuNDk3LTE1Ljc1MywyNi4wOTctMjcuOTEyLDU5LjMxMi0yNy45MTJjNzMuNTUyLDAsNzMuMTMxLDY4LjcxNiw3My4xMzEsMTA2LjQ3MgogICAgICAgICAgICAgICAgTDM0MS45MSwzMzAuNjU0TDM0MS45MSwzMzAuNjU0eiIvPgogICAgICAgICAgICA8L3N2Zz4KICAgICAgICA8L2E+CiAgICA8L2hlYWRlcj4KCiAgICA8c2VjdGlvbiBjbGFzcz0iaW50cm9kdWN0aW9uIj4KICAgICAgICA8aDIgZGF0YS1hb3M9ImZhZGUtdXAiIGRhdGEtYW9zLWR1cmF0aW9uPSI4MDAiPkFJIGZvciBBbHpoZWltZXIncyBEaWFnbm9zaXMgJiBUaGVyYXB5PC9oMj4KICAgICAgICA8cCBkYXRhLWFvcz0iZmFkZS11cCIgZGF0YS1hb3MtZHVyYXRpb249IjgwMCIgZGF0YS1hb3MtZGVsYXk9IjEwMCI+CiAgICAgICAgICAgIFdlIGFyZSBidWlsZGluZyBMb3ctRmllbGQgTVJJIFJlc29sdXRpb24gSW1hZ2UgRW5oYW5jZW1lbnQgRnJhbWV3b3JrIGZvciBCZXR0ZXIgQWx6aGVpbWVyJ3MgRGlhZ25vc2lzIGFuZAogICAgICAgICAgICB0aGUKICAgICAgICAgICAgPGEgaHJlZj0iaHR0cHM6Ly95b3V0dS5iZS9uc0x6d0prVE14RSI+CiAgICAgICAgICAgICAgICA8c3BhbiBzdHlsZT0idGV4dC1kZWNvcmF0aW9uOiB1bmRlcmxpbmU7Ij5MTE0tYmFzZWQgTWVtb3J5IFJlcG9zaXRvcnkgZm9yIFJlbWluaXNjZW5jZSBUaGVyYXB5PC9zcGFuPgogICAgICAgICAgICA8L2E+PHN2ZyBjbGFzcz0iZXh0ZXJuYWwtbGluay1pY29uIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjE0Ij48cGF0aCBkPSJNMTggMTN2NmExIDEgMCAwIDEtMSAxSDZhMSAxIDAgMCAxLTEtMVY3YTEgMSAwIDAgMSAxLTFoNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBvbHlsaW5lIHBvaW50cz0iMTUgMyAyMSAzIDIxIDkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxsaW5lIHgxPSIxMCIgeTE9IjE0IiB4Mj0iMjEiIHkyPSIzIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4KICAgICAgICA8L3A+CgogICAgICAgIDxwIGRhdGEtYW9zPSJmYWRlLXVwIiBkYXRhLWFvcy1kdXJhdGlvbj0iODAwIiBkYXRhLWFvcy1kZWxheT0iMjAwIj4KICAgICAgICAgICAgUmV0ZWVuYSBzaGFyZXMgdGhlIHNhbWUgcHJvbnVuY2lhdGlvbiBhcyByZXRpbmEsIGEgdml0YWwgcGFydCBvZiB0aGUgZXllIHVzZWQgZm9yIHZpc2lvbi4gTGlrZSB0aGUgcmV0aW5hLCBSZXRlZW5hIGFpbXMgdG8gcHJvdmlkZSBhIG5ldyBwZXJzcGVjdGl2ZSBvbiBBbHpoZWltZXIncywgaWxsdW1pbmF0aW5nIHBhdGh3YXlzIHRvd2FyZCBlZmZlY3RpdmUgdHJlYXRtZW50LgogICAgICAgIDwvcD4KCiAgICAgICAgPHAgZGF0YS1hb3M9ImZhZGUtdXAiIGRhdGEtYW9zLWR1cmF0aW9uPSI4MDAiIGRhdGEtYW9zLWRlbGF5PSIzMDAiPldlIGhhdmUgYWNoaWV2ZWQgbXVsdGlwbGUgbWlsZXN0b25lczogc3VibWlzc2lvbiB0byA8YSBjbGFzcz0ic3Ryb25nX19saW5rcyIgaHJlZj0iaHR0cHM6Ly9zb2x2ZS5taXQuZWR1L3NvbHV0aW9ucy84NjcyNCIgdGFyZ2V0PSJfYmxhbmsiPk1JVCBTT0xWRTwvYT48c3ZnIGNsYXNzPSJleHRlcm5hbC1saW5rLWljb24iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMTQiPjxwYXRoIGQ9Ik0xOCAxM3Y2YTEgMSAwIDAgMS0xIDFINmExIDEgMCAwIDEtMS0xVjdhMSAxIDAgMCAxIDEtMWg2IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cG9seWxpbmUgcG9pbnRzPSIxNSAzIDIxIDMgMjEgOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PGxpbmUgeDE9IjEwIiB5MT0iMTQiIHgyPSIyMSIgeTI9IjMiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPiwgcHJlc2VudGF0aW9uIGF0IDxhIGNsYXNzPSJzdHJvbmdfX2xpbmtzIiBocmVmPSJodHRwczovL2llZWV4cGxvcmUuaWVlZS5vcmcvZG9jdW1lbnQvMTA4MjYxNDQiIHRhcmdldD0iX2JsYW5rIj5JRUVFIEJpZ0RhdGEgMjAyNDwvYT48c3ZnIGNsYXNzPSJleHRlcm5hbC1saW5rLWljb24iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMTQiPjxwYXRoIGQ9Ik0xOCAxM3Y2YTEgMSAwIDAgMS0xIDFINmExIDEgMCAwIDEtMS0xVjdhMSAxIDAgMCAxIDEtMWg2IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cG9seWxpbmUgcG9pbnRzPSIxNSAzIDIxIDMgMjEgOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PGxpbmUgeDE9IjEwIiB5MT0iMTQiIHgyPSIyMSIgeTI9IjMiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPiwgc3BvbnNvcnNoaXAgZnJvbSA8YSBjbGFzcz0ic3Ryb25nX19saW5rcyIgaHJlZj0iaHR0cHM6Ly9mb3VuZGVyc2h1Yi5zdGFydHVwcy5taWNyb3NvZnQuY29tLyIgdGFyZ2V0PSJfYmxhbmsiPk1pY3Jvc29mdCBGb3VuZGVycyBIdWI8L2E+PHN2ZyBjbGFzcz0iZXh0ZXJuYWwtbGluay1pY29uIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjE0Ij48cGF0aCBkPSJNMTggMTN2NmExIDEgMCAwIDEtMSAxSDZhMSAxIDAgMCAxLTEtMVY3YTEgMSAwIDAgMSAxLTFoNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBvbHlsaW5lIHBvaW50cz0iMTUgMyAyMSAzIDIxIDkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxsaW5lIHgxPSIxMCIgeTE9IjE0IiB4Mj0iMjEiIHkyPSIzIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4sIGFuZCBhY2NvbXBsaXNobWVudHMgYmVoaW5kIG91ciBpbm5vdmF0aXZlIHdvcmsuIDwvcD4KICAgICAgICA8cCBkYXRhLWFvcz0iZmFkZS11cCIgZGF0YS1hb3MtZHVyYXRpb249IjgwMCIgZGF0YS1hb3MtZGVsYXk9IjQwMCI+CiAgICAgICAgICAgIE91ciB0ZWFtIHdpbGwgc29vbiBsYXVuY2ggb3VyIG1lbW9yeSByZXBvc2l0b3J5IHBsYXRmb3JtIGluIHBhcnRuZXJzaGlwIHdpdGggT3Blbk5MUCBsYWJzLiBXZSBjb250aW51b3VzbHkgZXhwZXJpbWVudCB3aXRoIGlubm92YXRpdmUgY29uY2VwdHMgYW5kIG5ldyBpZGVhcyEgTGVhdmUgeW91ciBlbWFpbCBiZWxvdyBmb3IgbW9yZSBpbmZvcm1hdGlvbi4KICAgICAgICA8L3A+CiAgICAgICAgPCEtLSBFbWFpbCBpbnB1dCBzeXN0ZW0gYWRkZWQgaGVyZSAtLT4KICAgICAgICA8ZGl2IGNsYXNzPSJlbWFpbC1zaWdudXAiIGRhdGEtYW9zPSJ6b29tLWluIiBkYXRhLWFvcy1kdXJhdGlvbj0iODAwIiBkYXRhLWFvcy1kZWxheT0iNTAwIj4KICAgICAgICAgICAgPGZvcm0gaWQ9ImVtYWlsLWZvcm0iIGFjdGlvbj0iaHR0cHM6Ly9mb3Jtc3VibWl0LmNvL2FsZXhAcmV0ZWVuYS5vcmciIG1ldGhvZD0iUE9TVCIgbm92YWxpZGF0ZT4KICAgICAgICAgICAgICAgIDxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Il9zdWJqZWN0IiB2YWx1ZT0iTmV3IHN1YnNjcmliZXIgZnJvbSBSZXRlZW5hIHdlYnNpdGUiPgogICAgICAgICAgICAgICAgPGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iX2NhcHRjaGEiIHZhbHVlPSJmYWxzZSI+CiAgICAgICAgICAgICAgICA8aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJfbmV4dCIgdmFsdWU9Imh0dHBzOi8vd3d3LnJldGVlbmEub3JnP3N1YnNjcmliZWQ9dHJ1ZSI+CiAgICAgICAgICAgICAgICA8aW5wdXQgdHlwZT0iZW1haWwiIGlkPSJlbWFpbC1pbnB1dCIgbmFtZT0iZW1haWwiIHBsYWNlaG9sZGVyPSJFbnRlciB5b3VyIGVtYWlsIiByZXF1aXJlZCBhcmlhLWxhYmVsPSJFbWFpbCI+CiAgICAgICAgICAgICAgICA8YnV0dG9uIHR5cGU9InN1Ym1pdCIgaWQ9ImVtYWlsLXN1Ym1pdCI+U2VuZDwvYnV0dG9uPgogICAgICAgICAgICA8L2Zvcm0+CiAgICAgICAgICAgIDxwIGlkPSJlbWFpbC1tZXNzYWdlIiBjbGFzcz0iZW1haWwtbWVzc2FnZSI+UGxlYXNlIGVudGVyIHlvdXIgZW1haWwgYWRkcmVzczwvcD4KICAgICAgICA8L2Rpdj4KCiAgICA8L21haW4+CjwvYm9keT4KPC9odG1sPgo=
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Reteena - Building AI for Alzheimers Therapy and Diagnosis</title>
+    <meta name="description" content="Reteena develops AI-powered solutions for Alzheimer's diagnosis and therapy, including Low-Field MRI enhancement and LLM-based memory repositories for reminiscence therapy.">
+    <meta name="keywords" content="Alzheimer's, AI healthcare, MRI enhancement, reminiscence therapy, memory repository, Alzheimer's diagnosis, cognitive decline, LLM">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.reteena.org/">
+    <meta property="og:title" content="Reteena - Building AI for Alzheimers Therapy and Diagnosis">
+    <meta property="og:description" content="Reteena develops AI-powered solutions for Alzheimer's diagnosis and therapy, including Low-Field MRI enhancement and LLM-based memory repositories for reminiscence therapy.">
+    <meta property="og:image" content="https://www.reteena.org/banner.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.reteena.org/">
+    <meta property="twitter:title" content="Reteena - Building AI for Alzheimers Therapy and Diagnosis">
+    <meta property="twitter:description" content="Reteena develops AI-powered solutions for Alzheimer's diagnosis and therapy, including Low-Field MRI enhancement and LLM-based memory repositories for reminiscence therapy.">
+    <meta property="twitter:image" content="https://www.reteena.org/banner.png">
+
+    <!-- Stylesheets -->
+    <link href="./style.css" rel="stylesheet">
+    <link href="./heatmap.css" rel="stylesheet">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
+    <!-- Import EB Garamond font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <!-- Import AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Structured data for Organization -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Reteena",
+        "url": "https://www.reteena.org",
+        "logo": "https://www.reteena.org/favicon.svg",
+        "sameAs": [
+            "https://www.linkedin.com/company/reteena/"
+        ],
+        "description": "Reteena develops AI-powered solutions for Alzheimer's diagnosis and therapy, including Low-Field MRI enhancement and LLM-based memory repositories for reminiscence therapy."
+    }
+    </script>
+    <style>
+        * {
+            font-family: 'EB Garamond', serif;
+            box-sizing: border-box;
+            color: #000000 !important;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'EB Garamond', serif;
+            margin: 0;
+            padding: 0;
+            color: #000000;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select, option, label {
+            font-family: 'EB Garamond', serif !important;
+            color: #000000 !important;
+            transition: color 0.3s ease;
+        }
+        p {
+            text-align: justify;
+            text-justify: inter-word;
+            color: #000000 !important;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        section {
+            padding: 20px 0;
+        }
+        .team-members {
+            margin-top: 10px;
+            width: 100%;
+        }
+        .member {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0;
+            width: 100%;
+            padding: 8px 0;
+            /* Removed border-bottom: 1px solid #eee; */
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .member:hover { transform: translateX(5px); }
+        .member:first-child { padding-top: 0; }
+        .member span:first-child {
+            text-align: left;
+            font-weight: 500;
+            flex: 1 1 auto;
+            margin-right: 20px;
+            color: #000000 !important;
+        }
+        .member span:last-child {
+            text-align: right;
+            color: #000000 !important;
+            flex: 1;
+        }
+        .team-description {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            text-align: justify;
+            text-justify: inter-word;
+            color: #000000 !important;
+        }
+        input, button {
+            font-family: 'EB Garamond', serif !important;
+            color: #000000 !important;
+        }
+        #email-input:placeholder {
+            font-family: 'EB Garamond', serif !important;
+            color: #000000 !important;
+        }
+        .email-message {
+            text-align: left;
+            font-family: 'EB Garamond', serif !important;
+            color: #ff3b30 !important; /* Restored red color for error messages */
+        }
+        .footer_sub p {
+            font-family: 'EB Garamond', serif !important;
+            color: #000000 !important;
+        }
+        .email-signup {
+            transition: transform 0.3s ease;
+        }
+        .email-signup:hover { transform: translateY(-5px); }
+        #email-submit {
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            color: #000000 !important;
+        }
+        #email-submit:hover { transform: scale(1.05); }
+        svg {
+            fill: currentColor;
+            stroke: currentColor;
+            color: #000000 !important;
+        }
+        svg path, svg polyline, svg line {
+            stroke: currentColor;
+            color: #000000 !important;
+        }
+        .external-link-icon {
+            vertical-align: middle;
+            margin-left: 4px;
+            width: 14px;
+            height: 14px;
+            display: inline;
+        }
+        .linkedin-icon {
+            max-width: 14px !important;
+            max-height: 14px !important;
+            width: 14px !important;
+            height: 14px !important;
+            display: inline-block;
+        }
+        
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #121212;
+        }
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3,
+        body.dark-mode h4,
+        body.dark-mode h5,
+        body.dark-mode h6,
+        body.dark-mode p,
+        body.dark-mode span,
+        body.dark-mode a,
+        body.dark-mode .member span,
+        body.dark-mode .team-description,
+        body.dark-mode .footer_sub p,
+        body.dark-mode .header h1 {
+            color: #e0e0e0 !important;
+        }
+        body.dark-mode svg {
+            color: #e0e0e0 !important;
+        }
+        body.dark-mode svg path,
+        body.dark-mode svg polyline,
+        body.dark-mode svg line {
+            color: #e0e0e0 !important;
+        }
+        body.dark-mode #email-input {
+            background-color: #1e1e1e;
+            color: #e0e0e0 !important;
+            border-color: #333;
+        }
+        body.dark-mode #email-input::placeholder {
+            color: #999 !important;
+        }
+        body.dark-mode #email-submit {
+            background-color: #333;
+            color: #e0e0e0 !important;
+            border-color: #444;
+        }
+        body.dark-mode .theme-toggle {
+            color: #e0e0e0 !important;
+        }
+        
+        
+        /* Theme toggle button */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="theme-toggle" id="theme-toggle">
+    Dark Mode
+</div>
+
+<main>
+    <header class="header" data-aos="fade-down" data-aos-duration="800">
+        <h1>Reteena</h1>
+        <a href="https://www.linkedin.com/company/reteena/" target="_blank" style="display: inline-block;">
+            <span style="text-decoration: underline;">LinkedIn</span>
+            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </header>
+
+    <section class="introduction">
+        <h2 data-aos="fade-up" data-aos-duration="800">AI for Alzheimer's Diagnosis & Therapy</h2>
+        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+            We are building Low-Field MRI Resolution Image Enhancement Framework for Better Alzheimer's Diagnosis and the
+            <a href="https://youtu.be/nsLz7wjkTMxE" target="_blank">LLM-based Memory Repository for Reminiscence Therapy</a>
+            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>, submission at <a class="strong__links" href="https://solve.mit.edu/solutions/86724" target="_blank">MIT SOLVE</a>
+            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>, sponsorship from <a href="https://ieeexplore.ieee.org/document/10826144" target="_blank">IEEE BigData 2024</a>
+            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>, and accomplishments behind our innovative work.
+        </p>
+
+        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+            Reteena shares the same pronunciation as retina, a vital part of the eye used for vision. Like the retina, Reteena aims to provide a new perspective on Alzheimer's, illuminating paths toward effective treatment and memory management.</p>
+
+    </section>
+
+    <section class="research">
+        <h2 data-aos="fade-up" data-aos-duration="800">Research</h2>
+        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+            Our research focuses on two key areas:
+        </p>
+
+        <div class="research-area" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+            <h3>Low-Field MRI Resolution Enhancement</h3>
+            <p>We are developing advanced deep learning models to enhance the resolution and quality of low-field MRI scans. This technology makes early Alzheimer's diagnosis more accessible by improving the diagnostic value of more affordable MRI equipment.</p>
+            <ul>
+                <li>Super-resolution techniques for medical imaging</li>
+                <li>Artifact reduction in low-field MRI</li>
+                <li>CNN and transformer-based image enhancement</li>
+                <li>Quantitative validation with clinical data</li>
+            </ul>
+        </div>
+
+        <div class="research-area" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+            <h3>LLM-Based Memory Repository</h3>
+            <p>Our memory repository platform uses large language models to organize, enhance, and recall personal memories for Alzheimer's patients. This innovative approach supports reminiscence therapy by providing structured access to important life events and memories.</p>
+            <ul>
+                <li>Personalized memory structuring</li>
+                <li>Multi-modal data integration (text, images, audio)</li>
+                <li>Contextual memory retrieval</li>
+                <li>Compassionate AI-guided reminiscence</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="team">
+        <h2 data-aos="fade-up" data-aos-duration="800">Team</h2>
+        <p class="team-description" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+            Our team brings together expertise in AI, neuroscience, and healthcare with a shared mission to improve the lives of Alzheimer's patients and their families. We combine technical innovation with compassionate, patient-centered design.</p>
+
+        <div class="team-members" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+            <div class="member">
+                <span>Alex Yang</span>
+                <span>AI Research, Co-founder</span>
+            </div>
+            <div class="member">
+                <span>Alex Qi</span>
+                <span>MRI Research, Co-founder</span>
+            </div>
+            <div class="member">
+                <span>Sarah Gao</span>
+                <span>Medical Advisor</span>
+            </div>
+            <div class="member">
+                <span>Sanghoo Ahn</span>
+                <span>LLM Research, Co-founder</span>
+            </div>
+            <div class="member">
+                <span>Jerry Liu</span>
+                <span>Neuroimaging Advisor</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <h2 data-aos="fade-up" data-aos-duration="800">Contact</h2>
+        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">For partnerships, research collaborations, or more information, please reach out to us at <a href="mailto:alex@reteena.org">alex@reteena.org</a>.</p>
+
+        <div class="email-signup" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+            <form id="email-form" action="https://formsubmit.co/alex@reteena.org" method="POST">
+                <input type="hidden" name="_subject" value="New subscriber from Reteena website">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://www.reteena.org?subscribed=true">
+                <input type="email" id="email-input" name="email" placeholder="Enter your email" required aria-label="Email">
+                <p id="email-message" class="email-message">Please enter your email address</p>
+                <button type="submit" id="email-submit">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer_sub">
+        <p data-aos="fade-up" data-aos-duration="800">&copy; 2024 Reteena. All rights reserved.</p>
+    </footer>
+</main>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            once: true,
+            mirror: false
+        });
+
+        // Email validation and form handling
+        const emailInput = document.getElementById('email-input');
+        const emailMessage = document.getElementById('email-message');
+        const emailForm = document.getElementById('email-form');
+
+        // Hide the message initially
+        emailMessage.style.display = 'none';
+
+        // Handle form submission
+        emailForm.addEventListener('submit', function(e) {
+            if (!isValidEmail(emailInput.value)) {
+                e.preventDefault();
+                emailMessage.textContent = 'Please enter a valid email address';
+                emailMessage.style.display = 'block';
+                return false;
+            }
+
+            emailMessage.style.display = 'none';
+            return true;
+        });
+
+        // Email validation function
+        function isValidEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        // Handle the dark mode toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        // Check if user has previously set a preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = 'Light Mode';
+        }
+        
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                themeToggle.textContent = 'Light Mode';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggle.textContent = 'Dark Mode';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Check for subscription query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('subscribed') === 'true') {
+            alert('Thank you for subscribing to our newsletter!');
+            // Remove the query parameter from the URL without reloading the page
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    });
+</script>
+</body>
+</html>
