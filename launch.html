@@ -191,96 +191,54 @@
             color: #777 !important;
         }
         
-        .add-visitor {
-            position: absolute;
-            bottom: -40px;
-            right: 0;
-            background-color: #f5f5f5;
-            border: 1px solid #e1e1e1;
+        /* Quick sign form in first box */
+        .quick-sign-box {
+            background-color: #f8f8f8;
             border-radius: 8px;
-            padding: 8px 15px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            padding: 15px;
+            min-width: 200px;
+            max-width: 300px;
+            border: 1px solid #e1e1e1;
+            transition: transform 0.3s ease;
         }
         
-        .add-visitor:hover {
-            background-color: #e9e9e9;
+        .quick-sign-box:hover {
+            transform: translateY(-5px);
         }
         
-        .visitor-form {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .quick-sign-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: #000000 !important;
+        }
+        
+        .quick-sign-input {
             width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        
-        .visitor-form.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-        
-        .visitor-form-content {
-            background-color: white;
-            padding: 30px;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 400px;
-        }
-        
-        .visitor-form-title {
-            margin-top: 0;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-        
-        .visitor-form-content input, 
-        .visitor-form-content textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
+            padding: 8px;
+            margin-bottom: 8px;
             border: 1px solid #e1e1e1;
             border-radius: 6px;
             font-family: 'EB Garamond', serif !important;
+            font-size: 14px;
+            outline: none;
         }
         
-        .visitor-form-content textarea {
-            resize: vertical;
-            min-height: 80px;
-            max-height: 150px;
-        }
-        
-        .visitor-form-buttons {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-        
-        .visitor-form-button {
-            padding: 8px 20px;
+        .quick-sign-button {
+            width: 100%;
+            padding: 8px;
+            background-color: #f5f5f5;
+            border: 1px solid #e1e1e1;
             border-radius: 6px;
             cursor: pointer;
-            border: 1px solid #e1e1e1;
-            background-color: #f5f5f5;
+            font-family: 'EB Garamond', serif !important;
+            font-weight: 500;
+            font-size: 14px;
             transition: all 0.3s ease;
         }
         
-        .visitor-form-button.submit {
-            background-color: #4a90e2;
-            color: white !important;
-            border-color: #4a90e2;
-        }
-        
-        .visitor-form-button:hover {
+        .quick-sign-button:hover {
+            background-color: #e9e9e9;
             transform: translateY(-2px);
         }
         
@@ -302,23 +260,25 @@
         body.dark-mode .countdown-title,
         body.dark-mode .countdown-description,
         body.dark-mode .visitor-name,
-        body.dark-mode .visitor-message {
+        body.dark-mode .visitor-message,
+        body.dark-mode .quick-sign-title {
             color: #e0e0e0 !important;
         }
         
         body.dark-mode #email-input,
-        body.dark-mode .visitor-form-content textarea {
+        body.dark-mode .quick-sign-input {
             background-color: #1e1e1e;
             color: #e0e0e0 !important;
             border-color: #333;
         }
         
         body.dark-mode #email-input::placeholder,
-        body.dark-mode .visitor-form-content textarea::placeholder {
+        body.dark-mode .quick-sign-input::placeholder {
             color: #999 !important;
         }
         
-        body.dark-mode #email-submit {
+        body.dark-mode #email-submit,
+        body.dark-mode .quick-sign-button {
             background-color: #333;
             color: #e0e0e0 !important;
             border-color: #444;
@@ -328,35 +288,14 @@
             color: #e0e0e0 !important;
         }
         
-        body.dark-mode .visitor-entry {
+        body.dark-mode .visitor-entry,
+        body.dark-mode .quick-sign-box {
             background-color: #1e1e1e;
             border-color: #444;
         }
         
         body.dark-mode .visitor-timestamp {
             color: #aaa !important;
-        }
-        
-        body.dark-mode .add-visitor {
-            background-color: #333;
-            color: #e0e0e0 !important;
-            border-color: #444;
-        }
-        
-        body.dark-mode .visitor-form-content {
-            background-color: #1e1e1e;
-        }
-        
-        body.dark-mode .visitor-form-button {
-            background-color: #333;
-            color: #e0e0e0 !important;
-            border-color: #444;
-        }
-        
-        body.dark-mode .visitor-form-content input {
-            background-color: #1e1e1e;
-            color: #e0e0e0 !important;
-            border-color: #444;
         }
         
         /* Theme toggle button */
@@ -430,6 +369,14 @@
         <!-- Visitor Log -->
         <div class="visitor-log-container">
             <div class="visitor-log" id="visitor-log">
+                <!-- Quick sign form in first box -->
+                <div class="quick-sign-box">
+                    <div class="quick-sign-title">Sign the visitor log</div>
+                    <input type="text" id="quick-name" class="quick-sign-input" placeholder="Your name">
+                    <input type="text" id="quick-message" class="quick-sign-input" placeholder="Your message">
+                    <button id="quick-sign-button" class="quick-sign-button">Sign Log</button>
+                </div>
+                
                 <div class="visitor-entry">
                     <div class="visitor-name">Alex</div>
                     <div class="visitor-message">Looking forward to the launch! This will revolutionize memory care.</div>
@@ -456,23 +403,9 @@
                     <div class="visitor-timestamp">June 9, 2025 - 08:15</div>
                 </div>
             </div>
-            <button class="add-visitor" id="add-visitor">Sign the log</button>
         </div>
     </div>
 </main>
-
-<!-- Visitor Form -->
-<div class="visitor-form" id="visitor-form">
-    <div class="visitor-form-content">
-        <h3 class="visitor-form-title">Sign the visitor log</h3>
-        <input type="text" id="visitor-name" placeholder="Your name">
-        <textarea id="visitor-message" placeholder="Leave a message (optional)"></textarea>
-        <div class="visitor-form-buttons">
-            <button class="visitor-form-button" id="cancel-visitor">Cancel</button>
-            <button class="visitor-form-button submit" id="submit-visitor">Sign</button>
-        </div>
-    </div>
-</div>
 
 <!-- AOS (Animate On Scroll) Script -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -515,13 +448,10 @@
         });
         
         // Visitor log functionality
-        const addVisitorButton = document.getElementById('add-visitor');
-        const visitorForm = document.getElementById('visitor-form');
-        const cancelVisitorButton = document.getElementById('cancel-visitor');
-        const submitVisitorButton = document.getElementById('submit-visitor');
-        const visitorNameInput = document.getElementById('visitor-name');
-        const visitorMessageInput = document.getElementById('visitor-message');
         const visitorLog = document.getElementById('visitor-log');
+        const quickNameInput = document.getElementById('quick-name');
+        const quickMessageInput = document.getElementById('quick-message');
+        const quickSignButton = document.getElementById('quick-sign-button');
         
         // Countdown functionality with persistent storage
         function initializeCountdown() {
@@ -573,20 +503,10 @@
         // Initialize countdown with persistent storage
         initializeCountdown();
         
-        addVisitorButton.addEventListener('click', function() {
-            visitorForm.classList.add('active');
-            visitorNameInput.focus();
-        });
-        
-        cancelVisitorButton.addEventListener('click', function() {
-            visitorForm.classList.remove('active');
-            visitorNameInput.value = '';
-            visitorMessageInput.value = '';
-        });
-        
-        submitVisitorButton.addEventListener('click', function() {
-            const visitorName = visitorNameInput.value.trim();
-            const visitorMessage = visitorMessageInput.value.trim();
+        // Quick sign functionality
+        quickSignButton.addEventListener('click', function() {
+            const visitorName = quickNameInput.value.trim();
+            const visitorMessage = quickMessageInput.value.trim();
             
             if (visitorName) {
                 // Get current date and time
@@ -613,33 +533,42 @@
                     <div class="visitor-timestamp">${timestamp}</div>
                 `;
                 
-                // Add the new entry to the beginning of the log
-                visitorLog.insertBefore(newEntry, visitorLog.firstChild);
+                // Add the new entry right after the quick sign box
+                visitorLog.insertBefore(newEntry, visitorLog.children[1]);
                 
-                // Reset and close form
-                visitorNameInput.value = '';
-                visitorMessageInput.value = '';
-                visitorForm.classList.remove('active');
+                // Reset form
+                quickNameInput.value = '';
+                quickMessageInput.value = '';
                 
                 // Save to localStorage to persist between page loads
                 saveVisitorLog();
+                
+                // Show feedback
+                quickSignButton.textContent = "Thanks!";
+                setTimeout(() => {
+                    quickSignButton.textContent = "Sign Log";
+                }, 2000);
+            } else {
+                // Show validation error
+                quickNameInput.style.borderColor = '#ff3b30';
+                setTimeout(() => {
+                    quickNameInput.style.borderColor = '#e1e1e1';
+                }, 2000);
             }
         });
         
-        // Handle form submit with Enter key when name field is focused
-        visitorNameInput.addEventListener('keypress', function(e) {
+        // Enter key functionality for quick sign inputs
+        quickNameInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
-                visitorMessageInput.focus();
+                quickMessageInput.focus();
             }
         });
         
-        // Close form when clicking outside
-        visitorForm.addEventListener('click', function(e) {
-            if (e.target === visitorForm) {
-                visitorForm.classList.remove('active');
-                visitorNameInput.value = '';
-                visitorMessageInput.value = '';
+        quickMessageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                quickSignButton.click();
             }
         });
         
@@ -671,12 +600,26 @@
                 try {
                     const entries = JSON.parse(saved);
                     
-                    // Clear existing entries except for the initial ones (keep first 5)
-                    while (visitorLog.children.length > 5) {
-                        visitorLog.removeChild(visitorLog.lastChild);
+                    // Get the quick sign box as reference
+                    const quickSignBox = visitorLog.querySelector('.quick-sign-box');
+                    
+                    // Clear existing entries except for the quick sign box and the initial ones (keep first 5)
+                    const initialEntries = [];
+                    for (let i = 1; i <= 5 && i < visitorLog.children.length; i++) {
+                        initialEntries.push(visitorLog.children[i]);
                     }
                     
-                    // Add saved entries
+                    // Clear all entries except the quick sign box
+                    while (visitorLog.children.length > 1) {
+                        visitorLog.removeChild(visitorLog.children[1]);
+                    }
+                    
+                    // Add initial entries back (up to 5)
+                    initialEntries.forEach(entry => {
+                        visitorLog.appendChild(entry);
+                    });
+                    
+                    // Add saved entries at position 1 (right after quick sign box)
                     entries.forEach(entry => {
                         if (entry.name) {
                             const newEntry = document.createElement('div');
@@ -687,8 +630,8 @@
                                 <div class="visitor-timestamp">${entry.timestamp}</div>
                             `;
                             
-                            // Add at the beginning
-                            visitorLog.insertBefore(newEntry, visitorLog.firstChild);
+                            // Add right after quick sign box
+                            visitorLog.insertBefore(newEntry, visitorLog.children[1]);
                         }
                     });
                 } catch (e) {
