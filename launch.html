@@ -33,6 +33,7 @@
             min-height: 100vh;
             justify-content: center;
             align-items: center;
+            overflow-x: hidden;
         }
         h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select, option, label {
             font-family: 'EB Garamond', serif !important;
@@ -49,6 +50,7 @@
             width: 100%;
             max-width: 800px;
             text-align: center;
+            position: relative;
         }
         
         .countdown-timer {
@@ -57,6 +59,73 @@
             letter-spacing: 0.03rem;
             line-height: 1.2;
             white-space: nowrap;
+            background: linear-gradient(90deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.05) 100%);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        /* Glow effect */
+        .countdown-timer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.8) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            animation: glow 8s linear infinite;
+            z-index: -1;
+        }
+        
+        /* Particle effect */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 10s infinite ease-in-out;
+        }
+        
+        /* Pulse effect for seconds change */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Glow animation */
+        @keyframes glow {
+            0% { transform: rotate(30deg) translateX(-100%); }
+            100% { transform: rotate(30deg) translateX(100%); }
+        }
+        
+        /* Floating animation for particles */
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-10px) translateX(10px); }
+            50% { transform: translateY(-20px) translateX(-10px); }
+            75% { transform: translateY(-10px) translateX(-20px); }
+            100% { transform: translateY(0) translateX(0); }
         }
         
         /* Dark mode styles */
@@ -79,6 +148,11 @@
         
         body.dark-mode .theme-toggle {
             color: #e0e0e0 !important;
+        }
+        
+        body.dark-mode .countdown-timer {
+            background: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 100%);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
         
         /* Theme toggle button */
@@ -108,15 +182,34 @@
             text-decoration: underline;
         }
         
+        /* Number unit styling */
+        .time-unit {
+            display: inline-block;
+            margin: 0 4px;
+            min-width: 1.5em;
+            text-align: center;
+            position: relative;
+        }
+        
+        /* Number changing animation */
+        @keyframes numberChange {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-10px); opacity: 0; }
+            50.1% { transform: translateY(10px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        
         @media (max-width: 768px) {
             .countdown-timer {
                 font-size: 1.8rem;
+                padding: 0.8rem 1.5rem;
             }
         }
         
         @media (max-width: 480px) {
             .countdown-timer {
                 font-size: 1.4rem;
+                padding: 0.6rem 1rem;
             }
         }
     </style>
@@ -126,6 +219,8 @@
     Dark Mode
 </div>
 <a href="/" class="back-link">Back to Home</a>
+
+<div class="particles" id="particles"></div>
 
 <main>
     <div class="countdown-container" data-aos="fade-up" data-aos-duration="800">
@@ -144,6 +239,9 @@
             offset: 120, // Offset (in px) from the original trigger point
         });
         
+        // Create particles
+        createParticles();
+        
         // Countdown functionality with persistent storage
         function initializeCountdown() {
             const targetDate = new Date('June 30, 2025 00:00:00').getTime();
@@ -158,6 +256,9 @@
                 savedCountdown = null; // Force recalculation
             }
             
+            // Track previous seconds to create pulse effect
+            let previousSeconds = -1;
+            
             // Update the countdown
             function updateCountdown() {
                 const now = new Date().getTime();
@@ -168,10 +269,29 @@
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
                 
-                const countdownText = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+                // Format with spans for enhanced styling
+                const countdownText = `
+                    <span class="time-unit">${days}</span> days 
+                    <span class="time-unit">${hours}</span> hours 
+                    <span class="time-unit">${minutes}</span> minutes 
+                    <span class="time-unit">${seconds}</span> seconds
+                `;
                 
                 document.getElementById('countdown').innerHTML = countdownText;
                 localStorage.setItem('reteena_countdown', countdownText);
+                
+                // Add pulse effect when seconds change
+                if (seconds !== previousSeconds) {
+                    const timer = document.getElementById('countdown');
+                    timer.style.animation = 'pulse 1s ease';
+                    
+                    // Reset animation
+                    setTimeout(() => {
+                        timer.style.animation = '';
+                    }, 1000);
+                    
+                    previousSeconds = seconds;
+                }
                 
                 // If the countdown is finished, display launch message
                 if (distance < 0) {
@@ -193,6 +313,41 @@
         
         // Initialize countdown with persistent storage
         initializeCountdown();
+        
+        // Create floating particles in the background
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const colors = ['#f5f5f5', '#e9e9e9', '#f0f0f0', '#e5e5e5', '#fafafa'];
+            
+            // Create particles
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random attributes
+                const size = Math.random() * 20 + 5;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Random position
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                
+                // Random animation delay
+                const animationDelay = Math.random() * 10;
+                const animationDuration = Math.random() * 10 + 10;
+                
+                // Apply styles
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.backgroundColor = color;
+                particle.style.left = `${left}%`;
+                particle.style.top = `${top}%`;
+                particle.style.animationDelay = `${animationDelay}s`;
+                particle.style.animationDuration = `${animationDuration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
         
         // Dark mode toggle functionality
         const themeToggle = document.getElementById('theme-toggle');
