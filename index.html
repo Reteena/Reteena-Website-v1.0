@@ -159,6 +159,20 @@
             transform: translateY(-2px);
         }
         
+        /* Navigation link in top corner */
+        .page-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .page-link:hover {
+            text-decoration: underline;
+        }
+        
         /* Dark mode styles */
         body.dark-mode {
             background-color: #121212;
@@ -176,7 +190,8 @@
         body.dark-mode .team-description,
         body.dark-mode .footer_sub p,
         body.dark-mode .header h1,
-        body.dark-mode .launch-link {
+        body.dark-mode .launch-link,
+        body.dark-mode .page-link {
             color: #e0e0e0 !important;
         }
         body.dark-mode svg {
@@ -239,6 +254,7 @@
 <div class="theme-toggle" id="theme-toggle">
     Dark Mode
 </div>
+<a href="/launch" class="page-link">Launch Countdown</a>
 
 <main>
     <div class="header" data-aos="fade-down" data-aos-duration="800">
@@ -275,10 +291,6 @@
         <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
             Our team will soon launch our memory repository platform in partnership with OpenNLP labs. We continuously experiment with innovative concepts and new ideas! Leave your email below for more information.
         </p>
-        
-        <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="450">
-            <a href="/launch" class="launch-link">Launch Countdown →</a>
-        </div>
         
         <!-- Email input system added here -->
         <div class="email-signup" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="500">
