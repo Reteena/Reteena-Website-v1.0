@@ -51,25 +51,11 @@
             text-align: center;
         }
         
-        .countdown-title {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-        
         .countdown-timer {
-            font-size: 2.2rem;
+            font-size: 3.2rem;
             font-weight: 500;
             letter-spacing: 0.05rem;
-            margin-bottom: 2rem;
             line-height: 1.2;
-        }
-        
-        .countdown-description {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            line-height: 1.5;
-            max-width: 60ch;
         }
         
         /* Dark mode styles */
@@ -86,9 +72,7 @@
         body.dark-mode p, 
         body.dark-mode span, 
         body.dark-mode a, 
-        body.dark-mode .countdown-timer,
-        body.dark-mode .countdown-title,
-        body.dark-mode .countdown-description {
+        body.dark-mode .countdown-timer {
             color: #e0e0e0 !important;
         }
         
@@ -125,15 +109,7 @@
         
         @media (max-width: 768px) {
             .countdown-timer {
-                font-size: 1.8rem;
-            }
-            
-            .countdown-title {
-                font-size: 2rem;
-            }
-            
-            .countdown-description {
-                font-size: 1.1rem;
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -146,11 +122,7 @@
 
 <main>
     <div class="countdown-container" data-aos="fade-up" data-aos-duration="800">
-        <h1 class="countdown-title">Launching in</h1>
         <div class="countdown-timer" id="countdown">19 days 23 hours 59 minutes 1 seconds</div>
-        <p class="countdown-description">
-            Ultimate tool to preserve dignity and identity for those facing cognitive decline
-        </p>
     </div>
 </main>
 
