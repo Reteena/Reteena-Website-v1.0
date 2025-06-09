@@ -52,31 +52,36 @@
         }
         
         .countdown-title {
-            font-size: 2.5rem; /* Reduced from 3rem */
-            margin-bottom: 1.5rem; /* Reduced from 2rem */
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
             font-weight: 600;
         }
         
         .countdown-timer {
-            font-size: 2.8rem; /* Reduced from 3.5rem */
+            font-size: 2.2rem; /* Further reduced from 2.8rem */
             font-weight: 500;
-            letter-spacing: 0.05rem; /* Reduced from 0.1rem */
-            margin-bottom: 2rem; /* Reduced from 3rem */
+            letter-spacing: 0.05rem;
+            margin-bottom: 2rem;
             line-height: 1.2;
         }
         
         .countdown-description {
-            font-size: 1.3rem; /* Reduced from 1.5rem */
+            font-size: 1.3rem;
             margin-bottom: 2rem;
             line-height: 1.5;
             max-width: 60ch;
         }
         
-        /* Email input system */
+        /* Email input system - matched to main website */
         .email-signup {
             margin: 1.5em 0;
             max-width: 60ch;
             width: 100%;
+            transition: transform 0.3s ease;
+        }
+        
+        .email-signup:hover {
+            transform: translateY(-5px);
         }
         
         #email-form {
@@ -98,6 +103,7 @@
             color: #000000 !important;
             outline: none;
             transition: border-color 0.3s;
+            height: 44px; /* Match main site */
         }
         
         #email-input:focus {
@@ -121,6 +127,7 @@
             font-size: 16px;
             white-space: nowrap;
             transition: background-color 0.3s ease, transform 0.3s ease;
+            height: 44px; /* Match main site */
         }
         
         #email-submit:hover {
@@ -156,7 +163,7 @@
             background-color: #f8f8f8;
             border-radius: 8px;
             padding: 10px 15px;
-            min-width: 200px; /* Increased from 150px to accommodate messages */
+            min-width: 200px;
             max-width: 300px;
             border: 1px solid #e1e1e1;
             transition: transform 0.3s ease;
@@ -381,7 +388,7 @@
         
         @media (max-width: 768px) {
             .countdown-timer {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             .countdown-title {
@@ -470,10 +477,6 @@
 <!-- AOS (Animate On Scroll) Script -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    // Set the launch date (20 days from now)
-    const launchDate = new Date();
-    launchDate.setDate(launchDate.getDate() + 20);
-    
     // Initialize AOS
     document.addEventListener('DOMContentLoaded', function() {
         AOS.init({
@@ -519,6 +522,25 @@
         const visitorNameInput = document.getElementById('visitor-name');
         const visitorMessageInput = document.getElementById('visitor-message');
         const visitorLog = document.getElementById('visitor-log');
+        
+        // Load saved countdown from server or localStorage
+        function initializeCountdown() {
+            // Try to use the server countdown (mock)
+            const serverCountdown = "19 days 23 hours 59 minutes 1 seconds";
+            
+            // Use localStorage for persistence between sessions
+            const savedCountdown = localStorage.getItem('reteena_countdown');
+            if (!savedCountdown) {
+                // First visit, save the current countdown
+                localStorage.setItem('reteena_countdown', serverCountdown);
+            }
+            
+            // Always display the static text we want to show
+            document.getElementById('countdown').innerHTML = serverCountdown;
+        }
+        
+        // Initialize countdown
+        initializeCountdown();
         
         addVisitorButton.addEventListener('click', function() {
             visitorForm.classList.add('active');
