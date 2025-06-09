@@ -52,29 +52,29 @@
         }
         
         .countdown-title {
-            font-size: 3rem;
-            margin-bottom: 2rem;
+            font-size: 2.5rem; /* Reduced from 3rem */
+            margin-bottom: 1.5rem; /* Reduced from 2rem */
             font-weight: 600;
         }
         
         .countdown-timer {
-            font-size: 3.5rem; /* Reduced from 6rem to 3.5rem */
+            font-size: 2.8rem; /* Reduced from 3.5rem */
             font-weight: 500;
-            letter-spacing: 0.1rem;
-            margin-bottom: 3rem;
+            letter-spacing: 0.05rem; /* Reduced from 0.1rem */
+            margin-bottom: 2rem; /* Reduced from 3rem */
             line-height: 1.2;
         }
         
         .countdown-description {
-            font-size: 1.5rem;
+            font-size: 1.3rem; /* Reduced from 1.5rem */
             margin-bottom: 2rem;
-            line-height: 1.6;
+            line-height: 1.5;
             max-width: 60ch;
         }
         
         /* Email input system */
         .email-signup {
-            margin: 2em 0;
+            margin: 1.5em 0;
             max-width: 60ch;
             width: 100%;
         }
@@ -156,7 +156,8 @@
             background-color: #f8f8f8;
             border-radius: 8px;
             padding: 10px 15px;
-            min-width: 150px;
+            min-width: 200px; /* Increased from 150px to accommodate messages */
+            max-width: 300px;
             border: 1px solid #e1e1e1;
             transition: transform 0.3s ease;
         }
@@ -168,6 +169,14 @@
         .visitor-name {
             font-weight: 600;
             margin-bottom: 5px;
+        }
+        
+        .visitor-message {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
         
         .visitor-timestamp {
@@ -227,12 +236,20 @@
             font-size: 1.5rem;
         }
         
-        .visitor-form-content input {
+        .visitor-form-content input, 
+        .visitor-form-content textarea {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #e1e1e1;
             border-radius: 6px;
+            font-family: 'EB Garamond', serif !important;
+        }
+        
+        .visitor-form-content textarea {
+            resize: vertical;
+            min-height: 80px;
+            max-height: 150px;
         }
         
         .visitor-form-buttons {
@@ -277,17 +294,20 @@
         body.dark-mode .countdown-timer,
         body.dark-mode .countdown-title,
         body.dark-mode .countdown-description,
-        body.dark-mode .visitor-name {
+        body.dark-mode .visitor-name,
+        body.dark-mode .visitor-message {
             color: #e0e0e0 !important;
         }
         
-        body.dark-mode #email-input {
+        body.dark-mode #email-input,
+        body.dark-mode .visitor-form-content textarea {
             background-color: #1e1e1e;
             color: #e0e0e0 !important;
             border-color: #333;
         }
         
-        body.dark-mode #email-input::placeholder {
+        body.dark-mode #email-input::placeholder,
+        body.dark-mode .visitor-form-content textarea::placeholder {
             color: #999 !important;
         }
         
@@ -326,6 +346,12 @@
             border-color: #444;
         }
         
+        body.dark-mode .visitor-form-content input {
+            background-color: #1e1e1e;
+            color: #e0e0e0 !important;
+            border-color: #444;
+        }
+        
         /* Theme toggle button */
         .theme-toggle {
             position: absolute;
@@ -355,15 +381,15 @@
         
         @media (max-width: 768px) {
             .countdown-timer {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
             .countdown-title {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
             .countdown-description {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -399,22 +425,27 @@
             <div class="visitor-log" id="visitor-log">
                 <div class="visitor-entry">
                     <div class="visitor-name">Alex</div>
+                    <div class="visitor-message">Looking forward to the launch! This will revolutionize memory care.</div>
                     <div class="visitor-timestamp">June 8, 2025 - 14:25</div>
                 </div>
                 <div class="visitor-entry">
                     <div class="visitor-name">Maya</div>
+                    <div class="visitor-message">Excited to see this finally coming together!</div>
                     <div class="visitor-timestamp">June 8, 2025 - 16:42</div>
                 </div>
                 <div class="visitor-entry">
                     <div class="visitor-name">Sunkalp</div>
+                    <div class="visitor-message">The backend is nearly ready. Can't wait for everyone to try it.</div>
                     <div class="visitor-timestamp">June 8, 2025 - 17:15</div>
                 </div>
                 <div class="visitor-entry">
                     <div class="visitor-name">Jessica</div>
+                    <div class="visitor-message">The UI looks amazing! Great work team.</div>
                     <div class="visitor-timestamp">June 8, 2025 - 19:30</div>
                 </div>
                 <div class="visitor-entry">
                     <div class="visitor-name">Noah</div>
+                    <div class="visitor-message">Just joined the dev team. Happy to help with the frontend.</div>
                     <div class="visitor-timestamp">June 9, 2025 - 08:15</div>
                 </div>
             </div>
@@ -428,6 +459,7 @@
     <div class="visitor-form-content">
         <h3 class="visitor-form-title">Sign the visitor log</h3>
         <input type="text" id="visitor-name" placeholder="Your name">
+        <textarea id="visitor-message" placeholder="Leave a message (optional)"></textarea>
         <div class="visitor-form-buttons">
             <button class="visitor-form-button" id="cancel-visitor">Cancel</button>
             <button class="visitor-form-button submit" id="submit-visitor">Sign</button>
@@ -441,32 +473,6 @@
     // Set the launch date (20 days from now)
     const launchDate = new Date();
     launchDate.setDate(launchDate.getDate() + 20);
-    
-    // Update countdown timer
-    function updateCountdown() {
-        const currentDate = new Date();
-        const timeDifference = launchDate - currentDate;
-        
-        // Calculate days, hours, minutes, seconds
-        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-        
-        // Update the countdown display
-        document.getElementById('countdown').innerHTML = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
-        
-        // If countdown is finished
-        if (timeDifference < 0) {
-            document.getElementById('countdown').innerHTML = "We've Launched!";
-            clearInterval(timerInterval);
-        }
-    }
-    
-    // Initialize countdown
-    // updateCountdown(); // Disabled because we're using static text
-    // Update countdown every second
-    // const timerInterval = setInterval(updateCountdown, 1000); // Disabled because we're using static text
     
     // Initialize AOS
     document.addEventListener('DOMContentLoaded', function() {
@@ -511,6 +517,7 @@
         const cancelVisitorButton = document.getElementById('cancel-visitor');
         const submitVisitorButton = document.getElementById('submit-visitor');
         const visitorNameInput = document.getElementById('visitor-name');
+        const visitorMessageInput = document.getElementById('visitor-message');
         const visitorLog = document.getElementById('visitor-log');
         
         addVisitorButton.addEventListener('click', function() {
@@ -521,10 +528,13 @@
         cancelVisitorButton.addEventListener('click', function() {
             visitorForm.classList.remove('active');
             visitorNameInput.value = '';
+            visitorMessageInput.value = '';
         });
         
         submitVisitorButton.addEventListener('click', function() {
             const visitorName = visitorNameInput.value.trim();
+            const visitorMessage = visitorMessageInput.value.trim();
+            
             if (visitorName) {
                 // Get current date and time
                 const now = new Date();
@@ -546,6 +556,7 @@
                 newEntry.className = 'visitor-entry';
                 newEntry.innerHTML = `
                     <div class="visitor-name">${visitorName}</div>
+                    ${visitorMessage ? `<div class="visitor-message">${visitorMessage}</div>` : ''}
                     <div class="visitor-timestamp">${timestamp}</div>
                 `;
                 
@@ -554,20 +565,19 @@
                 
                 // Reset and close form
                 visitorNameInput.value = '';
+                visitorMessageInput.value = '';
                 visitorForm.classList.remove('active');
                 
-                // Animate entry
-                setTimeout(() => {
-                    newEntry.style.opacity = '1';
-                }, 10);
+                // Save to localStorage to persist between page loads
+                saveVisitorLog();
             }
         });
         
-        // Handle form submit with Enter key
+        // Handle form submit with Enter key when name field is focused
         visitorNameInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
-                submitVisitorButton.click();
+                visitorMessageInput.focus();
             }
         });
         
@@ -576,8 +586,66 @@
             if (e.target === visitorForm) {
                 visitorForm.classList.remove('active');
                 visitorNameInput.value = '';
+                visitorMessageInput.value = '';
             }
         });
+        
+        // Function to save visitor log to localStorage
+        function saveVisitorLog() {
+            const entries = [];
+            const visitorEntries = document.querySelectorAll('.visitor-entry');
+            
+            visitorEntries.forEach(entry => {
+                const name = entry.querySelector('.visitor-name').textContent;
+                const messageEl = entry.querySelector('.visitor-message');
+                const message = messageEl ? messageEl.textContent : '';
+                const timestamp = entry.querySelector('.visitor-timestamp').textContent;
+                
+                entries.push({
+                    name,
+                    message,
+                    timestamp
+                });
+            });
+            
+            localStorage.setItem('visitorLog', JSON.stringify(entries));
+        }
+        
+        // Function to load visitor log from localStorage
+        function loadVisitorLog() {
+            const saved = localStorage.getItem('visitorLog');
+            if (saved) {
+                try {
+                    const entries = JSON.parse(saved);
+                    
+                    // Clear existing entries except for the initial ones (keep first 5)
+                    while (visitorLog.children.length > 5) {
+                        visitorLog.removeChild(visitorLog.lastChild);
+                    }
+                    
+                    // Add saved entries
+                    entries.forEach(entry => {
+                        if (entry.name) {
+                            const newEntry = document.createElement('div');
+                            newEntry.className = 'visitor-entry';
+                            newEntry.innerHTML = `
+                                <div class="visitor-name">${entry.name}</div>
+                                ${entry.message ? `<div class="visitor-message">${entry.message}</div>` : ''}
+                                <div class="visitor-timestamp">${entry.timestamp}</div>
+                            `;
+                            
+                            // Add at the beginning
+                            visitorLog.insertBefore(newEntry, visitorLog.firstChild);
+                        }
+                    });
+                } catch (e) {
+                    console.error('Error loading visitor log:', e);
+                }
+            }
+        }
+        
+        // Load saved visitor log on page load
+        loadVisitorLog();
         
         // Dark mode toggle functionality
         const themeToggle = document.getElementById('theme-toggle');
