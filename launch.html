@@ -412,7 +412,7 @@
         <h1 class="countdown-title">Launching in</h1>
         <div class="countdown-timer" id="countdown">19 days 23 hours 59 minutes 1 seconds</div>
         <p class="countdown-description">
-            A memory repository that truly understands you—quiet and never intrusive
+            Ultimate tool to preserve dignity and identity for those facing cognitive decline
         </p>
         
         <!-- Email input system -->
@@ -523,23 +523,54 @@
         const visitorMessageInput = document.getElementById('visitor-message');
         const visitorLog = document.getElementById('visitor-log');
         
-        // Load saved countdown from server or localStorage
+        // Countdown functionality with persistent storage
         function initializeCountdown() {
-            // Try to use the server countdown (mock)
-            const serverCountdown = "19 days 23 hours 59 minutes 1 seconds";
+            const targetDate = new Date('June 30, 2025 00:00:00').getTime();
             
-            // Use localStorage for persistence between sessions
-            const savedCountdown = localStorage.getItem('reteena_countdown');
-            if (!savedCountdown) {
-                // First visit, save the current countdown
-                localStorage.setItem('reteena_countdown', serverCountdown);
+            // Get current countdown from localStorage or create it
+            let savedCountdown = localStorage.getItem('reteena_countdown');
+            let savedTargetDate = localStorage.getItem('reteena_target_date');
+            
+            // If no saved target date or it doesn't match our current target, update it
+            if (!savedTargetDate || parseInt(savedTargetDate) !== targetDate) {
+                localStorage.setItem('reteena_target_date', targetDate.toString());
+                savedCountdown = null; // Force recalculation
             }
             
-            // Always display the static text we want to show
-            document.getElementById('countdown').innerHTML = serverCountdown;
+            // Update the countdown
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                const countdownText = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+                
+                document.getElementById('countdown').innerHTML = countdownText;
+                localStorage.setItem('reteena_countdown', countdownText);
+                
+                // If the countdown is finished, display launch message
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('countdown').innerHTML = "We've launched!";
+                    localStorage.setItem('reteena_countdown', "We've launched!");
+                }
+            }
+            
+            // If we have a saved countdown, display it immediately to avoid flash
+            if (savedCountdown) {
+                document.getElementById('countdown').innerHTML = savedCountdown;
+            }
+            
+            // Then update it regularly
+            updateCountdown();
+            const countdownInterval = setInterval(updateCountdown, 1000);
         }
         
-        // Initialize countdown
+        // Initialize countdown with persistent storage
         initializeCountdown();
         
         addVisitorButton.addEventListener('click', function() {
