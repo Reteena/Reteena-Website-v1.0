@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Reteena - Launch Countdown</title>
+    <link href="./style.css" rel="stylesheet">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <!-- Import EB Garamond font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <!-- Import AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'EB Garamond', serif;
+            box-sizing: border-box;
+            color: #000000 !important;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'EB Garamond', serif;
+            margin: 0;
+            padding: 0;
+            color: #000000;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+        h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select, option, label {
+            font-family: 'EB Garamond', serif !important;
+            color: #000000 !important;
+            transition: color 0.3s ease;
+        }
+        
+        .countdown-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+        
+        .countdown-title {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        
+        .countdown-timer {
+            font-size: 6rem;
+            font-weight: 500;
+            letter-spacing: 0.1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .countdown-description {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            max-width: 60ch;
+        }
+        
+        /* Email input system */
+        .email-signup {
+            margin: 2em 0;
+            max-width: 60ch;
+            width: 100%;
+        }
+        
+        #email-form {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            margin-bottom: 0.5em;
+        }
+        
+        #email-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            font-family: 'EB Garamond', serif !important;
+            font-size: 16px;
+            color: #000000 !important;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        #email-input:focus {
+            border-color: #aaa;
+        }
+        
+        #email-input::placeholder {
+            font-family: 'EB Garamond', serif !important;
+            color: #000000 !important;
+        }
+        
+        #email-submit {
+            background-color: #f5f5f5;
+            color: #000000 !important;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-family: 'EB Garamond', serif !important;
+            font-weight: 500;
+            font-size: 16px;
+            white-space: nowrap;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        #email-submit:hover {
+            transform: scale(1.05);
+        }
+        
+        .email-message {
+            font-size: 14px;
+            color: #ff3b30 !important;
+            margin-top: 8px;
+            font-family: 'EB Garamond', serif !important;
+            text-align: left;
+        }
+        
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #121212;
+        }
+        
+        body.dark-mode h1, 
+        body.dark-mode h2, 
+        body.dark-mode h3, 
+        body.dark-mode h4, 
+        body.dark-mode h5, 
+        body.dark-mode h6, 
+        body.dark-mode p, 
+        body.dark-mode span, 
+        body.dark-mode a, 
+        body.dark-mode .countdown-timer,
+        body.dark-mode .countdown-title,
+        body.dark-mode .countdown-description,
+        body.dark-mode .footer_sub p,
+        body.dark-mode .header h1 {
+            color: #e0e0e0 !important;
+        }
+        
+        body.dark-mode #email-input {
+            background-color: #1e1e1e;
+            color: #e0e0e0 !important;
+            border-color: #333;
+        }
+        
+        body.dark-mode #email-input::placeholder {
+            color: #999 !important;
+        }
+        
+        body.dark-mode #email-submit {
+            background-color: #333;
+            color: #e0e0e0 !important;
+            border-color: #444;
+        }
+        
+        body.dark-mode .theme-toggle {
+            color: #e0e0e0 !important;
+        }
+        
+        /* Theme toggle button */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            text-decoration: underline;
+        }
+        
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            margin-top: auto;
+            padding: 1rem 0;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .footer_sub {
+            margin-top: 1em;
+        }
+        
+        .footer_sub p {
+            font-family: 'EB Garamond', serif !important;
+            color: #000000 !important;
+        }
+    </style>
+</head>
+<body>
+<div class="theme-toggle" id="theme-toggle">
+    Dark Mode
+</div>
+<a href="/" class="back-link">Back to Home</a>
+
+<main>
+    <div class="countdown-container" data-aos="fade-up" data-aos-duration="800">
+        <h1 class="countdown-title">Launching in</h1>
+        <div class="countdown-timer" id="countdown">20 days</div>
+        <p class="countdown-description">
+            Our team will soon launch our memory repository platform in partnership with OpenNLP labs. 
+            Join our waitlist to be among the first to experience Reteena.
+        </p>
+        
+        <!-- Email input system -->
+        <div class="email-signup" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+            <form id="email-form" action="https://formsubmit.co/alex@reteena.org" method="POST" novalidate>
+                <input type="hidden" name="_subject" value="New waitlist subscriber from Reteena launch page">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://www.reteena.org/launch?subscribed=true">
+                <input type="email" id="email-input" name="email" placeholder="Enter your email" required>
+                <button type="submit" id="email-submit">Join Waitlist</button>
+            </form>
+            <p id="email-message" class="email-message">Please enter your email address</p>
+        </div>
+    </div>
+
+    <footer data-aos="fade-up" data-aos-duration="800">
+        <div class="footer_sub">
+            <p>business & general: <a href="mailto:hello@reteena.org">hello@reteena.org</a></p>
+            <p>Copyright © 2025 Reteena. All rights reserved.</p>
+        </div>
+    </footer>
+</main>
+
+<!-- AOS (Animate On Scroll) Script -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Set the launch date (20 days from now)
+    const launchDate = new Date();
+    launchDate.setDate(launchDate.getDate() + 20);
+    
+    // Update countdown timer
+    function updateCountdown() {
+        const currentDate = new Date();
+        const timeDifference = launchDate - currentDate;
+        
+        // Calculate days, hours, minutes, seconds
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+        
+        // Update the countdown display
+        document.getElementById('countdown').innerHTML = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+        
+        // If countdown is finished
+        if (timeDifference < 0) {
+            document.getElementById('countdown').innerHTML = "We've Launched!";
+            clearInterval(timerInterval);
+        }
+    }
+    
+    // Initialize countdown
+    updateCountdown();
+    // Update countdown every second
+    const timerInterval = setInterval(updateCountdown, 1000);
+    
+    // Initialize AOS
+    document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+            once: true, // Only animate elements once
+            disable: 'mobile', // Disable animations on mobile devices
+            offset: 120, // Offset (in px) from the original trigger point
+        });
+        
+        // Hide message initially
+        document.getElementById('email-message').style.display = 'none';
+        
+        // Check if user just completed a subscription (from redirect)
+        if (window.location.search.includes('subscribed=true')) {
+            const emailMessage = document.getElementById('email-message');
+            emailMessage.textContent = 'Thank you for joining our waitlist!';
+            emailMessage.style.color = '#00a854'; // Green success color
+            emailMessage.style.display = 'block';
+        }
+        
+        document.getElementById('email-form').addEventListener('submit', function(e) {
+            const emailInput = document.getElementById('email-input');
+            const email = emailInput.value;
+            const emailMessage = document.getElementById('email-message');
+            
+            if (!email) {
+                // Show error message if empty
+                e.preventDefault(); // Prevent form submission
+                emailInput.style.borderColor = '#ff3b30'; // Red border for error
+                emailMessage.textContent = 'Please enter your email address';
+                emailMessage.style.color = '#ff3b30'; // Red text for error
+                emailMessage.style.display = 'block';
+                return false;
+            }
+            // Form will submit naturally to formsubmit.co
+            // Redirect and thank you message will be handled by the _next parameter
+        });
+        
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        // Check for saved theme preference or default to light
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = 'Light Mode';
+        } else {
+            themeToggle.textContent = 'Dark Mode';
+        }
+        
+        // Toggle theme when button is clicked
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            // Update button text based on current mode
+            if (document.body.classList.contains('dark-mode')) {
+                themeToggle.textContent = 'Light Mode';
+            } else {
+                themeToggle.textContent = 'Dark Mode';
+            }
+            
+            // Save theme preference
+            const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', currentTheme);
+        });
+    });
+</script>
+</body>
+</html>
