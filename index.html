@@ -141,6 +141,24 @@
             display: inline-block;
         }
         
+        /* Launch button */
+        .launch-button {
+            display: inline-block;
+            background-color: #f5f5f5;
+            color: #000000 !important;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 20px;
+            border: 1px solid #e1e1e1;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+        
+        .launch-button:hover {
+            transform: scale(1.05);
+        }
+        
         /* Dark mode styles */
         body.dark-mode {
             background-color: #121212;
@@ -157,7 +175,8 @@
         body.dark-mode .member span, 
         body.dark-mode .team-description,
         body.dark-mode .footer_sub p,
-        body.dark-mode .header h1 {
+        body.dark-mode .header h1,
+        body.dark-mode .launch-button {
             color: #e0e0e0 !important;
         }
         body.dark-mode svg {
@@ -186,6 +205,10 @@
         }
         body.dark-mode .theme-toggle {
             color: #e0e0e0 !important;
+        }
+        body.dark-mode .launch-button {
+            background-color: #333;
+            border-color: #444;
         }
         
         /* Theme toggle button */
@@ -243,6 +266,11 @@
         <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
             Our team will soon launch our memory repository platform in partnership with OpenNLP labs. We continuously experiment with innovative concepts and new ideas! Leave your email below for more information.
         </p>
+        
+        <div class="launch-cta" data-aos="fade-up" data-aos-duration="800" data-aos-delay="450">
+            <a href="/launch" class="launch-button">View Our Launch Countdown</a>
+        </div>
+        
         <!-- Email input system added here -->
         <div class="email-signup" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="500">
             <form id="email-form" action="https://formsubmit.co/alex@reteena.org" method="POST" novalidate>
